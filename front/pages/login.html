@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+
+     <!-- General CSS Files -->
+     <link
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+     crossorigin="anonymous"
+   />
+   <link
+     rel="stylesheet"
+     href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+     crossorigin="anonymous"
+   />
+
+   <!-- CSS Libraries -->
+   <link
+     rel="stylesheet"
+     href="../node_modules/bootstrap-social/bootstrap-social.css"
+   />
+
+    <link rel="stylesheet" href="/front/assets/css/style.css">
+</head>
+<body>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-stretch" 
+         style="background-image: url(/front/assets/images/vinhomes-smart-city-8.jpg);"
+    >
+
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+            <div class="login m-3 p-4">
+                <img 
+                src="/front/assets/images/download.png" 
+                alt="logo"
+                width="180"
+                height="180">
+                <h4 class="text-dark font-weight-normal">
+                    <p class="font-weight-bold">Hệ thống quản lý Chung cư</p>
+                </h4>
+                <p class="text-muted">Điền thông tin đăng nhập</p>
+
+                <form
+                method="POST"
+                action=""
+                class="needs-validation"
+                novalidate=""
+              >
+                <div class="form-group">
+                  <label for="username">Tài khoản</label>
+                  <input
+                    id="username"
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    tabindex="1"
+                    required
+                    autofocus
+                  />
+                  <div class="invalid-feedback">
+                    Vui lòng nhập Tài khoản
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="d-block">
+                    <label for="password" class="control-label">Mật khẩu</label>
+                  </div>
+                  <input
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    tabindex="2"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Vui lòng nhập Mật khẩu
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="d-block">
+                      <label for="password" class="control-label">Nhập lại mật khẩu</label>
+                    </div>
+                    <input
+                      id="password"
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      tabindex="2"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Vui lòng nhập lại Mật khẩu
+                    </div>
+                  </div>
+
+                <!-- <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      name="remember"
+                      class="custom-control-input"
+                      tabindex="3"
+                      id="remember-me"
+                    />
+                    <label class="custom-control-label" for="remember-me"
+                      >Remember Me</label
+                    >
+                  </div>
+                </div> -->
+                
+                <div class="form-group text-right">
+                  <div class="button">
+                    <a id="loginButton" href="#" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">Login</a>
+                  </div>
+                  <!-- <button
+                    id="loginButton"
+                    class="btn btn-primary btn-lg btn-icon icon-right"
+                    tabindex="4"
+                  >
+                    Login
+                  </button> -->
+                </div>
+              </form>
+              <div   class="sign-up-quest d-flex justify-content-center">
+                <p class="text-black-50">Chưa có tài khoản?</p>
+                <a href="">Đăng ký</a>
+              </div>
+              
+            </div>
+
+        </div>
+        
+    </div>
+</body>
+</html>
