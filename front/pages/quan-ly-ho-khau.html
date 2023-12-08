@@ -278,7 +278,7 @@
                       </div>
                     </div>
                     
-                      <button class="add-member-btn">Thêm thành viên</button>
+                      <button class="add-member-btn" id="add-member-btn">Thêm thành viên</button>
                     
                     
                   </div>
@@ -292,7 +292,31 @@
     </div>
     <script src="/front/assets/js/scripts.js"></script>
     <script>
-      
+            document.getElementById('add-member-btn').addEventListener('click', function() {
+          var memberDiv = document.createElement('div');
+          memberDiv.className = 'member';
+          var memberHTML = `
+            <h6>Thành viên</h6>
+            <div class="add-name member-item">
+              <span>Họ và tên </span>
+              <input type="text" placeholder="--dien ho va ten --">
+            </div>
+            <div class="add-birthday member-item">
+              <span>Ngày sinh </span>
+              <input type="date" max="2023-01-01">
+            </div>
+            <div class="add-gender member-item">
+              <span>Giới tính</span>
+              <form>
+                <input name="gender" type="radio" value="Nam" />Nam
+                <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+              </form>
+            </div>`;
+          memberDiv.innerHTML = memberHTML;
+
+          var membersContainer = document.querySelector('.members');
+          membersContainer.appendChild(memberDiv);
+        });
     </script>
 </body>
 </html>

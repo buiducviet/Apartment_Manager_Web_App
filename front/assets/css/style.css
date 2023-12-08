@@ -412,7 +412,7 @@ body.sidebar-gone .main-sidebar {
 
 }
 .popup-menu {
-  display: block;
+  display: none;
   position: fixed;
   overflow-y: auto;
   top: 50%;

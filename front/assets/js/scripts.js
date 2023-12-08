@@ -55,3 +55,4 @@ $("[data-toggle='sidebar']").click(function() {
     });
    
   });
+
