@@ -1,0 +1,70 @@
+.card-body {
+    padding: 0;
+}
+.sidebar-card-body {
+    padding: 0;
+}
+
+.sidebar-card-body li.active a {
+    color: #6777ef;
+    font-weight: 600;
+    background-color: #f8fafb;
+}
+.sidebar-card-body > li > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    letter-spacing: .3px;
+    color: #636c74;
+    text-decoration: none;
+    font-size: 16px ;
+    padding: 0 20px;
+    
+}
+
+.sidebar-card-body > li > a > i {
+    width: 28px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+/* Infor */ 
+
+.card-body-infor, .card-body-bill-header, .card-pay{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+}
+.card-body-infor span,.card-body-bill span{
+    text-align: left;
+    padding-bottom: 20px;
+    font-size: 16px;
+    color: #3b3b3b;
+}
+.card-pay {
+    align-items: center;
+}
+.confirm-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #fa4242;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+}
+.confirm-button span {
+    font-weight: 500;
+    color: #fff;
+}
+.confirm-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+
+

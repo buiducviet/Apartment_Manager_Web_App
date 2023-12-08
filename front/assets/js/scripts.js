@@ -34,3 +34,24 @@ $("[data-toggle='sidebar']").click(function() {
 
     return false;
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var popupTrigger = document.getElementById("add-household");
+    var popupMenu = document.getElementById("popup-menu");
+    var overlay = document.createElement("div");
+    overlay.className = "overlay";
+
+  
+    popupTrigger.addEventListener("click", function (event) {
+      
+      popupMenu.style.display = "block";
+      document.body.appendChild(overlay);
+      overlay.style.display = "block";
+      
+    });
+    overlay.addEventListener("click", function () {
+      popupMenu.style.display = "none";
+      overlay.style.display = "none";
+    });
+   
+  });

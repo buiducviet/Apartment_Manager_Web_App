@@ -70,7 +70,7 @@
                       <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-file-invoice"></i>
                         <span>Quản lý hóa đơn</span></a>
                     </li>
                     <li class="menu-header">Hỗ trợ</li>
@@ -183,10 +183,112 @@
                           </thead>
                           </table>
                         </div>
+                        <div class="add-household-btn">
+                          <a href="#" class="add-household" id="add-household"><i class="fas fa-plus"></i><span>Thêm hộ khẩu</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-menu" id="popup-menu">
+                  <div class="chuho-infor">
+                    <div class="add-name ">
+                      <span>Họ và tên chủ hộ </span>
+                      <input type="text" placeholder="--dien ten chu ho--">
+                    </div>
+  
+                    <div class="add-birthday ">
+                      <span>Ngày sinh </span>
+                      <input type="date" max="2023-01-01" placeholder="--dien ngay sinh-">
+                    </div>
+  
+                    
+                  </div>
+                  <div class="add-gender popup-menu-item">
+                    <span>Giới tính</span>
+                    <form >
+                      <input  name="gender" type="radio" value="Nam" />Nam
+                      <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                    </form>
+                   
+                  </div>
+                  <div class="add-phonenumber popup-menu-item">
+                    <span>Số điện thoại </span>
+                    <input type="text" placeholder="--dien so dien thoai--">
+                  </div>
+                  <div class="add-cccd popup-menu-item">
+                    <span>Số cccd chủ hộ </span>
+                    <input type="text" placeholder="--dien cccd--">
+                  </div>
+                  
+                  <div class="add-code popup-menu-item">
+                    <span>Mã hộ khẩu </span>
+                    <input type="text" placeholder="--dien ma ho khau-">
+                  </div>
+
+                  
+                  
+                  
+
+                  <div class="add-houseid popup-menu-item">
+                    <span>Số nhà </span>
+                    <input type="text" placeholder="--dien so nha--">
+                  </div>
+                  <div class="members-input">
+                    <div class="members">
+                      <div class="member">
+                        <h6>Thành viên</h6>
+                        <div class="add-name member-item">
+                          <span>Họ và tên </span>
+                          <input type="text" placeholder="--dien ho va ten --">
+                        </div>
+      
+                        <div class="add-birthday member-item">
+                          <span>Ngày sinh </span>
+                          <input type="date" max="2023-01-01" >
+                        </div>
+                        <div class="add-gender member-item">
+                          <span>Giới tính</span>
+                          <form >
+                            <input  name="gender" type="radio" value="Nam" />Nam
+                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                          </form>
+                         
+                        </div>
+
                       </div>
+                      <div class="member">
+                        <h6>Thành viên</h6>
+                        <div class="add-name member-item">
+                          <span>Họ và tên </span>
+                          <input type="text" placeholder="--dien ho va ten --">
+                        </div>
+      
+                        <div class="add-birthday member-item">
+                          <span>Ngày sinh </span>
+                          <input type="date" max="2023-01-01" >
+                        </div>
+                        <div class="add-gender member-item">
+                          <span>Giới tính</span>
+                          <form >
+                            <input  name="gender" type="radio" value="Nam" />Nam
+                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                          </form>
+                         
+                        </div>
+
+                      </div>
+                    </div>
+                    
+                      <button class="add-member-btn">Thêm thành viên</button>
+                    
+                    
+                  </div>
+                  
+                  
                 </div>
               </div>
+              
         </div>
+        
     </div>
     <script src="/front/assets/js/scripts.js"></script>
     <script>

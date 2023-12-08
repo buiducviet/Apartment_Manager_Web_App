@@ -1,3 +1,6 @@
+a:hover {
+    text-decoration: none;
+}
 body {
     background-color: #f4f6f9;
     font-size: 14px;
@@ -373,7 +376,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li ul.dropdown-menu li a.has-dro
     body.sidebar-mini .main-sidebar .sidebar-menu li:hover > ul.dropdown-menu {
     display: block !important; }
     body.sidebar-mini .main-sidebar .sidebar-menu li:hover > ul.dropdown-menu li:hover > a {
-        background-color: #fcfcfd; }
+        background-color: #fcfdfd; }
     body.sidebar-mini .main-sidebar .sidebar-menu li:hover > ul.dropdown-menu li .dropdown-menu {
         left: 200px;
         padding: 0; }
@@ -385,4 +388,95 @@ body.sidebar-mini .main-content, body.sidebar-mini .main-footer {
     padding-left: 90px; }
 body.sidebar-gone .main-sidebar {
     left: -250px; }
-      
+.add-household-btn {
+    display: inline-block;
+    text-align: right;
+    padding: 30px;
+    
+}
+.add-member-btn,.add-household-btn>a {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #47bbc3;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+
+}
+.add-member-btn:hover,.add-household-btn a:hover {
+    background-color: #47aa5c;
+}
+.add-household-btn a > i {
+    padding: 0 10px;
+
+}
+.popup-menu {
+  display: block;
+  position: fixed;
+  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  min-width: 800px;
+  max-height: 80%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+  }
+.popup-menu .popup-menu-item {
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+
+}
+
+.popup-menu span {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-right: 100px;
+}
+.chuho-infor span {
+    margin: 10px;
+}
+.chuho-infor{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+}
+.member-item {
+
+    display: flex;
+    padding: 10px 30px;
+}
+.members {
+    border: solid 1px #333;
+    border-radius: 10px;
+    padding: 20px;
+}
+.add-member-btn {
+    outline: 0 !important;
+    margin: 20px  0 20px;
+    
+}
+.members-input {
+    text-align: right;
+}
+.members {
+    text-align: left !important;
+}
+
+
