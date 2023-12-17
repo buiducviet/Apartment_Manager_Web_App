@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+
+  <link rel="stylesheet" href="/front/assets/css/style.css">
+<style>
+.member-info {
+  padding-left: 20px;
+  font-size: 19px;
+}
+.vehicle{
+  padding-left: 20px;
+}
+.vehicle p{
+  font-size: 18px;
+}
+
+</style>
+
+
+</head>
+<body class="sidebar-show">
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                  <ul class="navbar-nav mr-3">
+                    <li>
+                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                    </li>
+                  </ul>
+                  <div class="search-element"></div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+                      <div class="d-sm-none d-lg-inline-block">
+                        Chào, <span id="student-name">Admin</span>
+                      </div>
+                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                        <a href="/front/pages/profile.html" id="profile" class="dropdown-item has-icon">
+                          <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </a>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+            </nav>
+
+
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                  <div class="sidebar-brand">
+                    <a href="Home.html">Chung cư</a>
+                  </div>
+                 
+                  <ul class="sidebar-menu">
+                    <li class="nav-item dropdown active">
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                    </li>
+                    <li class="menu-header">Quản lý</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý hộ khẩu</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Quản lý hóa đơn</span></a>
+                    </li>
+                    <li class="menu-header">Hỗ trợ</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                        <span>Xử lý các yêu cầu</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
+                        <span>Thông báo</span></a>
+                    </li>
+                </aside>
+              </div>
+            </div>
+            <div class="main-content"  >
+                <div class="section">
+                    <div class="section-header">
+                        <h1>Thông tin gia đình</h1>
+                    </div>
+                </div>
+                <div class="profile" style="border: 3px solid rgb(61, 49, 192);padding-left: 20px;padding-top: 10px;">
+                    <div>
+                      <h1>
+                        Các thành viên trong gia đình
+                      </h1>
+                    </div>
+                    <div class="member-info" style = "margin-top: 20px;">
+                        <h3>Tên: Càn Long</h3>
+                        <!-- <p style = "display: inline;">Mã CCCD : 0123456789110</p> 
+                        <p style = "display: inline; margin-left: 100px;";>Giới tính : Nam</p>
+                        <br>
+                        <p style = "display: inline;">Nghề nghiệp: Ca sĩ</p>
+                        <p style = "display: inline; margin-left: 100px;">Số điện thoại: 0123456789</p> -->
+                        <div class="info">
+                          <div class="row">
+                            <div class="col">
+                            Ngày Sinh : 13/12/1989
+                            </div>
+                            <div class="col">
+                              Giới tính : Nam
+                            </div>
+                            <div class="col">
+                              Số điện thoại: 0123456789
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info">
+                          <div class="row">
+                            <div class="col">
+                              Mã CCCD : 0123456789110
+                            </div>
+                            <div class="col">
+                              Nghề nghiệp: Vua
+                            </div>
+                            <div class="col">
+                              Mối quan hệ với chủ hộ: Chủ hộ
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            
+                    <div class="member-info" style = "margin-top: 20px;">
+                        <h3>Tên: Ô Lạp Na Lạp Như Ý</h3>
+                        <div class="info">
+                          <div class="row">
+                            <div class="col">
+                            Ngày Sinh : abcd
+                            </div>
+                            <div class="col">
+                              Giới tính : Nam
+                            </div>
+                            <div class="col">
+                              Số điện thoại: 0123456789
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info">
+                          <div class="row">
+                            <div class="col">
+                              Mã CCCD : 012345678911â0
+                            </div>
+                            <div class="col">
+                              Nghề nghiệp: Đao phủ
+                            </div>
+                            <div class="col">
+                              Mối quan hệ với chủ hộ: ô môi
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            
+                    <div class="member-info" style = "margin-top: 20px;">
+                      <h3>Tên: Vệ Yến Uyển</h3>
+                      <div class="info">
+                        <div class="row">
+                          <div class="col">
+                          Ngày Sinh : 13/12/1989
+                          </div>
+                          <div class="col">
+                            Giới tính : Nam
+                          </div>
+                          <div class="col">
+                            Số điện thoại: 0123456789
+                          </div>
+                        </div>
+                      </div>
+                      <div class="info">
+                        <div class="row">
+                          <div class="col">
+                            Mã CCCD : 0123456789110
+                          </div>
+                          <div class="col">
+                            Nghề nghiệp: Ca sĩ
+                          </div>
+                          <div class="col">
+                            Mối quan hệ với chủ hộ: bê đê
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="member-info" style = "margin-top: 20px;">
+                      <h3>Tên: Ngụy Anh Lạc</h3>
+                      <div class="info">
+                        <div class="row">
+                          <div class="col">
+                          Ngày Sinh : 13/12/1989
+                          </div>
+                          <div class="col">
+                            Giới tính : Nam
+                          </div>
+                          <div class="col">
+                            Số điện thoại: 0123456789
+                          </div>
+                        </div>
+                      </div>
+                      <div class="info">
+                        <div class="row">
+                          <div class="col">
+                            Mã CCCD : 0123456789110
+                          </div>
+                          <div class="col">
+                            Nghề nghiệp: Ca sĩ
+                          </div>
+                          <div class="col">
+                            Mối quan hệ với chủ hộ: nô tì vẫn mãi là nô tì
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style = "margin-top: 30px;">
+                      <h1>
+                        Phương tiện giao thông đăng ký
+                      </h1>
+                    </div>
+                    <div class="vehicle">
+                      <h3>Loại xe : Xe gắn máy</h3>
+                      <p>Dòng xe : Air Blade</p>
+                      <p>Biển đăng ký : 28293031</p>
+                    </div>
+                    <div class="vehicle">
+                      <h3>Loại xe : Ô tô</h3>
+                      <p>Dòng xe : BMW</p>
+                      <p>Biển đăng ký : 2829303123456</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/front/assets/js/scripts.js"></script>
+</body>
+</html>
