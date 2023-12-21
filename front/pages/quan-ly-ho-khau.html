@@ -1,196 +1,806 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="/front/assets/css/style.css">
 
+  <style>
+    .modal-title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .modal-content {
+      width: 1000px;
+      min-height: 400;
+      /* height: 500px; */
+    }
+
+    /* infoModal1{
+    text-align: center;
+  } */
+
+    .modal-dialog {
+      display: block;
+      text-align: center;
+      /* justify-content: center; */
+      /* vertical-align: middle; */
+    }
+
+    .modal.show .modal-dialog {
+      /* -webkit-transform: none;
+    transform: none; */
+      min-width: 1000px;
+      padding-top: 100px;
+    }
+
+    /* .chuho-infor span {
+    margin: 10px;
+}
+.chuho-infor{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    background-color: aqua;
+}
+.member-item {
+
+    display: flex;
+    padding: 10px 30px;
+}
+.members {
+    border: solid 1px #333;
+    border-radius: 10px;
+    padding: 20px;
+}
+.add-member-btn {
+    outline: 0 !important;
+    margin: 20px  0 20px;
+    
+}
+.members-input {
+    text-align: right;
+}
+.members {
+    text-align: left !important;
+} */
+  </style>
+
 </head>
+
 <body class="sidebar-show">
-    <div id="app">
-        <div class="main-wrapper">
-            <div class="navbar-bg"></div>
-            <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
-                  <ul class="navbar-nav mr-3">
-                    <li>
-                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
-                    </li>
-                  </ul>
-                  <div class="search-element"></div>
-                </form>
-                <ul class="navbar-nav navbar-right">
-                  <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
-                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
-                      <div class="d-sm-none d-lg-inline-block" >
-                        Chào, <span id="student-name">Admin</span>
-                      </div>
-                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <a href="#" id="profile" class="dropdown-item has-icon">
-                          <i class="fas fa-user"></i> Profile
-                        </a>
-                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                        </a>
-                      </div>
-                  </li>
-                </ul>
-            </nav>
-
-
-            <div class="main-sidebar">
-                <aside id="sidebar-wrapper">
-                  <div class="sidebar-brand">
-                    <a href="Home.html">Chung cư</a>
-                  </div>
-                 
-                  <ul class="sidebar-menu">
-                    <li class="nav-item dropdown ">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
-                    </li>
-                    <li class="menu-header">Quản lý</li>
-                    <li class="nav-item dropdown active">
-                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
-                        <span>Quản lý hộ khẩu</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-file-invoice"></i>
-                        <span>Quản lý hóa đơn</span></a>
-                    </li>
-                    <li class="menu-header">Hỗ trợ</li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
-                        <span>Xử lý các yêu cầu</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
-                        <span>Thông báo</span></a>
-                    </li>
-                </aside>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <form class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li>
+              <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+            </li>
+            <li>
+              <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+            </li>
+          </ul>
+          <div class="search-element"></div>
+        </form>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+              <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+              <div class="d-sm-none d-lg-inline-block">
+                Chào, <span id="student-name">Admin</span>
               </div>
+              <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                <a href="#" id="profile" class="dropdown-item has-icon">
+                  <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                  <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </a>
+              </div>
+          </li>
+        </ul>
+      </nav>
 
-               <!-- Content -->
 
-               <div class="main-content">
-                <div class="section">
-                    <div class="section-header"><h1>Quản lý hộ khẩu</h1></div>
+      <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="Home.html">Chung cư</a>
+          </div>
+
+          <ul class="sidebar-menu">
+            <li class="nav-item dropdown ">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+            </li>
+            <li class="menu-header">Quản lý</li>
+            <li class="nav-item dropdown active">
+              <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                <span>Quản lý hộ khẩu</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản
+                  lý thu phí</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                <span>Quản lý hóa đơn</span></a>
+            </li>
+            <li class="menu-header">Hỗ trợ</li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                <span>Xử lý các yêu cầu</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
+                <span>Thông báo</span></a>
+            </li>
+        </aside>
+      </div>
+
+      <!-- Content -->
+
+      <div class="main-content">
+        <div class="section">
+          <div class="section-header">
+            <h1>Quản lý hộ khẩu</h1>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12">
+
+              <div class="card">
+                <div class="card-header">
+                  <h4>Tra cứu hộ khẩu</h4>
                 </div>
-                <div class="section-body">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-12 col-sm-12">
-                          
-                          <div class="card">
-                            <div class="card-header">
-                              <h4>Tra cứu hộ khẩu</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-8">
-                                      <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
-                                      <select id="filter-field">
-                                        <option></option>
-                                        <option value="householdid">Mã sổ hộ khẩu</option>
-                                        <option value="name">Họ và tên chủ hộ</option>
-                                        <option value="roomid">Số nhà</option>                               
-                                      </select>
-              
-                                      <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
-                                    </div>
-                                    <div class="col-4">
-                                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Tìm kiếm</a>
-                                    </div>
-              
-                                  </div>
-                            </div>
-                          </div>
-                          
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-5">
-                          <div class="card">
-                            <div class="card-header">
-                              <h4>Lịch</h4>
-                            </div>
-                            <div class="card-body">
-                              <div class="fc-overflow">
-                                <div id="calendar" class="fc-overflow"></div>
-                              </div>
-                            </div>
-                          </div>
-                          
-                        </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <span>
+                        <h6>Tìm kiếm dữ liệu theo cột</h6>
+                      </span>
+                      <select id="filter-field">
+                        <option></option>
+                        <option value="householdid">Mã sổ hộ khẩu</option>
+                        <option value="name">Họ và tên chủ hộ</option>
+                        <option value="roomid">Số nhà</option>
+                      </select>
+
+                      <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
+                    </div>
+                    <div class="col-4">
+                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Tìm kiếm</a>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                          <h4>Danh sách hộ khẩu</h4>
-                          
-                        </div>
-                        <div class="card-body">
-                          <table border="1px " cellpadding="10px" class="table">
-
-                          <thead class="table-header">
-                            <tr class="table-header" style="margin: 0; width: 100%;">
-                              <th style="width: 5%;">STT</th>
-                              <th style="width: 10%;">Xử lý</th>
-                              <th style="width: 20%;">ID Hộ Khẩu</th>
-                              <th style="width: 20%;">Số nhà</th>
-                              <th>Tên chủ hộ</th>
-                              <th style="width: 15%;">Số điện thoại</th>
-                            </tr>
-                          </thead>
-                          <thead class="tb-body">          
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>ID Hộ Khẩu</td>
-                              <td>Số nhà</td>
-                              <td>Tên chủ hộ</td>
-                              <td>Số đt</td>
-                            </tr>
-
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>ID Hộ Khẩu</td>
-                              <td>Số nhà</td>
-                              <td>Tên chủ hộ</td>
-                              <td>Số đt</td>
-                            </tr>
-                          </thead>
-                          </table>
-                        </div>
-                      </div>
+                  </div>
                 </div>
               </div>
+
+            </div>
+            <div class="col-12 col-md-12 col-lg-5">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Lịch</h4>
+                </div>
+                <div class="card-body">
+                  <div class="fc-overflow">
+                    <div id="calendar" class="fc-overflow"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-10">
+                <h4 style = "display: inline;">Danh sách hộ khẩu</h4>
+                </div>
+                <h5 style="font-size: 20px;">Xuất file</h5>
+                <a href="#">
+                  <i class="fa fa-print" style="Color:darkcyan; font-size: 25px;margin-left: 10px;" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <table border="1px " cellpadding="10px" class="table">
+
+                <thead class="table-header">
+                  <tr class="table-header" style="margin: 0; width: 100%;">
+                    <th style="width: 5%;">STT</th>
+                    <th style="width: 10%;">Xử lý</th>
+                    <th style="width: 20%;">ID Hộ Khẩu</th>
+                    <th style="width: 20%;">Số nhà</th>
+                    <th>Tên chủ hộ</th>
+                    <th style="width: 15%;">Số điện thoại</th>
+                  </tr>
+                </thead>
+                <thead class="tb-body">
+                  <tr class="table-body">
+                    <td>STT</td>
+                    <td class="solve" style="align-items: center;">
+                      <a href="#" id="openModal1"><i class="fa fa-info"></i></a>
+                      <div class="modal fade" id="infoModal1" tabindex="-1" role="dialog"
+                        aria-labelledby="infoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog custom-modal" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" style="width: 100%" id="infoModalLabel">Thông tin chi tiết</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <!--Content Popup-->
+                              <h2>Danh Sách Các Thành Viên Trong Gia Đình</h2>
+                              <table border="1px" cellpadding="10px" class="table">
+                                <thead>
+                                  <tr>
+                                    <th>STT</th>
+                                    <th>Họ Tên</th>
+                                    <th>Ngày Sinh</th>
+                                    <th>Giới Tính</th>
+                                    <th>Số Điện Thoại</th>
+                                    <th>Địa Chỉ</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1 - Chủ hộ</td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>01/01/1990</td>
+                                    <td>Nam</td>
+                                    <td>0123456789</td>
+                                    <td>Hà Nội</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2</td>
+                                    <td>Trần Thị B</td>
+                                    <td>15/05/1985</td>
+                                    <td>Nữ</td>
+                                    <td>0987654321</td>
+                                    <td>Hồ Chí Minh</td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        $(document).ready(function () {
+                          $('#openModal1').click(function () {
+                            $('#infoModal1').modal('show');
+                          });
+                        });
+                      </script>
+                      <a href="#" id="openModal4"><i class="fa fa-edit"></i></a>
+
+                      <div class="modal fade" id="infoModal4" tabindex="-1" role="dialog"
+                        aria-labelledby="infoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog custom-modal" role="document" style="padding-top:20px;">
+                          <div class="modal-content" style="min-height: 400px;">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="infoModalLabel">Thông tin chi tiết</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body" style="text-align: left;">
+                              <!--Content Popup-->
+                              <div class="member-info" style="margin-top: 20px;font-size: 17px;">
+                                <div class="row">
+                                  <div class="col-11">
+                                    <h3 style="display:inline;margin: 20px">Tên: Yamada asaemon shion</h3>
+                                  </div>
+                                  <a href="#"><i class="fa fa-times" style="align-self: self-end;"
+                                      aria-hidden="true"></i></a>
+                                </div>
+                                <div class="info" style="padding-left: 40px;">
+                                  <div class="row">
+                                    <div class="col">
+                                      Ngày sinh : 20/09/1994
+                                    </div>
+                                    <div class="col">
+                                      Giới tính: Nam
+                                    </div>
+                                    <div class="col">
+                                      Mã CCCD : 123456789101
+                                    </div>
+                                  </div>
+                                  <div class="info">
+                                    <div class="row">
+                                      <div class="col">
+                                        Nghề nghiệp: nô tì
+                                      </div>
+                                      <div class="col">
+                                        Số điện thoại: 0123456789
+                                      </div>
+                                      <div class="col">
+                                        Mối quan hệ với chủ hộ: nô tì
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="members-input">
+                                <div class="members">
+                                  <div class="member">
+                                    <div class ="row">
+                                      <div class = "col-10">
+                                        <h6>Thành viên</h6>
+                                      </div>
+                                      <div class="col">
+                                        <a href="#">
+                                          <i class="fa fa-times" style="align-self: self-end;" aria-hidden="true"></i>
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-name member-item">
+                                          <span>Họ và tên</span>
+                                          <input style="margin-left: 20px; border-radius: 5px; height: 30px;"
+                                            type="text" placeholder="Điền họ và tên">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-citizen-card member-item">
+                                          <span>Mã CCCD</span>
+                                          <input style="margin-left: 20px; border-radius: 5px; height: 30px;"
+                                            type="text" placeholder="Điền mã CCCD">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-birthday member-item">
+                                          <span>Ngày sinh </span>
+                                          <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="date"
+                                            max="2100-01-01">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-gender member-item">
+                                          <span>Giới tính</span>
+                                          <form>
+                                            <input name="gender" type="radio" value="Nam" />Nam
+                                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-birthday member-item">
+                                          <span>Số điện thoại </span>
+                                          <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="text">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-gender member-item">
+                                          <span></span>
+                                          <form>
+                                            <span>Mối quan hệ với chủ hộ</span>
+                                            <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="text">
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="add-member-btn" id="add-member-btn">Thêm thành viên</button>
+                              <button class="update" style="position: absolute; bottom: 5px; right: 5px;">
+                                Cập nhật thông tin
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+            <script>
+              $(document).ready(function () {
+                $('#openModal4').click(function () {
+                  $('#infoModal4').modal('show');
+                });
+              });
+            </script>
+
+            <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
+            </td>
+            <td>ID Hộ Khẩu</td>
+            <td>Số nhà</td>
+            <td>Tên chủ hộ</td>
+            <td>Số đt</td>
+            </tr>
+
+            <tr class="table-body">
+              <td>STT</td>
+              <td class="solve" style="align-items: center;">
+                <a href="#" id="openModal2">
+                  <i class="fa fa-info"></i>
+                </a>
+                <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog custom-modal" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="infoModalLabel">Thông tin chi tiết</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <!--Content Popup-->
+                        <h2>Danh Sách Các Thành Viên Trong Gia Đình</h2>
+                        <table style="border:1px;" cellpadding="10px" class="table">
+                          <thead>
+                            <tr>
+                              <th>STT</th>
+                              <th>Họ Tên</th>
+                              <th>Ngày Sinh</th>
+                              <th>Giới Tính</th>
+                              <th>Số Điện Thoại</th>
+                              <th>Mã CCCD</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1 - Chủ hộ</td>
+                              <td>Nguyễn Văn A</td>
+                              <td>01/01/1990</td>
+                              <td>Nam</td>
+                              <td>0123456789</td>
+                              <td>046756165489</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Trần Thị B</td>
+                              <td>15/05/1985</td>
+                              <td>Nữ</td>
+                              <td>0987654321</td>
+                              <td>H1504891546478</td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(document).ready(function () {
+                    $('#openModal2').click(function () {
+                      $('#infoModal2').modal('show');
+                    });
+                  });
+                </script>
+
+                <a href="#" id="openModal3"><i class="fa fa-edit"></i></a>
+
+                <div class="modal fade" id="infoModal3" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog custom-modal" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="infoModalLabel">Thông tin chi tiết</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <!--Content Popup-->
+                        <div class="chuho-infor">
+                          <div class="add-name ">
+                            <span>Họ và tên chủ hộ </span>
+                            <input type="text" placeholder="--dien ten chu ho--">
+                          </div>
+                          <div class="add-birthday ">
+                            <span>Ngày sinh </span>
+                            <input type="date" max="2023-01-01" placeholder="--dien ngay sinh-">
+                          </div>
+
+
+                        </div>
+                        <div class="add-gender popup-menu-item">
+                          <span>Giới tính</span>
+                          <form>
+                            <input name="gender" type="radio" value="Nam" />Nam
+                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                          </form>
+
+                        </div>
+                        <div class="add-phonenumber popup-menu-item">
+                          <span>Số điện thoại </span>
+                          <input type="text" placeholder="--dien so dien thoai--">
+                        </div>
+                        <div class="add-cccd popup-menu-item">
+                          <span>Số cccd chủ hộ </span>
+                          <input type="text" placeholder="--dien cccd--">
+                        </div>
+
+                        <div class="add-code popup-menu-item">
+                          <span>Mã hộ khẩu </span>
+                          <input type="text" placeholder="--dien ma ho khau-">
+                        </div>
+
+
+
+
+
+                        <div class="add-houseid popup-menu-item">
+                          <span>Số nhà </span>
+                          <input type="text" placeholder="--dien so nha--">
+                        </div>
+                        <div class="members-input">
+                          <div class="members">
+                            <div class="member">
+                              <h6>Thành viên</h6>
+                              <div class="add-name member-item">
+                                <span>Họ và tên </span>
+                                <input type="text" placeholder="--dien ho va ten --">
+                              </div>
+
+                              <div class="add-birthday member-item">
+                                <span>Ngày sinh </span>
+                                <input type="date" max="2023-01-01">
+                              </div>
+                              <div class="add-gender member-item">
+                                <span>Giới tính</span>
+                                <form>
+                                  <input name="gender" type="radio" value="Nam" />Nam
+                                  <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                                </form>
+
+                              </div>
+
+                            </div>
+                            <!-- <div class="member">
+                                              <h6>Thành viên</h6>
+                                              <div class="add-name member-item">
+                                                <span>Họ và tên </span>
+                                                <input type="text" placeholder="--dien ho va ten --">
+                                              </div>
+                            
+                                              <div class="add-birthday member-item">
+                                                <span>Ngày sinh </span>
+                                                <input type="date" max="2023-01-01" >
+                                              </div>
+                                              <div class="add-gender member-item">
+                                                <span>Giới tính</span>
+                                                <form >
+                                                  <input  name="gender" type="radio" value="Nam" />Nam
+                                                  <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                                                </form>
+                                               
+                                              </div>
+                      
+                                            </div> -->
+                          </div>
+
+                          <button class="add-member-btn" id="add-member-btn">Thêm thành viên</button>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(document).ready(function () {
+                    $('#openModal3').click(function () {
+                      $('#infoModal3').modal('show');
+                    });
+                  });
+                </script>
+                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
+              </td>
+              <td>ID Hộ Khẩu</td>
+              <td>Số nhà</td>
+              <td>Tên chủ hộ</td>
+              <td>Số đt</td>
+            </tr>
+            </thead>
+            </table>
+          </div>
+          <div class="add-household-btn">
+            <a href="#" class="add-household" id="add-household"><i class="fas fa-plus"></i><span>Thêm hộ
+                khẩu</span></a>
+          </div>
         </div>
+      </div>
+      <div class="popup-menu" id="popup-menu">
+        <div class="chuho-infor">
+          <div class="add-name ">
+            <span>Họ và tên chủ hộ </span>
+            <input type="text" placeholder="--dien ten chu ho--">
+          </div>
+
+          <div class="add-birthday ">
+            <span>Ngày sinh </span>
+            <input type="date" max="2023-01-01" placeholder="--dien ngay sinh-">
+          </div>
+
+
+        </div>
+        <div class="add-gender popup-menu-item">
+          <span>Giới tính</span>
+          <form>
+            <input name="gender" type="radio" value="Nam" />Nam
+            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+          </form>
+
+        </div>
+        <div class="add-phonenumber popup-menu-item">
+          <span>Số điện thoại </span>
+          <input type="text" placeholder="--dien so dien thoai--">
+        </div>
+        <div class="add-cccd popup-menu-item">
+          <span>Số cccd chủ hộ </span>
+          <input type="text" placeholder="--dien cccd--">
+        </div>
+
+        <div class="add-code popup-menu-item">
+          <span>Mã hộ khẩu </span>
+          <input type="text" placeholder="--dien ma ho khau-">
+        </div>
+
+
+
+
+
+        <div class="add-houseid popup-menu-item">
+          <span>Số nhà </span>
+          <input type="text" placeholder="--dien so nha--">
+        </div>
+        <div class="members-input">
+          <div class="members">
+            <div class="member">
+              <h6>Thành viên</h6>
+              <div class="add-name member-item">
+                <span>Họ và tên </span>
+                <input type="text" placeholder="--dien ho va ten --">
+              </div>
+
+              <div class="add-birthday member-item">
+                <span>Ngày sinh </span>
+                <input type="date" max="2023-01-01">
+              </div>
+              <div class="add-gender member-item">
+                <span>Giới tính</span>
+                <form>
+                  <input name="gender" type="radio" value="Nam" />Nam
+                  <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                </form>
+
+              </div>
+
+            </div>
+            <div class="member">
+              <h6>Thành viên</h6>
+              <div class="add-name member-item">
+                <span>Họ và tên </span>
+                <input type="text" placeholder="--dien ho va ten --">
+              </div>
+
+              <div class="add-birthday member-item">
+                <span>Ngày sinh </span>
+                <input type="date" max="2023-01-01">
+              </div>
+              <div class="add-gender member-item">
+                <span>Giới tính</span>
+                <form>
+                  <input name="gender" type="radio" value="Nam" />Nam
+                  <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+
+          <button class="add-member-btn" id="add-member-btn">Thêm thành viên</button>
+
+
+        </div>
+
+
+      </div>
     </div>
-    <script src="/front/assets/js/scripts.js"></script>
-    <script>
-      
-    </script>
+
+  </div>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/front/assets/js/scripts.js"></script>
+  <script>
+    document.getElementById('add-member-btn').addEventListener('click', function () {
+      var memberDiv = document.createElement('div');
+      memberDiv.className = 'member';
+      var memberHTML = `
+      <div class="members-input">
+                                <div class="members">
+                                  <div class="member">
+                                    <h6>Thành viên</h6>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-name member-item">
+                                          <span>Họ và tên</span>
+                                          <input style="margin-left: 20px; border-radius: 5px; height: 30px;"
+                                            type="text" placeholder="Điền họ và tên">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-citizen-card member-item">
+                                          <span>Mã CCCD</span>
+                                          <input style="margin-left: 20px; border-radius: 5px; height: 30px;"
+                                            type="text" placeholder="Điền mã CCCD">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-birthday member-item">
+                                          <span>Ngày sinh </span>
+                                          <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="date"
+                                            max="2100-01-01">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-gender member-item">
+                                          <span>Giới tính</span>
+                                          <form>
+                                            <input name="gender" type="radio" value="Nam" />Nam
+                                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <div class="add-birthday member-item">
+                                          <span>Số điện thoại </span>
+                                          <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="text">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="add-gender member-item">
+                                          <span></span>
+                                          <form>
+                                            <span>Mối quan hệ với chủ hộ</span>
+                                            <input style="margin-left: 20px;border-radius: 5px; height: 30px;" type="text">
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>`;
+      memberDiv.innerHTML = memberHTML;
+
+      var membersContainer = document.querySelector('.members');
+      membersContainer.appendChild(memberDiv);
+    });
+  </script>
 </body>
+
 </html>

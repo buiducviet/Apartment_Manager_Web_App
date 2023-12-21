@@ -1,101 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- General CSS Files -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-
-
-  <link rel="stylesheet" href="/front/assets/css/style.css">
-
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- <link rel="stylesheet" href="/front/assets/css/tyle.css"> -->
 </head>
+<style>
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .modal-content {
+    width: 1000px;
+    min-height: 400;
+  }
+
+
+  .modal-dialog {
+    display: block;
+    /* text-align: center; */
+
+  }
+
+  .modal.show .modal-dialog {
+    min-width: 1000px;
+    padding-top: 100px;
+  }
+
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+</style>
+
 <body class="sidebar-show">
-    <div id="app">
-        <div class="main-wrapper">
-            <div class="navbar-bg"></div>
-            <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
-                  <ul class="navbar-nav mr-3">
-                    <li>
-                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
-                    </li>
-                  </ul>
-                  <div class="search-element"></div>
-                </form>
-                <ul class="navbar-nav navbar-right">
-                  <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
-                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
-                      <div class="d-sm-none d-lg-inline-block">
-                        Chào, <span id="student-name">Admin</span>
-                      </div>
-                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <a href="#" id="profile" class="dropdown-item has-icon">
-                          <i class="fas fa-user"></i> Profile
-                        </a>
-                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                        </a>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-            </nav>
-
-
-            <div class="main-sidebar">
-                <aside id="sidebar-wrapper">
-                  <div class="sidebar-brand">
-                    <a href="Home.html">Chung cư</a>
-                  </div>
-                 
-                  <ul class="sidebar-menu">
-                    <li class="nav-item dropdown active">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
-                    </li>
-                    <li class="menu-header">Quản lý</li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
-                        <span>Quản lý hộ khẩu</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-file-invoice"></i>
-                        <span>Quản lý hóa đơn</span></a>
-                    </li>
-                    <li class="menu-header">Hỗ trợ</li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
-                        <span>Xử lý các yêu cầu</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
-                        <span>Thông báo</span></a>
-                    </li>
-                </aside>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <form class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li>
+              <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+            </li>
+            <li>
+              <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+            </li>
+          </ul>
+          <div class="search-element"></div>
+        </form>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+              <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+              <div class="d-sm-none d-lg-inline-block">
+                Chào, <span id="student-name">Admin</span>
               </div>
+              <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                <a href="#" id="profile" class="dropdown-item has-icon">
+                  <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                  <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </a>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
 
-              <!-- Content -->
+      <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="Home.html">Chung cư</a>
+          </div>
 
-              <div class="main-content">
-                <div class="section">
-                    <div class="section-header"><h1>Vinhome Smart City</h1></div>
+          <ul class="sidebar-menu">
+            <li class="nav-item dropdown active">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+            </li>
+            <li class="menu-header">Quản lý</li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                <span>Quản lý hộ khẩu</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản
+                  lý thu phí</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                <span>Quản lý hóa đơn</span></a>
+            </li>
+            <li class="menu-header">Hỗ trợ</li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                <span>Xử lý các yêu cầu</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
+                <span>Thông báo</span></a>
+            </li>
+        </aside>
+      </div>
+
+
+      <!-- Content -->
+
+      <div class="main-content">
+        <div class="section">
+          <div class="section-header">
+            <h1>Vinhome Smart City</h1>
+            <a href="#" id="openModal2" style="margin-left: 65%;">
+              <button class="button" style="height: 50px;font-size: 20px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+              background-color: aliceblue;
+              border-radius: 10px;">
+                Thêm thông báo
+              </button>
+            </a>
+            <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog custom-modal" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="width: 100%" id="infoModalLabel">Thông tin chi tiết</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!--Content Popup-->
+                    <h2>Thông báo thu phí gửi xe tháng 1/2100</h2>
+                    <p>
+                      ____________________________________________________________________________________________________________________________________________________________________
+                    </p>
+                    <p style="border:1px;font-size: 20px;">
+                      Hiện nay đã có thông báo về khoản thu đối với phí dịch vụ bla bla, kính mời cư dân chung cư blue
+                      mu vào quản lý thu phí để kiểm tra và nộp tiền dịch vụ
+                      Hạn từ ngày 1-2-2100-10-2-2100
+                    </p>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-4">
+            <div class="card" id="openModal1">
+              <!-- <a href="#" id = "openModal1"> -->
+              <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Thong bao thu phi gui xe</h5>
+                <!-- </a> -->
+                <p class="card-text">Hien da co thong bao ve chi phi nop tien gui xe tai chung cu. Kinh moi cu dan trong
+                  chung cu vao kiem tra va nop dung thoi han</p>
+              </div>
+            </div>
+            <div class="modal fade" id="infoModal1" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog custom-modal" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="width: 100%" id="infoModalLabel">Thông tin chi tiết</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!--Content Popup-->
+                    <h2>Thông báo thu phí gửi xe tháng 1/2100</h2>
+                    <p>
+                      ____________________________________________________________________________________________________________________________________________________________________
+                    </p>
+                    <p style="border:1px;font-size: 20px;">
+                      Hiện nay đã có thông báo về khoản thu đối với phí dịch vụ bla bla, kính mời cư dân chung cư blue
+                      mu vào quản lý thu phí để kiểm tra và nộp tiền dịch vụ
+                      Hạn từ ngày 1-2-2100-10-2-2100
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="/front/assets/js/scripts.js"></script>
+  </div>
+     <script>
+      $(document).ready(function () {
+        $('#openModal1').click(function () {
+          $('#infoModal1').modal('show');
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('#openModal2').click(function () {
+          $('#infoModal2').modal('show');
+        });
+      });
+    </script>
+    <script src="../assets/js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
