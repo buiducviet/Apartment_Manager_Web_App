@@ -119,21 +119,7 @@
 
 
       <!-- Content -->
-
-      <div class="main-content">
-        <div class="section">
-          <div class="section-header">
-            <h1>Vinhome Smart City</h1>
-            <a href="#" id="openModal2" style="margin-left: 65%;">
-              <button class="button" style="height: 50px;font-size: 20px;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-              background-color: aliceblue;
-              border-radius: 10px;">
-                Thêm thông báo
-              </button>
-            </a>
-            <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+      <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
               aria-hidden="true">
               <div class="modal-dialog custom-modal" role="document">
                 <div class="modal-content">
@@ -158,6 +144,27 @@
                 </div>
               </div>
             </div>
+      <div class="main-content">
+        <div class="section">
+          <div class="section-header">
+            <h1>Vinhome Smart City</h1>
+            <a href="#" id="openModal2" style="margin-left: 65%;">
+              <button class="button" style="height: 50px;font-size: 20px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+              background-color: aliceblue;
+              border-radius: 10px;">
+                Thêm thông báo
+              </button>
+            </a>
+            
+            <!-- <script>
+              $(document).ready(function () {
+                $('#openModal2').click(function () {
+                  $('#infoModal2').modal('show');
+                });
+              });
+            </script> -->
           </div>
         </div>
 
@@ -210,17 +217,97 @@
         });
       });
     </script>
-    <script>
-      $(document).ready(function () {
-        $('#openModal2').click(function () {
-          $('#infoModal2').modal('show');
-        });
-      });
-    </script>
     <script src="../assets/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+     $(document).ready(function () {
+  var cardIndex = 2; // Biến để theo dõi index của mỗi card
+
+  $('#openModal2').click(function () {
+    // Reset form mỗi khi mở modal để nhập thông tin mới
+    $('#addNotificationForm')[0].reset();
+    $('#inputModal').modal('show');
+  });
+
+  $('#addNotificationForm').submit(function (event) {
+    event.preventDefault();
+    
+    var title = $('#notificationTitle').val();
+    var content = $('#notificationContent').val();
+    
+    // Tạo ID duy nhất cho mỗi modal chi tiết card
+    var newModalId = 'infoModal' + cardIndex;
+
+    // Tạo modal chi tiết cho card
+    var modalHtml = `
+      <div class="modal fade" id="${newModalId}" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="infoModalLabel">${title}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>${content}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    $('body').append(modalHtml);
+
+    // Tạo card mới và thêm vào DOM
+    var newCardHtml = `
+      <div class="col-4">
+        <div class="card" data-toggle="modal" data-target="#${newModalId}">
+          <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">${title}</h5>
+            <p class="card-text">${content}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    $('.row').prepend(newCardHtml);
+
+    // Tăng cardIndex lên sau mỗi lần tạo card
+    cardIndex++;
+    
+    $('#inputModal').modal('hide');
+  });
+});
+    </script>
+    <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="inputModalLabel">Thêm Thông Báo Mới</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addNotificationForm">
+              <div class="form-group">
+                <label for="notificationTitle">Tiêu đề thông báo</label>
+                <input type="text" class="form-control" id="notificationTitle" required>
+              </div>
+              <div class="form-group">
+                <label for="notificationContent">Nội dung thông báo</label>
+                <textarea class="form-control" id="notificationContent" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Đồng ý</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
