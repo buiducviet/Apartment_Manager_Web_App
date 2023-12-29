@@ -58,10 +58,11 @@ $(document).ready(function () {
             var token = result.token.access_token;
             sessionStorage.setItem("token", token);
             sessionStorage.setItem("role", role);
+            //nếu là citizen
             if (role == "0") {
+              window.location.href = "/app/frontend/pages/Home.html";
+            } else if (role == "1") { //nếu là admin
               window.location.href = "/app/frontend/pages/index.html";
-            } else if (role == "1") {
-              window.location.href = "/app/frontend/pages/index0.html";
             }
           } else if (result.message == "Invalid login details") {
             alert("Thông tin đăng nhập chưa đúng");

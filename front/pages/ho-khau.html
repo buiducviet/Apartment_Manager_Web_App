@@ -61,12 +61,12 @@
                   </div>
                  
                   <ul class="sidebar-menu">
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i>
                         <span>Thông tin cá nhân</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown  active">
                       <a href="/front/pages/ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
                         <span>Theo dõi hộ khẩu</span></a>
                     </li>
@@ -91,87 +91,52 @@
               </div>
 
 
-              <!-- Content -->
-
-              <div class="main-content">
-                <div class="section">
-                    <div class="section-header"><h1>Vinhome Smart City</h1></div>
+             <!-- Main Content -->
+       <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Căn hộ - Hộ khẩu</h1>
+          </div>
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-lg-12 col-xl-5">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Căn hộ</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="author-box-details" id="info-description">
+                          <div class="author-box-name">
+                            <p>Số nhà: <span id="room-id"></span></p>
+                            <p>Diện tích: <span id="room-ara"></span>m2</p>
+                            <p>Chủ hộ: <span id="room-owner"></span></p>
+                            <p>Mã hộ khẩu: <span id="household-id"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <section class="section">
-                  <div class="section-header">
-                    <h1>Thông tin</h1>
-                  </div>
-                  <div class="section-body">
-                    <div class="row">
-                      <div class="col-12 col-md-12 col-lg-7">
-                        <div class="card">
-                          <div class="card-header">
-                            <h3>Thông tin chủ hộ</h3>
-                            <div class="card-header-action">
-                          </div>
-                          </div>
-                        <div class="card-body">
-                          <div class="card author-box card-primary">
-                            <div class="card-body">
-                              <div class="author-box-left">
-                                <img alt="image" src="../assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle author-box-picture" >
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="author-box-details">
-                                <div class="">
-                                  <p>Họ và tên: <span class="citizen-name"></span></p>
-                                  <p>Mã cccd: <span id="citizen-id"></span></p>
-                                  <p>Ngày sinh: <span id="citizen-birth"></span></p>
-                                  <p>Giới tính: <span id="citizen-gender"></span></p>
-                                  <p>Thông tin liên lạc: <span id="citizen-contact"></span></p>
-                                  <p>Ngày đăng ký:  <span id="citizen-register-date"></span></p>
-                                  <p>Ngày cập nhật:  <span id="citizen-update-date"></span></p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header">
-                            <h3>Căn hộ</h3>
-                            <div class="card-header-action">
-                              <a href="/front/pages/ho-khau.html" class="btn btn-primary btn-round">Chi tiết...</a>
-                          </div>
-                          </div>
-                        <div class="card-body">
-                          <div class="card author-box">
-                            <div class="card-body">
-                              <div class="" id="info-description">
-                                <div class="">
-                                  <p>Số nhà: <span id="room-id"></span></p>
-                                  <p>Diện tích: <span id="room-ara"></span>m2</p>
-                                  <p>Thời điểm sở hữu: <span id="time-own"></span></p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-12 col-lg-5">
-                        <div class="card">
-                          <div class="card-header">
-                            <h4>Lịch</h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="fc-overflow">
-                              <div id="calendar" class="fc-overflow"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                        
-                    </div>
-                  </div>
-                </section>
               </div>
+              <div class="col-12 col-lg-12 col-xl-7">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Danh sách nhân khẩu</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div id="roomate-table"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </section>
+    </div>
               
         </div>
     </div>
