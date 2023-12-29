@@ -1,0 +1,17 @@
+TEST = "TEST"
+
+# Database
+DBDriver = "mysql"
+DBUser = "root"
+DBPass = "Vietthptqt10a@"
+DBHost="127.0.0.1"
+DBPort="3306"
+DBName = "bdv"
+
+# Redis
+RedisHost = "127.0.0.1:6379"
+RedisPassword = ""
+
+# Server
+SrvHost = "25.43.134.201"
+SrvPort = "8080"

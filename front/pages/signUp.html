@@ -25,7 +25,7 @@
      href="../node_modules/bootstrap-social/bootstrap-social.css"
    />
 
-    <link rel="stylesheet" href="/front/assets/css/style.css">
+    <link rel="stylesheet" href="../front/assets/css/style.css">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
                 <h4 class="text-dark font-weight-normal">
                     <p class="font-weight-bold">Hệ thống quản lý Chung cư</p>
                 </h4>
-                <p class="text-muted">Điền thông tin đăng nhập</p>
+                <p class="text-muted">Điền thông tin tài khoản đăng ký</p>
 
                 <form
                 method="POST"
@@ -52,19 +52,35 @@
                 novalidate=""
               >
                 <div class="form-group">
-                  <label for="username">Tài khoản</label>
+                  <label for="userID">Số CCCD chủ hộ</label>
                   <input
-                    id="username"
+                    id="userID"
                     type="text"
                     class="form-control"
-                    name="username"
+                    name="userID"
                     tabindex="1"
                     required
                     autofocus
                   />
                   <div class="invalid-feedback">
-                    Vui lòng nhập Tài khoản
+                    Vui lòng nhập mã số CCCD chủ hộ
                   </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Tên người dùng</label>
+                    <input
+                      id="username"
+                      type="text"
+                      class="form-control"
+                      name="username"
+                      tabindex="1"
+                      required
+                      autofocus
+                    />
+                    <div class="invalid-feedback">
+                      Vui lòng nhập Tài khoản
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -84,6 +100,22 @@
                   </div>
                 </div>
 
+                <div class="form-group">
+                    <div class="d-block">
+                      <label for="password" class="control-label">Nhập lại mật khẩu</label>
+                    </div>
+                    <input
+                      id="password"
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      tabindex="2"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Vui lòng nhập lại Mật khẩu
+                    </div>
+                  </div>
 
                 <!-- <div class="form-group">
                   <div class="custom-control custom-checkbox">
@@ -102,7 +134,7 @@
                 
                 <div class="form-group text-right">
                   <div class="button">
-                    <a id="loginButton" href="#" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">Login</a>
+                    <a id="loginButton" href="#" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">Đăng ký</a>
                   </div>
                   <!-- <button
                     id="loginButton"
@@ -112,11 +144,7 @@
                     Login
                   </button> -->
                 </div>
-              </form>
-              <div   class="sign-up-quest d-flex justify-content-center">
-                <p class="text-black-50">Chưa có tài khoản?</p>
-                <a href="/front/pages/signUp.html">Đăng ký</a>
-              </div>
+              </form>             
               
             </div>
 
