@@ -21,7 +21,7 @@ $(document).ready(function () {
   
     //Check if enough input
     function checkInput() {
-      var username = $("#username").val();
+      var username = $("#userID").val();
       var password = $("#password").val();
       if (username != "" && password != "") {
         $("#loginButton").removeClass("disabled");
@@ -32,12 +32,13 @@ $(document).ready(function () {
     setInterval(checkInput, 300);
   
     //Login request
-    function loginRequest(user, pass) {
+    function loginRequest(user, pass) 
+    {
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "text/plain");
   
       var raw =
-        '{\n  "username" : "' +
+        '{\n  "userID" : "' +
         user +
         '",\n  "password" : "' +
         pass +
@@ -50,7 +51,7 @@ $(document).ready(function () {
         redirect: "follow",
       };
   
-      fetch("http://25.43.134.201:8080/user/login", requestOptions)
+      fetch("http://25.20.166.7:8080/user/login", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           if (result.message == "login success") {
@@ -60,9 +61,9 @@ $(document).ready(function () {
             sessionStorage.setItem("role", role);
             //nếu là citizen
             if (role == "0") {
-              window.location.href = "/app/frontend/pages/Home.html";
+              window.location.href = "/front/pages/Home.html";
             } else if (role == "1") { //nếu là admin
-              window.location.href = "/app/frontend/pages/index.html";
+              window.location.href = "/front/pages/index.html";
             }
           } else if (result.message == "Invalid login details") {
             alert("Thông tin đăng nhập chưa đúng");
@@ -79,7 +80,7 @@ $(document).ready(function () {
     }
   
     $("#loginButton").on("click", function () {
-      let username = $("#username").val();
+      let username = $("#userID").val();
       let password = $("#password").val();
   
       loginRequest(username, password);

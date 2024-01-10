@@ -1,9 +1,18 @@
 package main
 
 import (
-	"fmt"
+	"ApartmentApp/config"
+	"ApartmentApp/db"
+	"ApartmentApp/model"
+	"ApartmentApp/server"
+	"ApartmentApp/tlog"
 )
 
 func main() {
-	fmt.Println("Hello world")
+	config.Init()
+	db.Init()
+	db.RedisClientInit("1")
+	model.InitMigration()
+	tlog.Init()
+	server.Init()
 }

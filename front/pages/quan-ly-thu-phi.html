@@ -10,9 +10,15 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
   integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  
 
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
 
   <link rel="stylesheet" href="/front/assets/css/style.css">
+  <link rel="stylesheet" href="/front/assets/css/card-body.css">
 
 </head>
 <body class="sidebar-show">
@@ -59,7 +65,7 @@
                  
                   <ul class="sidebar-menu">
                     <li class="nav-item dropdown ">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                      <a href="/front/pages/index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
                     <li class="nav-item dropdown ">
@@ -93,10 +99,75 @@
                     <div class="section-header"><h1>Quản lý thu phí</h1></div>
                 </div>
                 <div class="section-body">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                      
+                      <div class="card">
+                        <div class="card-header">
+                          <h5>Danh mục phí</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="sidebar-card-body">
+
+                                <li class="nav-item dropdown active">
+                                    <a href="" class="bill-link">
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí chung cư</span>
+                                   </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="/front/pages/quan-ly-phi-phuong-tien.html" class="bill-link" id="water-bill">
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí phương tiện</span>
+                                   </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="/front/pages/phi-ve-sinh.html" class="bill-link">
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí Dịch vụ</span>
+                                   </a>
+                                </li>
+                            </ul>
+                              
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-9">
+                      
+                        
+                            <div class="card" style="padding-bottom: 30px;">
+                              <div class="card-header">
+                                <h4>Danh sách các hộ đã đóng phí</h4>
+                                
+                              </div>
+                              <div class="card-body">
+                                <div class="row"style="margin: 20px;">
+                                  <div id="housefee-table-paid"></div>
+                                </div>
+                              </div>
+                        </div>
+                        
+                        <div class="card" style="padding-bottom: 30px;">
+                                <div class="card-header">
+                                  <h4>Danh sách các hộ chưa đóng phí</h4>
+                                </div>
+                                <div class="card-body">
+                                  <div class="row" style="margin: 20px;">
+                                    <div id="housefee-table-unpaid"></div>
+                                  </div>
+                                </div>        
+                        </div>
+                      
+                       
+                    </div>
+                      
+                    </div>
+                </div>
                     <!--<div class="row">
                         <div class="col-lg-4 col-md-12 col-sm-12">-->
                           
-                          <div class="card">
+                          <!--<div class="card">
                             <div class="card-header">
                               <h5>Danh sách các khoản phí</h5>
                             </div>
@@ -122,123 +193,31 @@
               
                                   </div>
                             </div>
-                          </div>
+                          </div>-->
                           
                         <!--</div>
                         <div class="col-12 col-md-12 col-lg-4">-->
                           
                     <!--</div>-->
 
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div class="card-header">
-                          <h4>Danh sách các hộ đã đóng phí</h4>
-                          
-                        </div>
-                        <div class="card-body">
-                          <table border="1px " cellpadding="10px" class="table">
-
-                          <thead class="table-header">
-                            <tr class="table-header" style="margin: 0; width: 100%;">
-                              <th style="width: 5%;">STT</th>
-                              <th style="width: 20%;">Xử lý</th>
-                              <th style="width: 20%;">Thời gian</th>
-                              <th style="width: 20%;">Số nhà</th>
-                              <th>Tên chủ hộ</th>
-                              
-                            </tr>
-                          </thead>
-                          <thead class="tb-body">          
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>29/11/2023</td>
-                              <td>Số nhà</td>
-                              <td>Bùi Đức Việt depgiaihd</td>
-                              
-                            </tr>
-
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>Thời gian</td>
-                              <td>Số nhà</td>
-                              <td>Tên chủ hộ</td>
-                              
-                            </tr>
-                          </thead>
-                          </table>
-                        </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                  <h4>Danh sách các hộ chưa đóng phí</h4>
-                                </div>
-                                <div class="card-body">
-                                    <table border="1px " cellpadding="10px" class="table">
-          
-                                    <thead class="table-header">
-                                      <tr class="table-header" style="margin: 0; width: 100%;">
-                                        <th style="width: 5%;">STT</th>
-                                        <th style="width: 20%;">Xử lý</th>
-                                        <th style="width: 20%;">Dư nợ</th>
-                                        <th style="width: 20%;">Số nhà</th>
-                                        <th>Tên chủ hộ</th>
-                                        
-                                      </tr>
-                                    </thead>
-                                    <thead class="tb-body">          
-                                      <tr class="table-body">
-                                        <td>STT</td>
-                                        <td class="solve" style="align-items: center;">
-                                          <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                          <a href="#"><i class="fa fa-edit"></i></a>
-                                          <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                                        </td>
-                                        <td>1.000.000.000</td>
-                                        <td>Số nhà</td>
-                                        <td>tên</td>
-                                        
-                                      </tr>
-          
-                                      <tr class="table-body">
-                                        <td>STT</td>
-                                        <td class="solve" style="align-items: center;">
-                                          <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                          <a href="#"><i class="fa fa-edit"></i></a>
-                                          <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                                        </td>
-                                        <td>Thời gian</td>
-                                        <td>Số nhà</td>
-                                        <td>Tên chủ hộ</td>
-                                        
-                                      </tr>
-                                    </thead>
-                                    </table>
-                                  </div>
-                              
-                              
-                            </div>
-                        </div>
-
-                      </div>
-                </div>
+                    
               </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+ 
     <script src="/front/assets/js/scripts.js"></script>
-    <script>
-      
-    </script>
+    <script src="/front/assets/js/quan-ly-thu-phi.js"></script>
 </body>
 </html>

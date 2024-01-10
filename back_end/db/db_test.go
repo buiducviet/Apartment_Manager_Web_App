@@ -16,9 +16,6 @@ func TestGetDB(t *testing.T) {
 	err := db.DB().Ping()
 	if err != nil {
 		t.Errorf("Something went wrong with the database : %+v", err)
-	} else {
-		t.Log("Connected to the database successfully!")
 	}
-
 	db.Close()
 }

@@ -18,8 +18,8 @@ var (
 // User user type
 type User struct {
 	DefaultModel
-	UserID   string `gorm:"type: text;size:10 ;not null; default:0; primary_key"`
-	Role     int    `gorm:"not null; default:0" json:"role"`
+	UserID   string `gorm:"not null;unique" json:"userID"`
+	Role     int    `gorm:"not null; default:1" json:"role"`
 	Username string `gorm:"not null;unique" json:"username"`
 	Password string `gorm:"type:text;not null" json:"password"`
 }
@@ -40,7 +40,7 @@ func hashPassword(password string) (string, error) {
 // Login check if user login with correct information
 func (u User) Login(form forms.LoginForm) (user User, token Token, err error) {
 	err = db.GetDB().Where(&User{
-		Username: form.UserID,
+		UserID: form.UserID,
 	}).Find(&user).Error
 
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(form.Password))
@@ -82,7 +82,12 @@ func (u *User) Register(form forms.RegisterForm) (*User, error) {
 		UserID:   form.UserID,
 	}
 
-	if db.Table("user").Where("user_id = ?", form.UserID).RecordNotFound() {
+	/*newCitizen := &Citizen{
+		Name:      form.Username,
+		CitizenID: form.UserID,
+	}*/
+
+	if db.Table("user").Or("user_id = ?", form.UserID).RecordNotFound() {
 		return nil, errors.New("User existed")
 	}
 
@@ -91,7 +96,7 @@ func (u *User) Register(form forms.RegisterForm) (*User, error) {
 		return nil, err
 	}
 
-	if db.NewRecord(newUser) {
+	if !db.NewRecord(newUser) {
 		return nil, errors.New("User existed")
 	}
 
@@ -118,7 +123,7 @@ func (u User) CheckPass() (bool, error) {
 	checkUser := new(User)
 
 	err := db.Where(&User{
-		Username: u.Username,
+		UserID: u.UserID,
 	}).Find(&checkUser).Error
 
 	if err != nil {

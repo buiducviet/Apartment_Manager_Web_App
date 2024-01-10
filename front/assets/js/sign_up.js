@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    var token = sessionStorage.getItem("token");
+   /* var token = sessionStorage.getItem("token");
     var role = sessionStorage.getItem("role");
   
     if (token != null) {
       sessionStorage.removeItem("token");
-    }
+    }*/
     // Get current date & time
     function updateTime() {
       var today = new Date();
@@ -22,23 +22,28 @@ $(document).ready(function () {
     //Check if enough input
     function checkInput() {
       var username = $("#username").val();
+      var userID = $("#userID").val();
       var password = $("#password").val();
-      if (username != "" && password != "") {
-        $("#loginButton").removeClass("disabled");
+
+      if (username != "" && password != "" && userID != "") {
+        $("#signUpButton").removeClass("disabled");
       } else {
-        $("#loginButton").addClass("disabled");
+        $("#signUpButton").addClass("disabled");
       }
     }
     setInterval(checkInput, 300);
   
     //Login request
-    function loginRequest(user, pass) {
+    function signUpRequest(username, userID, pass) {
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "text/plain");
   
       var raw =
+
         '{\n  "username" : "' +
-        user +
+        username +
+        '",\n  "userID" : "' +
+        userID +
         '",\n  "password" : "' +
         pass +
         '"\n   \n}';
@@ -50,11 +55,11 @@ $(document).ready(function () {
         redirect: "follow",
       };
   
-      fetch("http://25.43.134.201:8080/user/register", requestOptions)
+      fetch("http://25.20.166.7:8080/user/register", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          if (result.message == "login success") {
-            var role = result.role;
+          if (result.message == "Register successfully") {
+            /*var role = result.role;
             var token = result.token.access_token;
             sessionStorage.setItem("token", token);
             sessionStorage.setItem("role", role);
@@ -62,9 +67,10 @@ $(document).ready(function () {
               window.location.href = "/app/frontend/pages/index.html";
             } else if (role == "1") {
               window.location.href = "/app/frontend/pages/index0.html";
-            }
-          } else if (result.message == "Invalid login details") {
-            alert("Thông tin đăng nhập chưa đúng");
+            }*/
+            window.location.href = "/front/pages/login.html";
+          } else if (result.message == "User existed") {
+            alert("Đã tồn tại người dùng này!");
           } else if (result.message == "Invalid form") {
             alert("Thông tin điền chưa hợp lệ!");
           } else {
@@ -77,11 +83,12 @@ $(document).ready(function () {
         });
     }
   
-    $("#loginButton").on("click", function () {
+    $("#signUpButton").on("click", function () {
+      let userID = $("#userID").val();
       let username = $("#username").val();
       let password = $("#password").val();
   
-      loginRequest(username, password);
+      signUpRequest(username,userID, password);
     });
   });
   

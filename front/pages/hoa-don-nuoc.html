@@ -60,25 +60,25 @@
                  
                   <ul class="sidebar-menu">
                     <li class="nav-item dropdown ">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Thông tin cá nhân</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
                     <li class="nav-item dropdown ">
-                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
-                        <span>Quản lý hộ khẩu</span></a>
+                      <a href="/front/pages/ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Theo dõi hộ khẩu</span></a>
                     </li>
                     <li class="nav-item dropdown ">
-                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> 
-                        <span>Quản lý thu phí</span></a>
+                      <a href="/front/pages/nop-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> 
+                        <span>Theo dõi phí chung cư</span></a>
                     </li>
                     <li class="nav-item dropdown active">
-                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-file-invoice"></i>
-                        <span>Quản lý hóa đơn</span></a>
+                      <a href="/front/pages/hoa-don-dien.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Theo dõi hóa đơn</span></a>
                     </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
-                        <span>Xử lý các yêu cầu</span></a>
+                        <span>Gửi yêu cầu</span></a>
                     </li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
@@ -105,7 +105,7 @@
                                 <ul class="sidebar-card-body">
 
                                     <li class="nav-item dropdown">
-                                        <a href="/front/pages/quan-ly-nhan-khau.html" class="bill-link">
+                                        <a href="/front/pages/hoa-don-dien.html" class="bill-link">
                                             <i class="far fa-file-alt"></i>
                                             <span>Hóa đơn điện</span>
                                        </a>
@@ -134,34 +134,32 @@
                               <h4 style="text-align: center;">Thông tin thanh toán</h4>
                             </div>
                             <div class="card-body">
-                                <div class="card-body-infor">
-                                    <span>Họ và tên chủ hộ:    Bùi Đức Việt</span>
-                                    <span>Số nhà: </span>
-                                    <span>Mã hộ khẩu: </span>
-                                    
+                              <div class="card-body-infor">
+                                <p>Họ và tên chủ hộ: <span id="room-owner"></span></p>
+                                <p>Số nhà: <span id="room-id"></span></p>
+                                <p>Mã hộ khẩu: <span id="household-id"></span></p>
 
-                                </div>
-                                <div class="card-body-bill">
-                                    <div class="card-body-bill-header">
-                                        <span>Đơn vị thu: Tổng công ty nước Hà Nội</span>
-                                        <span>Mã số khách hàng:  </span>
-                                        <span>Mã số thuế: </span>
-                                        <span>Kỳ hóa đơn: </span>
-                                        <span>Thời hạn thu: </span>
+                              </div>
+                              <div class="card-body-bill">
+                                  <div class="card-body-bill-header">
+                                      <p>Đơn vị thu: Tổng công ty nước sạch Hà Nội</p>
+                                      <p>Mã số khách hàng: <span id="customerID"></span> </p>
+                                      <p>Chi tiết: Thu tiền nước tháng <span id="month"></span></p>
+                                      <p>Thời hạn thu: <span id="duration"></span></p>
 
-                                        
-                                    </div>
-                                    <div class="card-pay">
-                                        <span>Số tiền thanh toán: </span>
-                                        <a href="" class="confirm-button">
-                                            <i class="fas fa-lock"></i>
-                                            <span>Xác nhận</span>
-                                        </a>
-                                    </div>
-                                    
-    
-                                </div>
-                            </div>
+                                      
+                                  </div>
+                                  <div class="card-pay">
+                                      <p>Số tiền thanh toán: <span id="sum-cost"></span></p>
+                                      <a href="" class="confirm-button">
+                                          <i class="fas fa-lock"></i>
+                                          <span>Xác nhận</span>
+                                      </a>
+                                  </div>
+                                  
+  
+                              </div>
+                          </div>
                           </div>
                           
                         </div>
@@ -176,9 +174,20 @@
               </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+  <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+
     <script src="/front/assets/js/scripts.js"></script>
-    <script>
-      
-    </script>
+    <script src="/front/assets/js/hoa-don.js"></script>
 </body>
 </html>

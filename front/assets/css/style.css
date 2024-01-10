@@ -394,7 +394,7 @@ body.sidebar-gone .main-sidebar {
     padding: 30px;
     
 }
-.add-member-btn,.add-household-btn>a {
+.add-member-btn,.add-household-btn>a, .add-member-btn-edit {
     border: none;
     padding: 10px;
     border-radius: 10px;
@@ -411,7 +411,7 @@ body.sidebar-gone .main-sidebar {
     padding: 0 10px;
 
 }
-.popup-menu {
+.popup-menu, .popup-menu-edit {
   display: none;
   position: fixed;
   overflow-y: auto;
@@ -449,6 +449,11 @@ body.sidebar-gone .main-sidebar {
     font-weight: bold;
     margin-right: 100px;
 }
+.popup-menu-edit p {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-right: 100px;
+}
 .chuho-infor span {
     margin: 10px;
 }
@@ -467,7 +472,7 @@ body.sidebar-gone .main-sidebar {
     border-radius: 10px;
     padding: 20px;
 }
-.add-member-btn {
+.add-member-btn, .add-member-btn-edit {
     outline: 0 !important;
     margin: 20px  0 20px;
     
@@ -478,5 +483,24 @@ body.sidebar-gone .main-sidebar {
 .members {
     text-align: left !important;
 }
-
-
+.btnPassword , .btnPassword:focus, .btnPassword:active{
+    box-shadow: none; /* Xóa box-shadow khi nút được nhấn */
+    outline: none;
+    border: 1px solid transparent;
+    
+}
+.hidden {
+    display: none !important;
+}
+.vehicle-list {
+    padding: 30px;
+}
+.icon {
+    margin: 10px;
+}
+.tabulator-col .tabulator-col-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

@@ -10,27 +10,20 @@ import (
 // Student ...
 type Citizen struct {
 	DefaultModel
-	CitizenID string `json:"studentid" gorm:"type:int; not null; unique_index; primary_key"`
+	FamilyID  string `json:"familyID" gorm:" not null;"`
+	CitizenID string `json:"citizenID" gorm:" not null; unique_index; primary_key"`
 	Name      string `json:"name" gorm:"type:text; not null"`
 	DOB       string `json:"dob" gorm:"type:text"`
-	RoomID    int    `json:"room" gorm:"type:int; not null"`
+	Contact   string `json:"contact" gorm:"type:text; not null"`
+	Gender    string `json:"gender" gorm:"type:text; not null"`
+	RoomID    int    `json:"roomID" gorm:"type:int; not null"`
+	Relation  string `json:"relation" gorm:"type:text;"`
+	Status    string `json:"citizen_status" gorm:"type:text"`
 }
 
-// MoneyManage ...
-/*type MoneyManage struct {
-	gorm.Model
-	CitizenID   int    `json:"studentid" gorm:"type:int;not null; index"`
-	Month       int    `json:"month" gorm:"type:int; not null"`
-	Year        int    `json:"year" gorm:"type:int; not null"`
-	Money       int    `json:"money" gorm:"type:int; not null"`
-	Status      string `json:"status" gorm:"type:text; not null"`
-	Description string `json:"description" gorm:"type:text"`
-}*/
-
-// GetStudentInfo based on student id
-func (c Citizen) GetCitizenInfo(citizenid string) (*Citizen, error) {
+func (c Citizen) GetCitizenInfo(CitizenID string) (*Citizen, error) {
 	ctz := new(Citizen)
-	err := db.GetDB().Where("citizen_id = ?", citizenid).Find(&ctz).Error
+	err := db.GetDB().Where("citizen_id = ?", CitizenID).Find(&ctz).Error
 	if err != nil {
 		return nil, errors.New("Can not find citizen with given id")
 	}
@@ -53,10 +46,26 @@ func (c Citizen) GetAllCitizenByRoomID(roomID int) ([]Citizen, error) {
 
 	return listCtz, err
 }
+func (c Citizen) GetAllCitizenByFamilyID(familyID string) ([]Citizen, error) {
+	var listCtz []Citizen
+	rows, err := db.GetDB().Model(&Citizen{}).Where("family_id = ?", familyID).Rows()
+	defer rows.Close()
+	if err != nil {
+		return nil, err
+	}
+	for rows.Next() {
+		var ctz Citizen
+		db.GetDB().ScanRows(rows, &ctz)
+		// fmt.Printf("%+v", std)
+		listCtz = append(listCtz, ctz)
+	}
 
-// GetRoomID by student id
-func (c Citizen) GetRoomID(citizenid string) (roomid int, err error) {
-	db.GetDB().Table("citizen").Select("room_id").Where("citizen_id = ?", citizenid).Row().Scan(&roomid)
+	return listCtz, err
+}
+
+// GetRoomID by citizen id
+func (c Citizen) GetRoomID(CitizenID string) (roomid int, err error) {
+	db.GetDB().Table("citizen").Select("room_id").Where("citizen_id = ?", CitizenID).Row().Scan(&roomid)
 	if roomid == 0 {
 		err = errors.New("Can not find room in DB")
 		/*tlog.Error("Room ID not available", err)*/
@@ -64,56 +73,75 @@ func (c Citizen) GetRoomID(citizenid string) (roomid int, err error) {
 	}
 	return roomid, nil
 }
+func (c Citizen) ChangeCitizenInfo(ctzInfoForm forms.CitizenInfoForm) (*Citizen, error) {
+	var err error
+	var ctz Citizen
+	db := db.GetDB()
 
-// GetDormMoney get dorm money based on student id
-/*func (s Student) GetDormMoney(studentid int) ([]MoneyManage, error) {
-	var listMoney []MoneyManage
-
-	rows, err := db.GetDB().Table("money_manage").Where("student_id = ?", studentid).Rows()
-	defer rows.Close()
+	err = db.Table("citizen").Where("citizen_id = ?", ctzInfoForm.CitizenID).Find(&ctz).Error
 	if err != nil {
-		tlog.Error("Can not query money_manage from db", err)
+		return nil, err
+	}
+	ctz.CitizenID = ctzInfoForm.CitizenID
+	ctz.Contact = ctzInfoForm.Contact
+	ctz.Name = ctzInfoForm.Name
+	ctz.DOB = ctzInfoForm.DOB
+	ctz.Gender = ctzInfoForm.Gender
+	ctz.FamilyID = ctzInfoForm.FamilyID
+	ctz.Relation = ctzInfoForm.Relation
+	ctz.RoomID = ctzInfoForm.RoomID
+	ctz.Status = ctzInfoForm.Status
+	err = db.Save(&ctz).Error
+	if err != nil {
 		return nil, err
 	}
 
-	for rows.Next() {
-		var monMng MoneyManage
-		db.GetDB().ScanRows(rows, &monMng)
-
-		listMoney = append(listMoney, monMng)
-	}
-
-	return listMoney, nil
+	return &ctz, err
 }
 
-func (s Student) ChangeRoom(studentID int, roomID int) (*Student, error) {
-	var returnStd Student
-	var rMod Room
+func (c Citizen) NewCitizenInfor(ctzInfoForm forms.CitizenInfoForm) (*Citizen, error) {
+	var err error
+	db := db.GetDB()
 
-	err := db.GetDB().Table("student").Where("student_id = ?", studentID).Find(&returnStd).Error
-	if err != nil {
-		return nil, err
+	ctz := &Citizen{
+		Name:      ctzInfoForm.Name,
+		DOB:       ctzInfoForm.DOB,
+		Relation:  ctzInfoForm.Relation,
+		Contact:   ctzInfoForm.Contact,
+		CitizenID: ctzInfoForm.CitizenID,
+		Gender:    ctzInfoForm.Gender,
+		FamilyID:  ctzInfoForm.FamilyID,
+		RoomID:    ctzInfoForm.RoomID,
+		Status:    ctzInfoForm.Status,
 	}
 
-	if returnStd.RoomID == roomID {
-		return nil, errors.New("Same room")
+	if db.Table("citizen").Where("citizen_id = ?", ctzInfoForm.CitizenID).RecordNotFound() {
+		return nil, errors.New("citizen existed")
 	}
 
-	err = rMod.ChangeRoomOccupied(returnStd.RoomID, roomID)
-	if err != nil {
-		return nil, err
-	}
-	returnStd.RoomID = roomID
+	db.Table("citizen").Create(ctz)
 
-	err = db.GetDB().Save(&returnStd).Error
-	if err != nil {
-		return nil, err
+	return ctz, err
+}
+func (c Citizen) DeleteCitizen(CitizenID string) (*Citizen, error) {
+	db := db.GetDB()
+
+	// Tìm công dân dựa trên CitizenID
+	var citizen Citizen
+	if err := db.Where("citizen_id = ?", CitizenID).First(&citizen).Error; err != nil {
+		return nil, errors.New("citizen not exist")
 	}
 
-	return &returnStd, nil
+	// Xóa công dân từ cơ sở dữ liệu
+	if err := db.Delete(&citizen).Error; err != nil {
+		return nil, err // Trả về lỗi nếu có vấn đề khi xóa
+	}
+
+	return &citizen, nil
+
 }
 
-func (mMng MoneyManage) CalculateNewMonth() ([]MoneyManage, error) {
+/*func (mMng MoneyManage) CalculateNewMonth() ([]MoneyManage, error) {
 	var listMonMng []MoneyManage
 	//get all student available
 	var listStd []Student
@@ -203,31 +231,6 @@ func (mMng MoneyManage) UpdatePaymentStatus(monMngID int, status string) (*Money
 
 	return &monMng, nil
 }*/
-
-func (c Citizen) NewCitizenInfor(citizenId string, ctzInfoForm forms.CitizenInfoForm) (*Citizen, error) {
-	var ctz = &Citizen{
-		Name: ctzInfoForm.Name,
-		DOB:  ctzInfoForm.DOB,
-	}
-
-	if !db.GetDB().Debug().Table("citizen").Find(&Citizen{CitizenID: citizenId}).RecordNotFound() {
-		err := db.GetDB().Table("citizen").Where("citizen_id = ?", citizenId).Update(ctz).Error
-		if err != nil {
-			return nil, err
-		}
-		if db.GetDB().Table("student").Where("citizen_id = ?", citizenId).Find(&ctz).Error != nil {
-			return nil, err
-		}
-		return ctz, nil
-	}
-
-	err := db.GetDB().Table("citizen").Create(ctz).Error
-	if err != nil {
-		return nil, err
-	}
-
-	return ctz, nil
-}
 
 func (c Citizen) GetAllCitizen() ([]Citizen, error) {
 	var listCtz []Citizen

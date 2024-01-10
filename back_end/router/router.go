@@ -43,6 +43,9 @@ func NewRouter() *gin.Engine {
 	ctzCtrl := new(controller.CitizenController)
 	/*hoholdCtrl := new(controller.HouseHoldController)*/
 	userCtrl := new(controller.UserController)
+	roomCtrl := new(controller.RoomController)
+	billCtrl := new(controller.BillController)
+	feeCtrl := new(controller.FeeController)
 
 	//admin
 	level1 := router.Group("/lv1")
@@ -52,13 +55,34 @@ func NewRouter() *gin.Engine {
 
 		level1.GET("/check/:usr", userCtrl.GetUserByUsername)
 		level1.GET("/citizeninfo", ctzCtrl.GetCitizenInfo)
-		level1.GET("/allstudent", ctzCtrl.GetAllCitizen)
+		level1.GET("/allcitizen", ctzCtrl.GetAllCitizen)
+
+		level1.GET("/listFamily", roomCtrl.GetAllRoom)
+		level1.GET("/citizensbyfamily", ctzCtrl.GetAllCitizenByFamilyIDRoom)
+		level1.POST("/newcitizen", ctzCtrl.CreateCitizenHandler)
+		level1.POST("/updatecitizen", ctzCtrl.UpdateCtzInfo)
+		level1.DELETE("/deletecitizen", ctzCtrl.DeleteCitizen)
+
+		level1.POST("/updateroom", roomCtrl.UpdateRoomInfo)
+
+		level1.GET("/listfeecc", feeCtrl.GetAllRoomFeeCC)
+		level1.GET("/listfeept", feeCtrl.GetAllRoomFeePT)
+		level1.GET("/listfeedv", feeCtrl.GetAllRoomFeeDV)
 	}
 	//citizen
 	level0 := router.Group("/lv0")
 	{
 		level0.Use(authMid.TokenAuth())
 		level0.Use(authMid.CheckRoleLevelMid(0))
+
+		level0.GET("/usrinfo", ctzCtrl.GetCitizenInfo)
+
+		level0.GET("/roominfo", roomCtrl.GetRoomInfo)
+		level0.GET("/family", ctzCtrl.GetAllCitizenByFamilyID)
+		level0.GET("/vehicle", roomCtrl.GetAllVehicleByRoomID)
+		level0.GET("/waterbill", billCtrl.GetWaterBillInfo)
+		level0.GET("/electricbill", billCtrl.GetElectricBillInfo)
+		level0.GET("/internetbill", billCtrl.GetInternetBillInfo)
 	}
 	router.NoRoute()
 	return router

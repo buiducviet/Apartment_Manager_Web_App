@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
   integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-
+  <!-- CSS Libraries -->
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
   <link rel="stylesheet" href="/front/assets/css/style.css">
   <link rel="stylesheet" href="/front/assets/css/custom.css">
   <link rel="stylesheet" href="/front/assets/css/card-body.css">
@@ -110,7 +114,8 @@
                         <div class="author-box-details" id="info-description">
                           <div class="author-box-name">
                             <p>Số nhà: <span id="room-id"></span></p>
-                            <p>Diện tích: <span id="room-ara"></span>m2</p>
+                            <p>Diện tích: <span id="room-area"></span> m2</p>
+                            <p>Thời điểm sở hữu: <span id="own-time"></span></p>
                             <p>Chủ hộ: <span id="room-owner"></span></p>
                             <p>Mã hộ khẩu: <span id="household-id"></span></p>
                           </div>
@@ -140,6 +145,21 @@
               
         </div>
     </div>
-    <script src="/front/assets/js/scripts.js"></script>
+    <!-- General JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+  <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+
+  <script src="/front/assets/js/scripts.js"></script>
+  <script src="/front/assets/js/theo_doi_ho_khau.js"></script>
 </body>
 </html>

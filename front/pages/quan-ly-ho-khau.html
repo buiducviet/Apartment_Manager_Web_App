@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
   integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
 
   <link rel="stylesheet" href="/front/assets/css/style.css">
 
@@ -59,7 +63,7 @@
                  
                   <ul class="sidebar-menu">
                     <li class="nav-item dropdown ">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                      <a href="/front/pages/index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
                     <li class="nav-item dropdown active">
@@ -105,15 +109,15 @@
                                       <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
                                       <select id="filter-field">
                                         <option></option>
-                                        <option value="householdid">Mã sổ hộ khẩu</option>
-                                        <option value="name">Họ và tên chủ hộ</option>
-                                        <option value="roomid">Số nhà</option>                               
+                                        <option value="familyID">Mã sổ hộ khẩu</option>
+                                        <option value="owner_name">Họ và tên chủ hộ</option>
+                                        <option value="roomID">Số nhà</option>                               
                                       </select>
               
                                       <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
                                     </div>
                                     <div class="col-4">
-                                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Tìm kiếm</a>
+                                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Xuất excel</a>
                                     </div>
               
                                   </div>
@@ -139,159 +143,205 @@
                     <div class="card">
                         <div class="card-header">
                           <h4>Danh sách hộ khẩu</h4>
-                          
+                          <div class="popup-menu" id="popup-menu-update-room">
+                            <div class="chuho-infor">
+                              <div class="add-name ">
+                                <span>Họ và tên chủ hộ </span>
+                                <input id="chuho_name" type="text" placeholder="--dien ten chu ho--">
+                              </div>
+                
+                              <div class="add-birthday ">
+                                <span>Ngày sinh </span>
+                                <input id="chuho_dob" type="date" max="2023-01-01" placeholder="--dien ngay sinh-">
+                              </div>
+                            </div>
+                            <div class="add-gender popup-menu-item">
+                              <span>Giới tính</span>
+                              <form >
+                                <input  name="gender_chuho" type="radio" value="Nam" />Nam
+                                <input style="margin-left: 20px;" name="gender_chuho" type="radio" value="Nữ" />Nữ
+                              </form>
+                            </div>
+                            <div class="add-phonenumber popup-menu-item">
+                              <span>Số điện thoại </span>
+                              <input id="chuho_contact" type="text" placeholder="--dien so dien thoai--">
+                            </div>
+                            <div class="add-cccd popup-menu-item">
+                              <span>Số cccd chủ hộ </span>
+                              <input id="chuhoID" type="text" placeholder="--dien cccd--">
+                            </div>
+                            <div class="add-code popup-menu-item">
+                              <span>Mã hộ khẩu </span>
+                              <input id="chuho_familyID" type="text" placeholder="--dien ma ho khau-">
+                            </div>
+                            <div class="add-houseid popup-menu-item">
+                              <span>Số nhà </span>
+                              <input style="width: 50px; text-align: center;" id="chuho_roomID" type="text" placeholder="--dien so nha--">
+                            </div>
+                            <div class="add-onwtime popup-menu-item">
+                              <span>Ngày sở hữu</span>
+                              <input id="chuho_owntime" type="date" max="2023-01-01" placeholder="--ngay so huu-">
+                            </div>
+                            <button style="float: right;" class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-new">Lưu</button>
+                          </div>
                         </div>
                         <div class="card-body">
-                          <table border="1px " cellpadding="10px" class="table">
-
-                          <thead class="table-header">
-                            <tr class="table-header" style="margin: 0; width: 100%;">
-                              <th style="width: 5%;">STT</th>
-                              <th style="width: 10%;">Xử lý</th>
-                              <th style="width: 20%;">ID Hộ Khẩu</th>
-                              <th style="width: 20%;">Số nhà</th>
-                              <th>Tên chủ hộ</th>
-                              <th style="width: 15%;">Số điện thoại</th>
-                            </tr>
-                          </thead>
-                          <thead class="tb-body">          
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>ID Hộ Khẩu</td>
-                              <td>Số nhà</td>
-                              <td>Tên chủ hộ</td>
-                              <td>Số đt</td>
-                            </tr>
-
-                            <tr class="table-body">
-                              <td>STT</td>
-                              <td class="solve" style="align-items: center;">
-                                <a href="#"><i class="fa fa-info" style="color: black;"></i></a>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash" style="color: red;"></i></a>
-                              </td>
-                              <td>ID Hộ Khẩu</td>
-                              <td>Số nhà</td>
-                              <td>Tên chủ hộ</td>
-                              <td>Số đt</td>
-                            </tr>
-                          </thead>
-                          </table>
+                          <div class="row">
+                            <div id="household-table"></div>
+                          </div>
                         </div>
                         <div class="add-household-btn">
                           <a href="#" class="add-household" id="add-household"><i class="fas fa-plus"></i><span>Thêm hộ khẩu</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="popup-menu" id="popup-menu">
-                  <div class="chuho-infor">
-                    <div class="add-name ">
-                      <span>Họ và tên chủ hộ </span>
-                      <input type="text" placeholder="--dien ten chu ho--">
-                    </div>
-  
-                    <div class="add-birthday ">
-                      <span>Ngày sinh </span>
-                      <input type="date" max="2023-01-01" placeholder="--dien ngay sinh-">
-                    </div>
-  
-                    
-                  </div>
-                  <div class="add-gender popup-menu-item">
-                    <span>Giới tính</span>
-                    <form >
-                      <input  name="gender" type="radio" value="Nam" />Nam
-                      <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
-                    </form>
-                   
-                  </div>
-                  <div class="add-phonenumber popup-menu-item">
-                    <span>Số điện thoại </span>
-                    <input type="text" placeholder="--dien so dien thoai--">
-                  </div>
-                  <div class="add-cccd popup-menu-item">
-                    <span>Số cccd chủ hộ </span>
-                    <input type="text" placeholder="--dien cccd--">
-                  </div>
-                  
-                  <div class="add-code popup-menu-item">
-                    <span>Mã hộ khẩu </span>
-                    <input type="text" placeholder="--dien ma ho khau-">
-                  </div>
-
-                  
-                  
-                  
-
-                  <div class="add-houseid popup-menu-item">
-                    <span>Số nhà </span>
-                    <input type="text" placeholder="--dien so nha--">
-                  </div>
-                  <div class="members-input">
-                    <div class="members">
-                      <div class="member">
-                        <h6>Thành viên</h6>
-                        <div class="add-name member-item">
-                          <span>Họ và tên </span>
-                          <input type="text" placeholder="--dien ho va ten --">
-                        </div>
-      
-                        <div class="add-birthday member-item">
-                          <span>Ngày sinh </span>
-                          <input type="date" max="2023-01-01" >
-                        </div>
-                        <div class="add-gender member-item">
-                          <span>Giới tính</span>
-                          <form >
-                            <input  name="gender" type="radio" value="Nam" />Nam
-                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
-                          </form>
-                         
-                        </div>
-
-                      </div>
-                      <div class="member">
-                        <h6>Thành viên</h6>
-                        <div class="add-name member-item">
-                          <span>Họ và tên </span>
-                          <input type="text" placeholder="--dien ho va ten --">
-                        </div>
-      
-                        <div class="add-birthday member-item">
-                          <span>Ngày sinh </span>
-                          <input type="date" max="2023-01-01" >
-                        </div>
-                        <div class="add-gender member-item">
-                          <span>Giới tính</span>
-                          <form >
-                            <input  name="gender" type="radio" value="Nam" />Nam
-                            <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
-                          </form>
-                         
-                        </div>
-
-                      </div>
-                    </div>
-                    
-                      <button class="add-member-btn" id="add-member-btn">Thêm thành viên</button>
-                    
-                    
-                  </div>
-                  
-                  
-                </div>
+        
               </div>
               
         </div>
         
     </div>
+    <div class="modal fade" id="room-table-modal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
+      <div class="modal-dialog  modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="studentModal">Thông tin chi tiết</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card card-primary">
+                <div class="card-body">
+                  <div class="author-box-details">
+                    <div class="author-box-name">
+                      <form action="">
+                        <div class="form-group">
+                          <p><strong>Số nhà: </strong><span id="roomID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Chủ hộ: </strong><span id="owner-name"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Mã hộ: </strong><span id="familyID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Danh sách thành viên: </strong></p>
+                          <div id="citizens-in-room"></div>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Ngày đăng ký: </strong><span id="register_date"></span></p>
+                          <p><strong>Ngày cập nhật: </strong><span id="update_date"></span></p>
+                        </div>
+                        
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="add-member-btn-edit" id="add-member-btn-edit">Thêm thành viên</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-edit">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-name member-item">
+                    <p>Họ và tên </p>
+                    <input id="add-name-input" type="text" placeholder="--dien ho va ten --">
+                  </div>
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD </p>
+                    <input id="add-citizenID-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-birthday member-item">
+                    <p>Ngày sinh </p>
+                    <input id="add-birthday-input" type="date" max="2023-01-01" >
+                  </div>
+
+                  <div class="add-gender member-item">
+                    <p>Giới tính</p>
+                    <form >
+                      <input  name="gender" type="radio" value="Nam" />Nam
+                      <input style="margin-left: 20px;" name="gender" type="radio" value="Nữ" />Nữ
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số điện thoại</p>
+                    <input id="add-contact-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-status member-item">
+                    <p>Tình trạng</p>
+                    <form >
+                      <input  name="status" type="radio" value="Trú" />Trú
+                      <input style="margin-left: 20px;" name="status" type="radio" value="Vắng" />Vắng
+                    </form> 
+                  </div>
+                  <div class="add-relation member-item">
+                    <p>Quan hệ</p>
+                    <input id="add-relation-input" type="text" placeholder="--quan he (chong/vo, con,..) --">                 
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-edit">Lưu</button>
+            </div>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-update">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-name member-item">
+                    <p>Họ và tên </p>
+                    <input id="add-name-input-update" type="text" placeholder="--dien ho va ten --">
+                  </div>
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD </p>
+                    <input id="add-citizenID-input-update" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-birthday member-item">
+                    <p>Ngày sinh </p>
+                    <input id="add-birthday-input-update" type="date" max="2023-01-01" >
+                  </div>
+
+                  <div class="add-gender member-item">
+                    <p>Giới tính</p>
+                    <form >
+                      <input  name="genderr" type="radio" value="Nam" />Nam
+                      <input style="margin-left: 20px;" name="genderr" type="radio" value="Nữ" />Nữ
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số điện thoại</p>
+                    <input id="add-contact-input-update" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-status member-item">
+                    <p>Tình trạng</p>
+                    <form >
+                      <input  name="status-update" type="radio" value="Trú" />Trú
+                      <input style="margin-left: 20px;" name="status-update" type="radio" value="Vắng" />Vắng
+                    </form> 
+                  </div>
+                  <div class="add-relation member-item">
+                    <p>Quan hệ</p>
+                    <input id="add-relation-input-update" type="text" placeholder="--quan he (chong/vo, con,..) --">                 
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-update">Lưu</button>
+                <button class="save-delete btn btn-primary btn-lg btn-icon icon-right" id="delete-btn-update">Xóa</button>
+            </div>
+          </div>
+       
+        </div>
+      </div>
+    </div>
     <script src="/front/assets/js/scripts.js"></script>
-    <script>
+    <!--<script>
             document.getElementById('add-member-btn').addEventListener('click', function() {
           var memberDiv = document.createElement('div');
           memberDiv.className = 'member';
@@ -317,6 +367,21 @@
           var membersContainer = document.querySelector('.members');
           membersContainer.appendChild(memberDiv);
         });
-    </script>
+    </script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+ 
+    <script src="/front/assets/js/scripts.js"></script>
+    <script src="/front/assets/js/quan-ly-ho-khau.js"></script>
 </body>
 </html>

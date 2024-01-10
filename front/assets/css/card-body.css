@@ -38,9 +38,9 @@
     flex-direction: column;
     padding: 10px 30px;
 }
-.card-body-infor span,.card-body-bill span{
+.card-body-infor p,.card-body-bill p{
     text-align: left;
-    padding-bottom: 20px;
+
     font-size: 16px;
     color: #3b3b3b;
 }
