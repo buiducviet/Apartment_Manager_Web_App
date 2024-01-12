@@ -11,7 +11,7 @@ type Vehicle struct {
 	VehicleType string `gorm:"type:text; not null" json:"vehicle_type"`
 	VehicleID   string `gorm:"not null;unique" json:"vehicleID"`
 	RoomID      int    `json:"roomID" gorm:"type:int; not null"`
-	OwnerID     string `gorm:"type:text; not null" json:"owner_id"`
+	OwnerID     string `gorm:"not null; size:20" json:"owner_id"`
 	OwnerName   string `gorm:"type:text; not null" json:"owner_name"`
 	VehicleFee  int    `gorm:"type:int; not null" json:"vehicle_fee"`
 }

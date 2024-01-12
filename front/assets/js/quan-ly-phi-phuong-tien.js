@@ -119,6 +119,81 @@ function handleRoomTablePaid(roomFeeList_paid) {
   
         
       ],
+      rowClick: function (e, row){
+        var roomID = row.getData().roomID;
+        var totalFee = row.getData().fee_cost;
+        var roomRequestOptions = {
+          method: "GET",
+          credentials: "omit",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "text/plain",
+          },
+          redirect: "follow",
+        };
+        fetch("http://25.20.166.7:8080/lv1/roominfor?id="+roomID, roomRequestOptions)
+        .then(response => response.json())
+        .then((result) => {
+          if (result.message == "Get room info successfully") {
+            var room = result.room;
+            var owner_name = room.owner_name;
+            var familyID = room.familyID;
+            $("#roomID").text(roomID);
+            $("#familyID").text(familyID);
+            $("#owner-name").text(owner_name);
+            $("#vehicle-fee").text(totalFee);
+            fetch("http://25.20.166.7:8080/lv1/vehicle?id="+roomID, roomRequestOptions)
+            .then(response => response.json())
+            .then((result) => {
+              if (result.message == "Get list family members") {
+                var vehicleList = result.list_vehicle;
+                var table = new Tabulator("#vehicle-in-room", {
+                  data: vehicleList,
+                  layout: "fitDataStretch",
+                  columns: [
+                    {
+                      title: "STT",
+                      field: "stt",
+                      width: 70,
+                      hozAlign: "center",
+                      headerSort: false,
+                    },
+                    
+                    { title: "Loại xe", field: "vehicle_name", headerSort: false},
+                    { 
+                      title: "Biển số xe",
+                      field: "vehicleID",
+                      headerSort: false 
+                    },
+                    { 
+                      title: "Chủ sở hữu",
+                      field: "owner_name",
+                      headerSort: false 
+                    },
+                    {
+                      title: "Phí",
+                      field: "vehicle_fee",
+                      headerSort: false 
+                    }
+                  ],
+                });
+              }
+              })
+
+          } else if (result.message == "citizen existed") {
+            alert("Đã tồn tại người dùng này!");
+          } else if (result.message == "Invalid form") {
+            alert("Thông tin điền chưa hợp lệ!");
+          } else {
+            return;
+          }
+        })
+        .catch((error) => {
+          console.log("Không kết nối được tới máy chủ", error);
+          alert("Không kết nối được tới máy chủ");
+        });
+        $("#room-table-modal").modal("show");
+      }
     })
 }
 
@@ -191,6 +266,79 @@ function handleRoomTableUnPaid(roomFeeList_unpaid) {
   
         
       ],
+      rowClick: function (e, row){
+        var roomID = row.getData().roomID;
+        var totalFee = row.getData().fee_cost;
+        var roomRequestOptions = {
+          method: "GET",
+          credentials: "omit",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "text/plain",
+          },
+          redirect: "follow",
+        };
+        fetch("http://25.20.166.7:8080/lv1/roominfor?id="+roomID, roomRequestOptions)
+        .then(response => response.json())
+        .then((result) => {
+          if (result.message == "Get room info successfully") {
+            var room = result.room;
+            var owner_name = room.owner_name;
+            var familyID = room.familyID;
+            $("#roomID").text(roomID);
+            $("#familyID").text(familyID);
+            $("#owner-name").text(owner_name);
+            $("#vehicle-fee").text(totalFee);
+            fetch("http://25.20.166.7:8080/lv1/vehicle?id="+roomID, roomRequestOptions)
+            .then(response => response.json())
+            .then((result) => {
+              if (result.message == "Get list vehicles") {
+                var vehicleList = result.list_vehicle;
+                var table = new Tabulator("#vehicle-in-room", {
+                  data: vehicleList,
+                  with: "50%",
+                  layout: "fitDataStretch",
+                  columns: [
+                    
+                    
+                    { title: "Loại xe", field: "vehicle_name", headerSort: false},
+                    { 
+                      title: "Biển số xe",
+                      field: "vehicleID",
+                      headerSort: false 
+                    },
+                    { 
+                      title: "Chủ sở hữu",
+                      field: "owner_name",
+                      width: 200,
+                      hozAlign: "center",
+                      headerSort: false 
+                    },
+                    {
+                      title: "Phí",
+                      field: "vehicle_fee",
+                      hozAlign: "center",
+                      headerSort: false 
+                    }
+                  ],
+                });
+              }
+              })
+
+          } else if (result.message == "citizen existed") {
+            alert("Đã tồn tại người dùng này!");
+          } else if (result.message == "Invalid form") {
+            alert("Thông tin điền chưa hợp lệ!");
+          } else {
+            return;
+          }
+        })
+        .catch((error) => {
+          console.log("Không kết nối được tới máy chủ", error);
+          alert("Không kết nối được tới máy chủ");
+        });
+        $("#room-table-modal").modal("show");
+      }
     })
     
 }

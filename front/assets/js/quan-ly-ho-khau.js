@@ -67,7 +67,7 @@ function handleRoomTable(roomList) {
         field: "familyID",
         width: 120,
         hozAlign: "center",
-        sorter: "number",
+        sorter: "string",
         hozAlign: "center",
 
       },
@@ -75,32 +75,34 @@ function handleRoomTable(roomList) {
         title: "Họ và tên chủ hộ",
         field: "owner_name",
         hozAlign: "center",
-        sorter: "number",
+        sorter: "string",
       },  
       {
         title: "Tình trạng",
         field: "room_status",
         width: 120,
         hozAlign: "center",
-        sorter: "number",
+        sorter: "string",
         hozAlign: "center",
 
       },
       
     ],
     rowClick: function (e, row) {
-      var room = row.getData().familyID;
-      var owner_name = row.getData().owner_name;
-      var update_date = row.getData().UpdatedAt;
-      var register_date = row.getData().CreatedAt;
-      var roomID = row.getData().roomID;
-      var room_area = row.getData().roomArea
+       
+        var update_date = row.getData().UpdatedAt;
+        var register_date = row.getData().CreatedAt;
+        var roomid = row.getData().roomID;
+        var room_area = row.getData().roomArea
+        console.log(roomid);
 
-     if(row.getData().room_status !="not owned"){
-      fetch(
+      if(row.getData().room_status !="not owned"){
+        var room = row.getData().familyID;
+        var owner_name = row.getData().owner_name;
+        fetch(
         "http://25.20.166.7:8080/lv1/citizensbyfamily?id=" + room,
         roomRequestOptions
-      )
+        )
         .then((response) => response.json())
         .then((result) => {
           if (result.message == "Get list family members") {
@@ -217,7 +219,7 @@ function handleRoomTable(roomList) {
                       contact: contact,
                       relation: relation,
                       familyID: room,
-                      roomID: roomID,
+                      roomID: roomid,
                       citizen_status: status,
                     };
                     console.log(name);
@@ -330,7 +332,7 @@ function handleRoomTable(roomList) {
         update_date_split[0];
 
       $("#owner-name").text(owner_name);
-      $("#roomID").text(roomID)
+      $("#roomID").text(roomid)
       $("#familyID").text(room)
       $("#register_date").text(register_date);
       $("#update_date").text(update_date);
@@ -351,8 +353,12 @@ function handleRoomTable(roomList) {
 
           if (name != "" && citizenID != "" && dob != "" && gender!= ""&& contact!= ""&& relation!= "" && status!="") {
             $("#save-btn-edit").removeClass("disabled");
+            var myButton = document.getElementById("save-btn-edit");
+            myButton.disabled = false; 
           } else {
             $("#save-btn-edit").addClass("disabled");
+            var myButton = document.getElementById("save-btn-edit");
+            myButton.disabled = true; 
           }
         }
           setInterval(checkInput, 300);
@@ -376,7 +382,7 @@ function handleRoomTable(roomList) {
             contact: contact,
             relation: relation,
             familyID: room,
-            roomID: roomID,
+            roomID: roomid,
             citizen_status: status
           };
           
@@ -415,17 +421,43 @@ function handleRoomTable(roomList) {
         });
       });
       $("#room-table-modal").modal("show");
-     } else {
-      $("#chuho_roomID").val(roomID)
+    } else {
+      $("#chuho_roomID").val(roomid)
+      function checkInput() {
+        var name = $("#chuho_name").val();
+        var citizenID = $("#chuhoID").val();
+        var dob = $("#chuho_dob").val();
+        var gender = $("input[name='gender_chuho']:checked").val();
+        var contact = $("#chuho_contact").val();
+        var relation = "";
+        var owntime = $("#chuho_owntime").val();
+        var familyID = $("#chuho_familyID").val();
+        var rid = parseInt($("#chuho_roomID").val()) 
+        if (name != "" && citizenID != "" && dob != "" && gender!= ""&& contact!= ""&& relation!= "" && familyID!="" && rid!="") {
+          $("#save-btn-new").removeClass("disable");
+          var myButton = document.getElementById("save-btn-new");
+          myButton.disabled = false; 
+        } else {
+          $("#save-btn-new").addClass("disabled");
+          var myButton = document.getElementById("save-btn-new");
+          myButton.disabled = true; 
+        }
+      }
+      setInterval(checkInput, 300);
       $("#save-btn-new").click(function(){
+        $("#chuho_roomID").text();
             var name = $("#chuho_name").val();
             var citizenID = $("#chuhoID").val();
             var dob = $("#chuho_dob").val();
             var gender = $("input[name='gender_chuho']:checked").val();
             var contact = $("#chuho_contact").val();
             var relation = "";
-            var owntime = $("#chuho_owntime").val()
-            var familyID = $("#chuho_familyID").val()
+            var owntime = $("#chuho_owntime").val();
+            var familyID = $("#chuho_familyID").val();
+            var rid = parseInt($("#chuho_roomID").val())
+            
+            
+            console.log("rid là citizen "+rid)
             var citizenDataa = {
               name: name,
               citizenID: citizenID,
@@ -434,7 +466,7 @@ function handleRoomTable(roomList) {
               contact: contact,
               relation: relation,
               familyID: familyID,
-              roomID: roomID
+              roomID: rid
             };
             
             fetch ("http://25.20.166.7:8080/lv1/newcitizen", {
@@ -465,7 +497,7 @@ function handleRoomTable(roomList) {
               console.log("Không kết nối được tới máy chủ", error);
               alert("Không kết nối được tới máy chủ");
             });
-
+            console.log("rid là"+rid)
             var updateroomDataa = {
               citizenID: citizenID,
               room_status: "owned",
@@ -473,9 +505,8 @@ function handleRoomTable(roomList) {
               ownTime: owntime,
               owner_name: name,
               familyID: familyID,
-              roomID: roomID
+              roomID: rid
             };
-            console.log(updateroomDataa.owner_name)
             var updaterequestOptions = {
               method: "POST",
               headers: {

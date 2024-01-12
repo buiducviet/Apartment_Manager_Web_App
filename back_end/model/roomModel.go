@@ -9,11 +9,11 @@ import (
 // Room ...
 type Room struct {
 	DefaultModel
-	FamilyID  string `gorm:" type:text;" json:"familyID"`
+	FamilyID  string `gorm:"type:text" json:"familyID"`
 	RoomID    int    `gorm:"type:int; size:10; not null; unique_index; primary_key" json:"roomID"`
 	Area      int    `gorm:"type:int; size:20; not null" json:"roomArea"`
 	OwnTime   string `gorm:"type: text;" json:"ownTime"`
-	OwnerID   string `json:"citizenID" gorm:" type:text"`
+	OwnerID   string `json:"citizenID" `
 	OwnerName string `json:"owner_name" gorm:" type:text"`
 	Status    string `json:"room_status" gorm:" type:text"`
 }

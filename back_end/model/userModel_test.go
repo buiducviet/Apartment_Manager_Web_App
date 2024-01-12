@@ -31,12 +31,14 @@ func TestRegister1(t *testing.T) {
 		Username: "Bùi Đức Việt",
 		UserID:   "030203009774",
 		Password: "vietthptqt10a",
+		Role:     1,
 	}
 
 	_, err := newUser.Register(forms.RegisterForm{
 		Username: newUser.Username,
 		UserID:   newUser.UserID,
 		Password: newUser.Password,
+		Role:     newUser.Role,
 	})
 	if err != nil {
 		t.Error(err)

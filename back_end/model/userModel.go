@@ -19,7 +19,7 @@ var (
 type User struct {
 	DefaultModel
 	UserID   string `gorm:"not null;unique" json:"userID"`
-	Role     int    `gorm:"not null; default:1" json:"role"`
+	Role     int    `gorm:"not null; type:int;" json:"role"`
 	Username string `gorm:"not null;unique" json:"username"`
 	Password string `gorm:"type:text;not null" json:"password"`
 }
@@ -80,6 +80,7 @@ func (u *User) Register(form forms.RegisterForm) (*User, error) {
 		Username: form.Username,
 		Password: form.Password,
 		UserID:   form.UserID,
+		Role:     form.Role,
 	}
 
 	/*newCitizen := &Citizen{

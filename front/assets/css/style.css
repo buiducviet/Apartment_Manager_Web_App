@@ -504,3 +504,17 @@ body.sidebar-gone .main-sidebar {
     justify-content: center;
     text-align: center;
 }
+.form-group {
+    margin: 20px;
+}
+.form-group span {
+    font-size: 1rem;
+    color: #1d1d1d;
+}
+#vehicle-in-room {
+    width: 50% !important;
+}
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}

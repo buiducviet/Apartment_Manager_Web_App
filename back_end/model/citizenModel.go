@@ -16,7 +16,7 @@ type Citizen struct {
 	DOB       string `json:"dob" gorm:"type:text"`
 	Contact   string `json:"contact" gorm:"type:text; not null"`
 	Gender    string `json:"gender" gorm:"type:text; not null"`
-	RoomID    int    `json:"roomID" gorm:"type:int; not null"`
+	RoomID    int    `json:"roomID" gorm:"type:int; not null; foreignKey:room_id"`
 	Relation  string `json:"relation" gorm:"type:text;"`
 	Status    string `json:"citizen_status" gorm:"type:text"`
 }

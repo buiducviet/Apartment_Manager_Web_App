@@ -5,6 +5,7 @@ import (
 	"ApartmentApp/model"
 	"ApartmentApp/tlog"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -76,7 +77,42 @@ func (rCtrl RoomController) GetRoomInfo(c *gin.Context) {
 		"owner":   owner,
 	})
 }
+func (rCtrl RoomController) GetRoomInfoLV1(c *gin.Context) {
+	roomID := c.Query("id")
+	num, err := strconv.Atoi(roomID)
 
+	room, err := roomMod.GetRoomInfo(num)
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"message": "Can not get room info from room id",
+			"error":   err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get room info",
+		})
+		c.Abort()
+		return
+	}
+
+	owner, err := citizenMod.GetCitizenInfo(room.OwnerID)
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"message": "Cannot get room id from citizen id",
+			"error":   err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Cannot get room info",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Get room info successfully",
+		"room":    room,
+		"owner":   owner,
+	})
+}
 func (rCtrl RoomController) GetAllRoom(c *gin.Context) {
 	listRoom, err := roomMod.GetAllRoom()
 	if err != nil {
@@ -115,6 +151,25 @@ func (rCtrl RoomController) GetAllVehicleByRoomID(c *gin.Context) {
 	}
 
 	returnVhList, err := vehicleMod.GetVehicleInfoByRoomID(returnCitizen.RoomID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get vehicles list",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":      "Get list vehicles",
+		"list_vehicle": returnVhList,
+	})
+}
+
+func (rCtrl RoomController) GetAllVehicleByRoomIDLV1(c *gin.Context) {
+	roomID := c.Query("id")
+	num, err := strconv.Atoi(roomID)
+
+	returnVhList, err := vehicleMod.GetVehicleInfoByRoomID(num)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Can not get vehicles list",

@@ -78,6 +78,10 @@
                       <a href="/front/pages/quan-ly-hoa-don.html" class="nav-link"><i class="fas fa-file-invoice"></i>
                         <span>Quản lý hóa đơn</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Quản lý đóng góp</span></a>
+                    </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
@@ -108,19 +112,19 @@
                             <ul class="sidebar-card-body">
 
                                 <li class="nav-item dropdown">
-                                    <a href="/front/pages/quan-ly-thu-phi.html" class="bill-link">
+                                    <a href="/front/pages/quan-ly-thu-phi.html" >
                                         <i class="far fa-file-alt"></i>
                                         <span>Phí chung cư</span>
                                    </a>
                                 </li>
                                 <li class="nav-item dropdown  active">
-                                    <a href="#" class="bill-link" id="water-bill" >
+                                    <a href="#"  >
                                         <i class="far fa-file-alt"></i>
                                         <span>Phí phương tiện</span>
                                    </a>
                                 </li>
                                 <li class="nav-item dropdown ">
-                                    <a href="/front/pages/quan-ly-phi-dich-vu.html" class="bill-link">
+                                    <a href="/front/pages/quan-ly-phi-dich-vu.html" >
                                         <i class="far fa-file-alt"></i>
                                         <span>Phí Dịch vụ</span>
                                    </a>
@@ -199,6 +203,57 @@
                     
               </div>
         </div>
+    </div>
+    <div class="modal fade" id="room-table-modal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
+      <div class="modal-dialog  modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="studentModal">Thông tin chi tiết</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card card-primary">
+                <div class="card-body">
+                  <div class="author-box-details">
+                    <div class="author-box-name">
+                      <form action="">
+                        <div class="form-group">
+                          <p><strong>Số nhà: </strong><span id="roomID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Chủ hộ: </strong><span id="owner-name"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Mã hộ: </strong><span id="familyID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Tổng phí: </strong>
+                          <span id="vehicle-fee"></span> đồng</p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Danh sách phương tiện: </strong></p>
+                          <div id="vehicle-in-room"></div>
+                        </div>
+                        
+                        
+                        
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+           
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

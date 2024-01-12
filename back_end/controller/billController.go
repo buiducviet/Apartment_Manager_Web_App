@@ -2,6 +2,7 @@ package controller
 
 import (
 	"ApartmentApp/model"
+	"ApartmentApp/tlog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -108,5 +109,65 @@ func (billCtrl BillController) GetInternetBillInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message":       "Get bill information",
 		"bill_internet": bill_internet,
+	})
+}
+func (billCtrl BillController) GetAllBillWater(c *gin.Context) {
+	listBillUnPaid, listBillPaid, err := billMod.GetAllBillByType("water")
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"msg": "Can not get list bill",
+			"err": err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get list bill",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":          "Get list bill OK",
+		"list_bill_unpaid": listBillUnPaid,
+		"list_bill_paid":   listBillPaid,
+	})
+}
+func (billCtrl BillController) GetAllBillInternet(c *gin.Context) {
+	listBillUnPaid, listBillPaid, err := billMod.GetAllBillByType("internet")
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"msg": "Can not get list bill",
+			"err": err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get list bill",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":          "Get list bill OK",
+		"list_bill_unpaid": listBillUnPaid,
+		"list_bill_paid":   listBillPaid,
+	})
+}
+func (billCtrl BillController) GetAllBillElectric(c *gin.Context) {
+	listBillUnPaid, listBillPaid, err := billMod.GetAllBillByType("electric")
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"msg": "Can not get list bill",
+			"err": err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get list bill",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":          "Get list bill OK",
+		"list_bill_unpaid": listBillUnPaid,
+		"list_bill_paid":   listBillPaid,
 	})
 }

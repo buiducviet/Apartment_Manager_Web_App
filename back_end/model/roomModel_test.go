@@ -14,8 +14,8 @@ func TestGetRoomInfo(t *testing.T) {
 	db.Init()
 	tlog.Init()
 	newRoom := &Room{
-		RoomID: 1,
-		Area:   190,
+		RoomID: 10,
+		Area:   200,
 		Status: "not owned",
 	}
 	if newRoom.OwnerID != "" {

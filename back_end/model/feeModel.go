@@ -2,6 +2,7 @@ package model
 
 import (
 	"ApartmentApp/db"
+	"ApartmentApp/forms"
 	"ApartmentApp/tlog"
 	"errors"
 )
@@ -26,7 +27,55 @@ func (f RoomFee) GetFeeInfor(roomID int) (*RoomFee, error) {
 	}
 	return fee, nil
 }
+func (f RoomFee) CreatNewFee(feeform forms.RoomFeeForm) (*RoomFee, error) {
+	var err error
 
+	testFee := &RoomFee{
+
+		FeeType:  feeform.FeeType,
+		FeeDesc:  feeform.FeeDesc,
+		RoomID:   feeform.RoomID,
+		Status:   feeform.Status,
+		FeeMonth: feeform.FeeMonth,
+		Date:     feeform.Date,
+	}
+	testFee.FeeID = testFee.FeeType + "-" + testFee.FeeMonth
+	var area int
+	var vehicle_fee int
+	err = db.GetDB().Table("vehicle").Select("SUM(vehicle_fee)").Group("room_id").Where("room_id = ?", testFee.RoomID).Error
+
+	if err != nil {
+		return nil, err
+	} else {
+		db.GetDB().Table("vehicle").
+			Select("SUM(vehicle_fee)").
+			Group("room_id").
+			Where("room_id = ?", testFee.RoomID).
+			Row().
+			Scan(&vehicle_fee)
+	}
+	if err := db.GetDB().Table("room").Select("area").Where("room_id = ?", testFee.RoomID).Error; err != nil {
+		return nil, err
+	} else {
+		db.GetDB().Table("room").Select("area").Where("room_id = ?", testFee.RoomID).Row().Scan(&area)
+	}
+	if testFee.FeeType == "PDV" {
+		testFee.FeeCost = int64(16500 * area)
+
+	} else if testFee.FeeType == "PCC" {
+		testFee.FeeCost = int64(7000 * area)
+	} else if testFee.FeeType == "PPT" {
+		testFee.FeeCost = int64(vehicle_fee)
+	}
+
+	if err := db.GetDB().Table("room_fee").Select("fee_id").Where("fee_id = ?", testFee.FeeID).Error; err == nil {
+		if err := db.GetDB().Create(testFee).Error; err != nil {
+			return nil, err
+		}
+	}
+
+	return testFee, err
+}
 func (f RoomFee) GetAllRoomFeeCC() ([]RoomFee, []RoomFee, error) {
 	var returnListRoomFeeUnPaid []RoomFee
 	var returnListRoomFeePaid []RoomFee
