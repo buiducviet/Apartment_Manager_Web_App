@@ -168,7 +168,7 @@ function handleRoomTable(roomList) {
                 $("input[name='genderr'][value='" + gender + "']").prop("checked", true);
                 $("#add-contact-input-update").val(contact);
                 $("#add-relation-input-update").val(relation);
-                $("input[name='status-update'][value='" + gender + "']").prop("checked", true);
+                $("input[name='status-update'][value='" + status + "']").prop("checked", true);
 
                 var popupMenu = document.getElementById("popup-menu-update");
                 var overlay = document.createElement("div");
@@ -433,7 +433,7 @@ function handleRoomTable(roomList) {
         var owntime = $("#chuho_owntime").val();
         var familyID = $("#chuho_familyID").val();
         var rid = parseInt($("#chuho_roomID").val()) 
-        if (name != "" && citizenID != "" && dob != "" && gender!= ""&& contact!= ""&& relation!= "" && familyID!="" && rid!="") {
+        if (name != "" && citizenID != "" && dob != "" && gender!= ""&&  familyID!="" && rid!="") {
           $("#save-btn-new").removeClass("disable");
           var myButton = document.getElementById("save-btn-new");
           myButton.disabled = false; 
@@ -517,26 +517,50 @@ function handleRoomTable(roomList) {
               redirect: "follow",
             };
             fetch("http://25.20.166.7:8080/lv1/updateroom", updaterequestOptions)
-                    .then(response => response.json())
-                    .then((result) => {
-                      if (result.message == "Update success") {
-                        var popupMenu = document.getElementById("popup-menu-update-room");
-                        popupMenu.style.display = "none";
-                        var overlay = document.getElementsByClassName("overlay");
-                        overlay.display= "none";
-                        location.reload();
-                      } else if (result.message == "citizen existed") {
-                        alert("Đã tồn tại người dùng này!");
-                      } else if (result.message == "Invalid form") {
-                        alert("Thông tin điền chưa hợp lệ!");
-                      } else {
-                        return;
-                      }
-                    })
-                    .catch((error) => {
-                      console.log("Không kết nối được tới máy chủ", error);
-                      alert("Không kết nối được tới máy chủ rồi");
-                    });
+              .then(response => response.json())
+              .then((result) => {
+                if (result.message == "Update success") {
+                  var popupMenu = document.getElementById("popup-menu-update-room");
+                  popupMenu.style.display = "none";
+                  var overlay = document.getElementsByClassName("overlay");
+                  overlay.display= "none";
+                  location.reload();
+                } else if (result.message == "citizen existed") {
+                  alert("Đã tồn tại người dùng này!");
+                } else if (result.message == "Invalid form") {
+                  alert("Thông tin điền chưa hợp lệ!");
+                } else {
+                  return;
+                }
+              })
+              .catch((error) => {
+                console.log("Không kết nối được tới máy chủ", error);
+                alert("Không kết nối được tới máy chủ rồi");
+              });
+              var newfeedata = {
+                fee_month:"01-2024",
+                roomID: rid,
+                fee_date: "31-01-2024",
+                fee_status:"unpaid"
+
+              };
+              var updatefeeOptions = {
+                method: "POST",
+                headers: {
+                  Authorization: "Bearer " + token,
+                  "Content-Type": "text/plain",
+                },
+                body: JSON.stringify(newfeedata),
+                redirect: "follow",
+              };
+              fetch("http://25.20.166.7:8080/lv1/createnewfee", updatefeeOptions)
+              .then(response => response.json())
+              
+              .catch((error) => {
+                console.log("Không kết nối được tới máy chủ", error);
+                alert("Không kết nối được tới máy chủ rồi");
+              });
+
       })
       var popupMenu = document.getElementById("popup-menu-update-room");
          

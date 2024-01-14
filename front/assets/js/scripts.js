@@ -1,10 +1,24 @@
-$(document).ready(function() {
-    // Bắt sự kiện click vào hình ảnh avatar
-    $("#img").click(function(e) {
-      e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-      $("#dropdown-menu").toggleClass("show"); // Thêm hoặc xóa class "show" từ dropdown-menu
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  var imgLink = document.getElementById('img');
+  var dropdownMenu = document.getElementById('dropdown-menu');
+
+  // Sự kiện click vào phần tử có id là img
+  imgLink.addEventListener('click', function (e) {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a
+
+    // Hiển thị hoặc ẩn dropdown menu bằng cách thêm/xóa class 'show'
+    dropdownMenu.classList.toggle('show');
   });
+
+  // Sự kiện click ở nơi khác trên trang
+  document.addEventListener('click', function (e) {
+    // Nếu click không nằm trong dropdown menu hoặc phần tử có id là img
+    if (!dropdownMenu.contains(e.target) && e.target.id !== 'img') {
+      // Ẩn dropdown menu bằng cách xóa class 'show'
+      dropdownMenu.classList.remove('show');
+    }
+  });
+});
 
 $("[data-toggle='sidebar']").click(function() {
     var body = $("body"),
@@ -75,7 +89,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   
 });
+document.addEventListener("DOMContentLoaded", function () {
+  var popupTrigger = document.getElementById("add-vehicle-btn-edit");
+  var popupMenu = document.getElementById("popup-menu-newvehicle");
+  var overlay = document.createElement("div");
+  overlay.className = "overlay";
 
+
+  popupTrigger.addEventListener("click", function (event) {
+    
+    popupMenu.style.display = "block";
+    document.getElementById("room-table-modal").appendChild(overlay);
+    overlay.style.display = "block";
+    
+  });
+  overlay.addEventListener("click", function () {
+    popupMenu.style.display = "none";
+    overlay.style.display = "none";
+  });
+  
+});
  ///////// 
 // signUp
 ////////

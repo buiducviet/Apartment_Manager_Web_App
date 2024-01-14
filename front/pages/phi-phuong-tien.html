@@ -41,7 +41,7 @@
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
                       <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
                       <div class="d-sm-none d-lg-inline-block" >
-                        Chào, <span id="student-name">Admin</span>
+                        Chào, <span id="student-name"></span>
                       </div>
                       <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                         <a href="#" id="profile" class="dropdown-item has-icon">
@@ -145,6 +145,8 @@
                                 </div>
                                 <div class="card-body-bill">
                                     <div class="card-body-bill-header">
+                                      <p>Tổng phí: <span id="total-vehicle-fee"></span></p>
+                                      <p>Trạng thái: <span id="feestatus"></span></p>
                                         <p>Đơn vị thu: Ban quản lý chung cư Vinhome</p>
                                     </div>
                                     
@@ -153,11 +155,11 @@
                                         </div>
                                      
                                     <div class="card-pay">
-                                        <span>Số tiền thanh toán: </span>
-                                        <a href="" class="confirm-button">
-                                            <i class="fas fa-lock"></i>
-                                            <span>Xác nhận</span>
-                                        </a>
+                                        <p>Số tiền thanh toán: <span id="total-vehicle-feee"></span></p>
+                                        <button type="button" id="confirm-button" class="btn confirm-button">
+                                          <i class="fas fa-lock"></i>
+                                          <span>Xác nhận</span>
+                                      </button>
                                     </div>
                                     
     
@@ -166,6 +168,16 @@
                           </div>
                           
                         </div>
+
+                        <div id="passwordModal" class="modal-fee" >
+                          <div class="modal-content-fee" >
+                              <span class="close" style="font-size: 1.5rem;" onclick="closeModal()">&times;</span>
+                              <p for="password" style="font-size: 1rem; color: #333;">Nhập mật khẩu</p>
+                              <input type="password" class="form-control" tabindex="2" id="password"  >
+                              <button style="margin: 10px;" class="btn confirm-button" id="confirmpass">Xác Nhận</button>
+                              
+                          </div>
+                      </div>
                     </div>
 
                     

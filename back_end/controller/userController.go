@@ -120,3 +120,37 @@ func (u UserController) Register(c *gin.Context) {
 	})
 
 }
+
+// Trong file controller/user_controller.go
+
+// CheckPaymentPassword kiểm tra mật khẩu thanh toán
+func (u UserController) CheckPaymentPassword(c *gin.Context) {
+	password := c.Query("password")
+	// Lấy thông tin xác thực từ token
+	authDes, err := authenModel.ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "User not logged in",
+		})
+		return
+	}
+
+	// Lấy người dùng từ ID
+	user, err := userModel.GetUserByID(authDes.UserID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Error retrieving user",
+			"error":   err,
+		})
+		return
+	}
+	if !user.CheckPaymentPassword(password) {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Incorrect payment password",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Payment password is correct",
+	})
+}

@@ -25,9 +25,9 @@ func TestGetBillInfo(t *testing.T) {
 		rand.Seed(time.Now().UnixNano())
 		if room.OwnerID != "" {
 			testBill := &Bill{
-				BillType:   "internet",
+				BillType:   "electric",
 				BillMonth:  "1/2024",
-				BillCost:   180000,
+				BillAmount: rand.Intn(101) + 100,
 				Date:       "31/1/2024",
 				CustomerID: room.OwnerID,
 				Status:     "unpaid",
@@ -36,6 +36,7 @@ func TestGetBillInfo(t *testing.T) {
 			db.GetDB().Table("citizen").Select("name").Where("citizen_id = ?", testBill.CustomerID).Row().Scan(&temp)
 			testBill.CustomerName = temp
 			testBill.BillID = testBill.CustomerID + "-" + testBill.Date + "-" + testBill.BillType
+			testBill.BillCost = int64(testBill.BillAmount) * 3000
 
 			if err := db.GetDB().Table("bill").Select("bill_id").Where("bill_id = ?", testBill.BillID).Error; err == nil {
 				if err := db.GetDB().Create(testBill).Error; err != nil {

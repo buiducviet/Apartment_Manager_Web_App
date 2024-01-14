@@ -37,7 +37,7 @@
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
                       <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
                       <div class="d-sm-none d-lg-inline-block" >
-                        Chào, <span id="student-name">Admin</span>
+                        Chào, <span id="student-name"></span>
                       </div>
                       <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                         <a href="#" id="profile" class="dropdown-item has-icon">
@@ -135,28 +135,25 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-body-infor">
-                                    <span>Họ và tên chủ hộ:    Bùi Đức Việt</span>
-                                    <span>Số nhà: </span>
-                                    <span>Mã hộ khẩu: </span>
-                                    
-
+                                  <p>Họ và tên chủ hộ: <span id="room-owner"></span></p>
+                                  <p>Số nhà: <span id="room-id"></span></p>
+                                  <p>Mã hộ khẩu: <span id="household-id"></span></p>
+                                  <p>Diện tích: <span id="room-area"></span></p>
+                                  <p>Phí trên 1m²:16500</span></p>
+                                  
                                 </div>
                                 <div class="card-body-bill">
                                     <div class="card-body-bill-header">
-                                        <span>Đơn vị thu: Tổng công ty điện lực Hà Nội</span>
-                                        <span>Mã số khách hàng:  </span>
-                                        <span>Mã số thuế: </span>
-                                        <span>Kỳ hóa đơn: </span>
-                                        <span>Thời hạn thu: </span>
-
-                                        
+                                      <p>Tổng thu: <span id="dv-fee"></span></p>
+                                      <p>Trạng thái: <span id="feestatus"></span></p>
+                                        <p>Đơn vị thu: Ban quản lý chung cư</p>
                                     </div>
                                     <div class="card-pay">
-                                        <span>Số tiền thanh toán: </span>
-                                        <a href="" class="confirm-button">
-                                            <i class="fas fa-lock"></i>
-                                            <span>Xác nhận</span>
-                                        </a>
+                                        <p>Số tiền thanh toán: <span id="dv-feee"></span></p>
+                                        <button type="button" id="confirm-button" class="btn confirm-button">
+                                          <i class="fas fa-lock"></i>
+                                          <span>Xác nhận</span>
+                                        </button>
                                     </div>
                                     
     
@@ -165,20 +162,37 @@
                           </div>
                           
                         </div>
-                    </div>
 
-                    
                         
+                        <div id="passwordModal" class="modal-fee" >
+                          <div class="modal-content-fee" >
+                              <span class="close" style="font-size: 1.5rem;" onclick="closeModal()">&times;</span>
+                              <p for="password" style="font-size: 1rem; color: #333;">Nhập mật khẩu</p>
+                              <input type="password" class="form-control" tabindex="2" id="password"  >
+                              <button style="margin: 10px;" class="btn confirm-button" id="confirmpass">Xác Nhận</button>
                               
-                              
+                          </div>
+                      </div>
+                    </div>    
                       
                 </div>
               </div>
         </div>
     </div>
-    <script src="/front/assets/js/scripts.js"></script>
-    <script>
-      
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+  
+      <script src="/front/assets/js/scripts.js"></script>
+      <script src="/front/assets/js/phi-dv.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import (
 	"ApartmentApp/forms"
 	"ApartmentApp/tlog"
 	"errors"
+	"fmt"
 )
 
 type RoomFee struct {
@@ -19,9 +20,9 @@ type RoomFee struct {
 	Status   string `json:"fee_status" gorm:" not null;"`
 }
 
-func (f RoomFee) GetFeeInfor(roomID int) (*RoomFee, error) {
+func (f RoomFee) GetFeeInfor(roomID int, feetype string) (*RoomFee, error) {
 	fee := new(RoomFee)
-	err := db.GetDB().Table("room_fee").Where("room_id = ? ", roomID).Find(&fee).Error
+	err := db.GetDB().Table("room_fee").Where("room_id = ? and fee_type=?", roomID, feetype).Find(&fee).Error
 	if err != nil {
 		return nil, errors.New("Can not find citizen with given type")
 	}
@@ -39,7 +40,7 @@ func (f RoomFee) CreatNewFee(feeform forms.RoomFeeForm) (*RoomFee, error) {
 		FeeMonth: feeform.FeeMonth,
 		Date:     feeform.Date,
 	}
-	testFee.FeeID = testFee.FeeType + "-" + testFee.FeeMonth
+	testFee.FeeID = testFee.FeeType + "-" + testFee.FeeMonth + "-P" + fmt.Sprintf("%d", testFee.RoomID)
 	var area int
 	var vehicle_fee int
 	err = db.GetDB().Table("vehicle").Select("SUM(vehicle_fee)").Group("room_id").Where("room_id = ?", testFee.RoomID).Error
@@ -76,6 +77,76 @@ func (f RoomFee) CreatNewFee(feeform forms.RoomFeeForm) (*RoomFee, error) {
 
 	return testFee, err
 }
+func (f RoomFee) UpdateFee(feeform forms.RoomFeeForm) (*RoomFee, error) {
+	var err error
+	var testFee RoomFee
+
+	temp := feeform.FeeType + "-" + feeform.FeeMonth + "-P" + fmt.Sprintf("%d", feeform.RoomID)
+	err = db.GetDB().Table("room_fee").Where("fee_id = ?", temp).Find(&testFee).Error
+	if err != nil {
+		return nil, err
+	}
+
+	testFee.FeeType = feeform.FeeType
+	testFee.FeeDesc = feeform.FeeDesc
+	testFee.RoomID = feeform.RoomID
+	testFee.Status = feeform.Status
+	testFee.FeeMonth = feeform.FeeMonth
+	testFee.Date = feeform.Date
+
+	testFee.FeeID = temp
+	var area int
+	var vehicle_fee int
+	err = db.GetDB().Table("vehicle").Select("SUM(vehicle_fee)").Group("room_id").Where("room_id = ?", feeform.RoomID).Error
+
+	if err != nil {
+		return nil, err
+	} else {
+		db.GetDB().Table("vehicle").
+			Select("SUM(vehicle_fee)").
+			Group("room_id").
+			Where("room_id = ?", feeform.RoomID).
+			Row().
+			Scan(&vehicle_fee)
+	}
+	if err := db.GetDB().Table("room").Select("area").Where("room_id = ?", feeform.RoomID).Error; err != nil {
+		return nil, err
+	} else {
+		db.GetDB().Table("room").Select("area").Where("room_id = ?", feeform.RoomID).Row().Scan(&area)
+	}
+	if feeform.FeeType == "PDV" {
+		testFee.FeeCost = int64(16500 * area)
+
+	} else if feeform.FeeType == "PCC" {
+		testFee.FeeCost = int64(7000 * area)
+	} else if feeform.FeeType == "PPT" {
+		testFee.FeeCost = int64(vehicle_fee)
+	}
+
+	err = db.GetDB().Save(&testFee).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &testFee, err
+}
+func (f RoomFee) UpdateFeePaid(feeid string) (*RoomFee, error) {
+	var err error
+	var testFee RoomFee
+
+	err = db.GetDB().Table("room_fee").Where("fee_id = ?", feeid).Find(&testFee).Error
+	if err != nil {
+		return nil, err
+	}
+	testFee.Status = "paid"
+	err = db.GetDB().Save(&testFee).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &testFee, err
+}
+
 func (f RoomFee) GetAllRoomFeeCC() ([]RoomFee, []RoomFee, error) {
 	var returnListRoomFeeUnPaid []RoomFee
 	var returnListRoomFeePaid []RoomFee
@@ -91,7 +162,20 @@ func (f RoomFee) GetAllRoomFeeCC() ([]RoomFee, []RoomFee, error) {
 	for rows.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rows, &room_fee)
-		returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		/*returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)*/
+		var room Room
+
+		err := db.GetDB().Table("room").Where("room_id = ?", room_fee.RoomID).Find(&room).Error
+		if err != nil {
+			return nil, nil, err
+		}
+		if room.Status == "not owned" {
+			room_fee.Status = "Room not owned"
+			room_fee.FeeCost = 0
+			returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
+		} else {
+			returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		}
 
 	}
 	feeStatuss := "paid"
@@ -101,7 +185,7 @@ func (f RoomFee) GetAllRoomFeeCC() ([]RoomFee, []RoomFee, error) {
 		return nil, nil, err
 	}
 
-	for rows.Next() {
+	for rowss.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rowss, &room_fee)
 		returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
@@ -130,7 +214,20 @@ func (f RoomFee) GetAllRoomFeePT() ([]RoomFee, []RoomFee, error) {
 	for rows.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rows, &room_fee)
-		returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		/*returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)*/
+		var room Room
+
+		err := db.GetDB().Table("room").Where("room_id = ?", room_fee.RoomID).Find(&room).Error
+		if err != nil {
+			return nil, nil, err
+		}
+		if room.Status == "not owned" {
+			room_fee.Status = "Room not owned"
+			room_fee.FeeCost = 0
+			returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
+		} else {
+			returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		}
 
 	}
 	feeStatuss := "paid"
@@ -140,7 +237,7 @@ func (f RoomFee) GetAllRoomFeePT() ([]RoomFee, []RoomFee, error) {
 		return nil, nil, err
 	}
 
-	for rows.Next() {
+	for rowss.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rowss, &room_fee)
 		returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
@@ -169,7 +266,20 @@ func (f RoomFee) GetAllRoomFeeDV() ([]RoomFee, []RoomFee, error) {
 	for rows.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rows, &room_fee)
-		returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		/*returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)*/
+		var room Room
+
+		err := db.GetDB().Table("room").Where("room_id = ?", room_fee.RoomID).Find(&room).Error
+		if err != nil {
+			return nil, nil, err
+		}
+		if room.Status == "not owned" {
+			room_fee.Status = "Room not owned"
+			room_fee.FeeCost = 0
+			returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
+		} else {
+			returnListRoomFeeUnPaid = append(returnListRoomFeeUnPaid, room_fee)
+		}
 
 	}
 	feeStatuss := "paid"
@@ -179,9 +289,10 @@ func (f RoomFee) GetAllRoomFeeDV() ([]RoomFee, []RoomFee, error) {
 		return nil, nil, err
 	}
 
-	for rows.Next() {
+	for rowss.Next() {
 		var room_fee RoomFee
 		db.GetDB().ScanRows(rowss, &room_fee)
+
 		returnListRoomFeePaid = append(returnListRoomFeePaid, room_fee)
 
 	}

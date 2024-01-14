@@ -20,10 +20,18 @@ type User struct {
 	DefaultModel
 	UserID   string `gorm:"not null;unique" json:"userID"`
 	Role     int    `gorm:"not null; type:int;" json:"role"`
-	Username string `gorm:"not null;unique" json:"username"`
+	Username string `gorm:"not null" json:"username"`
 	Password string `gorm:"type:text;not null" json:"password"`
 }
 
+func (u User) GetUserByID(id string) (*User, error) {
+	ctz := new(User)
+	err := db.GetDB().Where("user_id = ?", id).Find(&ctz).Error
+	if err != nil {
+		return nil, errors.New("Can not find user with given id")
+	}
+	return ctz, nil
+}
 func hashPassword(password string) (string, error) {
 	var err error
 	hashedPwd := []byte(password)
@@ -114,6 +122,10 @@ func checkInputFormat(inputString string) bool {
 		}
 	}
 	return false
+}
+func (u *User) CheckPaymentPassword(inputPassword string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(inputPassword))
+	return err == nil
 }
 
 // CheckPass check if input password is in the db

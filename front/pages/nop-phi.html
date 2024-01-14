@@ -37,7 +37,7 @@
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
                       <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
                       <div class="d-sm-none d-lg-inline-block" >
-                        Chào, <span id="student-name">Admin</span>
+                        Chào, <span id="student-name"></span>
                       </div>
                       <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                         <a href="#" id="profile" class="dropdown-item has-icon">
@@ -139,19 +139,20 @@
                                     <p>Số nhà: <span id="room-id"></span></p>
                                     <p>Mã hộ khẩu: <span id="household-id"></span></p>
                                     <p>Diện tích: <span id="room-area"></span></p>
-                                    <p>Phí trên 1m²: <span id="house-fee-per-m"></span></p>
+                                    <p>Phí trên 1m²: 7000</span></p>
                                     <p>Tổng thu: <span id="house-fee"></span></p>
+                                    <p>Trạng thái: <span id="feestatus"></span></p>
                                 </div>
                                 <div class="card-body-bill">
                                     <div class="card-body-bill-header">
                                         <p>Đơn vị thu: Ban quản lý chung cư Vinhome</p>
                                     </div>
                                     <div class="card-pay">
-                                        <span>Số tiền thanh toán: </span>
-                                        <a href="" class="confirm-button">
+                                        <p>Số tiền thanh toán: <span id="house-feee"></span></p>
+                                        <button type="button" id="confirm-button" class="btn confirm-button">
                                             <i class="fas fa-lock"></i>
                                             <span>Xác nhận</span>
-                                        </a>
+                                        </button>
                                     </div>
                                     
     
@@ -160,6 +161,16 @@
                           </div>
                           
                         </div>
+                        <div id="passwordModal" class="modal-fee" >
+                          <div class="modal-content-fee" >
+                              <span class="close" style="font-size: 1.5rem;" onclick="closeModal()">&times;</span>
+                              <p for="password" style="font-size: 1rem; color: #333;">Nhập mật khẩu</p>
+                              <input type="password" class="form-control" tabindex="2" id="password"  >
+                              <button style="margin: 10px;" class="btn confirm-button" id="confirmpass">Xác Nhận</button>
+                              
+                          </div>
+                      </div>
+                      
                     </div>
 
                     
@@ -186,6 +197,6 @@
 
     <script src="/front/assets/js/scripts.js"></script>
     <script src="/front/assets/js/phi-nha.js"></script>
-    <script src="/front/assets/js/theo_doi_ho_khau.js"></script>
+    
 </body>
 </html>

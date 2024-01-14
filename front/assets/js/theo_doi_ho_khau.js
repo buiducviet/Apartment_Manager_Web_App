@@ -28,6 +28,7 @@ fetch("http://25.20.166.7:8080/lv0/roominfo", roomRequestOptions)
       $("#own-time").text(result.room.ownTime);
       $("#household-id").text(result.room.familyID);
       $("#room-owner").text(result.owner.name);
+      $("#student-name").text(result.owner.name)
       
     } else {
       alert("Có lỗi xảy ra");

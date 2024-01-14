@@ -165,24 +165,6 @@ func (rCtrl RoomController) GetAllVehicleByRoomID(c *gin.Context) {
 	})
 }
 
-func (rCtrl RoomController) GetAllVehicleByRoomIDLV1(c *gin.Context) {
-	roomID := c.Query("id")
-	num, err := strconv.Atoi(roomID)
-
-	returnVhList, err := vehicleMod.GetVehicleInfoByRoomID(num)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Can not get vehicles list",
-		})
-		c.Abort()
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"message":      "Get list vehicles",
-		"list_vehicle": returnVhList,
-	})
-}
 func (rCtrl RoomController) UpdateRoomInfo(c *gin.Context) {
 	var roomInfoForm forms.RoomForm
 

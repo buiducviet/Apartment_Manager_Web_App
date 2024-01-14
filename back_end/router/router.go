@@ -47,6 +47,7 @@ func NewRouter() *gin.Engine {
 	billCtrl := new(controller.BillController)
 	feeCtrl := new(controller.FeeController)
 	donationCtrl := new(controller.DonationController)
+	vehicleCtrl := new(controller.VehicleController)
 
 	//admin
 	level1 := router.Group("/lv1")
@@ -70,13 +71,17 @@ func NewRouter() *gin.Engine {
 		level1.GET("/listfeept", feeCtrl.GetAllRoomFeePT)
 		level1.GET("/listfeedv", feeCtrl.GetAllRoomFeeDV)
 		level1.GET("/roominfor", roomCtrl.GetRoomInfoLV1)
-		level1.GET("/vehicle", roomCtrl.GetAllVehicleByRoomIDLV1)
+		level1.GET("/vehicle", vehicleCtrl.GetAllVehicleByRoomID)
 
 		level1.GET("/listelecbill", billCtrl.GetAllBillElectric)
 		level1.GET("/listwaterbill", billCtrl.GetAllBillWater)
 		level1.GET("/listinternetbill", billCtrl.GetAllBillInternet)
+		level1.POST("/createnewfee", feeCtrl.CreatNewFee)
+		level1.POST("/updatevehiclefee", feeCtrl.UpdateVehicleFee)
 
 		level1.GET("/listdonation", donationCtrl.GetAllDonation)
+		level1.POST("/newvehicle", vehicleCtrl.CreateNewVehicle)
+		level1.POST("/updatevehicle", vehicleCtrl.UpdateVehicle)
 		/*level1.POST("/newfee", feeCtrl.c)*/
 	}
 	//citizen
@@ -93,6 +98,11 @@ func NewRouter() *gin.Engine {
 		level0.GET("/waterbill", billCtrl.GetWaterBillInfo)
 		level0.GET("/electricbill", billCtrl.GetElectricBillInfo)
 		level0.GET("/internetbill", billCtrl.GetInternetBillInfo)
+		level0.GET("/vehiclefee", feeCtrl.GetRoomFeePT)
+		level0.GET("/housefee", feeCtrl.GetRoomFeeCC)
+		level0.GET("/dichvufee", feeCtrl.GetRoomFeeDV)
+		level0.POST("/updatefeepaid", feeCtrl.UpdatePaidFee)
+		level0.GET("/checkpasspayment", userCtrl.CheckPaymentPassword)
 	}
 	router.NoRoute()
 	return router

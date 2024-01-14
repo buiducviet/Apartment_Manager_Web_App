@@ -10,6 +10,7 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
   integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
   <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
   <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
@@ -66,6 +67,10 @@
                       <a href="/front/pages/index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý nhân khẩu</span></a>
+                  </li>
                     <li class="nav-item dropdown ">
                       <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
                         <span>Quản lý hộ khẩu</span></a>
@@ -84,11 +89,11 @@
                     </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                      <a href="/front/pages/xu-li-yeu-cau.html" class="nav-link"><i class="fas fa-paper-plane"></i>
                         <span>Xử lý các yêu cầu</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
+                      <a href="/front/pages/thong-bao-quan-li.html" class="nav-link"><i class="far fa-file-alt"></i>
                         <span>Thông báo</span></a>
                     </li>
                 </aside>
@@ -235,11 +240,8 @@
                         </div>
                         <div class="form-group">
                           <p><strong>Danh sách phương tiện: </strong></p>
-                          <div id="vehicle-in-room"></div>
-                        </div>
-                        
-                        
-                        
+                          <div id="vehicle-in-roomm"></div>
+                        </div>  
                       </form>
                     </div>
                   </div>
@@ -249,8 +251,74 @@
           </div>
 
           <div class="modal-footer">
-           
+            <button class="add-member-btn-edit" id="add-vehicle-btn-edit">Thêm phương tiện</button> 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-newvehicle">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD chủ sở hữu</p>
+                    <input id="add-ownerID-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số nhà: <span id="roomID-vehicle"></span></p>
+                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Biển số xe</p>
+                    <input id="add-vehicleID-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                 
+                  <div class="add-gender member-item">
+                    <p>Loại xe</p>
+                    <form >
+                      <input  name="vehicle-type" type="radio" value="Xe gắn máy" />Xe gắn máy
+                      <input style="margin-left: 20px;" name="vehicle-type" type="radio" value="Xe ô tô" />Xe ô tô
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Tên xe</p>
+                    <input id="add-vehiclename-input" type="text" placeholder="--Ten xe--">
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-new-vehicle">Lưu</button>
+            </div>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-edit-vehicle">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD chủ sở hữu</p>
+                    <input id="add-ownerID-edit" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số nhà: <span id="roomID-vehicle-edit"></span></p>
+                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Biển số xe</p>
+                    <input id="add-vehicleID-edit" type="text" placeholder="--So CCCD --">
+                  </div>
+                 
+                  <div class="add-gender member-item">
+                    <p>Loại xe</p>
+                    <form >
+                      <input  name="vehicle-type-edit" type="radio" value="Xe gắn máy" />Xe gắn máy
+                      <input style="margin-left: 20px;" name="vehicle-type-edit" type="radio" value="Xe ô tô" />Xe ô tô
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Tên xe</p>
+                    <input id="add-vehiclename-input-edit" type="text" placeholder="--Ten xe--">
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-edit-vehicle">Lưu</button>
+            </div>
           </div>
         </div>
       </div>
@@ -267,7 +335,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
     <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
- 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/front/assets/js/scripts.js"></script>
     <script src="/front/assets/js/quan-ly-phi-phuong-tien.js"></script>
 </body>

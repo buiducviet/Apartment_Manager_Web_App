@@ -289,41 +289,298 @@ function handleRoomTableUnPaid(roomFeeList_unpaid) {
             $("#familyID").text(familyID);
             $("#owner-name").text(owner_name);
             $("#vehicle-fee").text(totalFee);
-            fetch("http://25.20.166.7:8080/lv1/vehicle?id="+roomID, roomRequestOptions)
+            console.log(roomID)
+            var roommRequestOptions = {
+              method: "GET",
+              credentials: "omit",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "text/plain",
+              },
+              redirect: "follow",
+            };
+            fetch("http://25.20.166.7:8080/lv1/vehicle?id="+roomID, roommRequestOptions)
+            
             .then(response => response.json())
             .then((result) => {
               if (result.message == "Get list vehicles") {
                 var vehicleList = result.list_vehicle;
-                var table = new Tabulator("#vehicle-in-room", {
-                  data: vehicleList,
-                  with: "50%",
-                  layout: "fitDataStretch",
-                  columns: [
-                    
-                    
-                    { title: "Loại xe", field: "vehicle_name", headerSort: false},
-                    { 
-                      title: "Biển số xe",
-                      field: "vehicleID",
-                      headerSort: false 
-                    },
-                    { 
-                      title: "Chủ sở hữu",
-                      field: "owner_name",
-                      width: 200,
-                      hozAlign: "center",
-                      headerSort: false 
-                    },
-                    {
-                      title: "Phí",
-                      field: "vehicle_fee",
-                      hozAlign: "center",
-                      headerSort: false 
+                console.log(vehicleList)
+                if(vehicleList== null){
+                  console.log("dmcd")
+                  $("#vehicle-in-roomm").html("");
+                  console.log("dmcd")
+                }
+                else{
+                  /*;*/
+                  var table = new Tabulator("#vehicle-in-roomm", {
+                    data: vehicleList,
+                    with: "50%",
+                    layout: "fitDataStretch",
+                    columns: [
+                      
+                      { title: "Loại xe", field: "vehicle_type", headerSort: false},
+                      { title: "Tên xe", field: "vehicle_name", headerSort: false},
+                      { 
+                        title: "Biển số xe",
+                        field: "vehicleID",
+                        headerSort: false 
+                      },
+                      { 
+                        title: "Mã CCCD chủ sở hữu",
+                        field: "owner_name",
+                        width: 200,
+                        hozAlign: "center",
+                        headerSort: false 
+                      },
+                      { 
+                        title: "Chủ sở hữu",
+                        field: "owner_id",
+                        width: 200,
+                        hozAlign: "center",
+                        headerSort: false 
+                      },
+                      {
+                        title: "Phí",
+                        field: "vehicle_fee",
+                        hozAlign: "center",
+                        headerSort: false 
+                      },
+                     
+                    ],
+                    rowClick: function (e, roww){
+                      var vehiclename = roww.getData().vehicle_name
+                      var vehicleID = roww.getData().vehicleID
+                      var vehicle_ownerID = roww.getData().owner_id
+                      var vehicle_type = roww.getData().vehicle_type
+                      
+  
+                      $("#add-vehiclename-input-edit").val(vehiclename);
+                      $("#add-vehicleID-edit").val(vehicleID);
+                      $("#add-ownerID-edit").val(vehicle_ownerID);
+                      $("#add-vehicleID-edit").val(vehicleID);
+                      $("input[name='vehicle-type-edit'][value='" + vehicle_type + "']").prop("checked", true);
+                      var popupMenu = document.getElementById("popup-menu-edit-vehicle");
+                      var overlay = document.createElement("div");
+                      overlay.className = "overlay";
+                      popupMenu.style.display = "block";
+                      document.getElementById("room-table-modal").appendChild(overlay);
+                      overlay.style.display = "block";
+                      overlay.addEventListener("click", function () {
+                        popupMenu.style.display = "none";
+                        overlay.style.display = "none";
+                      });
+  
+                      document.querySelectorAll('input[name="vehicle-type-edit"]').forEach(function(radio) {
+                        radio.disabled = true;
+                      });
+                      $(document).ready(function() {
+                        var roomid =   document.getElementById("roomID").innerHTML
+                        $("#roomID-vehicle-edit").text(roomid)
+                        console.log("room là: "+roomid)
+                        function checkInput() {
+                          var vehiclename = $("#add-vehiclename-input-edit").val();
+                          var vehicleID = $("#add-vehicleID-edit").val();
+                          var vehicle_type = $("input[name='vehicle-type-edit']:checked").val();
+                          var vehicle_ownerID = $("#add-ownerID-edit").val();             
+                          if (vehicleID != "" && vehiclename != "" && vehicle_type != "" && vehicle_ownerID!= "") {
+                            $("#save-btn-edit-vehicle").removeClass("disabled");
+                            var myButton = document.getElementById("save-btn-edit-vehicle");
+                            myButton.disabled = false; 
+                          } else {
+                            $("#save-btn-edit-vehicle").addClass("disabled");
+                            var myButton = document.getElementById("save-btn-edit-vehicle");
+                            myButton.disabled = true; 
+                          }
+                        }
+        
+        
+                        setInterval(checkInput,300)
+        
+                        $("#save-btn-edit-vehicle").click(function() {
+                          // Thu thập dữ liệu từ các trường input
+                          var vehiclename = $("#add-vehiclename-input-edit").val();
+                          var vehicleID = $("#add-vehicleID-edit").val();
+                          var vehicle_type = $("input[name='vehicle-type-edit']:checked").val();
+                          var vehicle_ownerID = $("#add-ownerID-edit").val();
+                          console.log(vehicleID)
+                          
+                         
+                          // Tạo một đối tượng chứa dữ liệu
+                          var vehicleData = {
+                            vehicle_name: vehiclename,
+                            vehicle_type: vehicle_type,
+                            vehicleID :vehicleID,
+                            owner_id:vehicle_ownerID,
+                            roomID: roomid,                
+                          };
+                          console.log(vehicleData.owner_id)
+                          console.log(vehicleData.vehicle_type)
+                          var newrequestOptions = {
+                            method: "POST",
+                            headers: {
+                              Authorization: "Bearer " + token,
+                              "Content-Type": "text/plain",
+                            },
+                            body: JSON.stringify(vehicleData),
+                            redirect: "follow",
+                          };
+                
+                          // Gửi dữ liệu lên server thông qua fetch API
+                          fetch("http://25.20.166.7:8080/lv1/updatevehicle", newrequestOptions)
+                          .then(response => response.json())
+                          .then((result) => {
+                            if (result.message == "Update vehicle success") {
+                              var popupMenu = document.getElementById("popup-menu-edit-vehicle");
+                              popupMenu.style.display = "none";
+                              var overlay = document.getElementsByClassName("overlay");
+                              overlay.display= "none";
+                            } else if (result.message == "citizen existed") {
+                              alert("Đã tồn tại người dùng này!");
+                            } else if (result.message == "Invalid form") {
+                              alert("Thông tin điền chưa hợp lệ!");
+                            } else {
+                              return;
+                            }
+                          })
+                          .catch((error) => {
+                            console.log("Không kết nối được tới máy chủ", error);
+                            alert("Không kết nối được tới máy chủ");
+                          });
+                        });
+      
+                      })
                     }
-                  ],
-                });
+                  });
+  
+                  
+                }
+         
+
+               
               }
               })
+
+              $(document).ready(function() {
+                $("#roomID-vehicle").text(roomID)
+                function checkInput() {
+                  var vehiclename = $("#add-vehiclename-input").val();
+                  var vehicleID = $("#add-vehicleID-input").val();
+                  var vehicle_type = $("input[name='vehicle-type']:checked").val();
+                  var vehicle_ownerID = $("#add-ownerID-input").val();
+                  
+                  
+        
+                  if (vehicleID != "" && vehiclename != "" && vehicle_type != "" && vehicle_ownerID!= "") {
+                    $("#save-btn-new-vehicle").removeClass("disabled");
+                    var myButton = document.getElementById("save-btn-new-vehicle");
+                    myButton.disabled = false; 
+                  } else {
+                    $("#save-btn-new-vehicle").addClass("disabled");
+                    var myButton = document.getElementById("save-btn-new-vehicle");
+                    myButton.disabled = true; 
+                  }
+                }
+
+
+                setInterval(checkInput,300)
+
+                $("#save-btn-new-vehicle").click(function() {
+                  // Thu thập dữ liệu từ các trường input
+                  var vehiclename = $("#add-vehiclename-input").val();
+                  var vehicleID = $("#add-vehicleID-input").val();
+                  var vehicle_type = $("input[name='vehicle-type']:checked").val();
+                  var vehicle_ownerID = $("#add-ownerID-input").val();
+                  var rid =  parseInt(document.getElementById("roomID-vehicle").innerHTML)
+                  console.log("abc"+rid)
+                  
+                 
+                  // Tạo một đối tượng chứa dữ liệu
+                  var vehicleData = {
+                    vehicle_name: vehiclename,
+                    vehicle_type: vehicle_type,
+                    vehicleID :vehicleID,
+                    owner_id:vehicle_ownerID,
+                    roomID: rid,                
+                  };
+                  console.log()
+                  console.log(vehicleData.owner_id)
+                  console.log(vehicleData.vehicle_type)
+                  var newrequestOptions = {
+                    method: "POST",
+                    headers: {
+                      Authorization: "Bearer " + token,
+                      "Content-Type": "text/plain",
+                    },
+                    body: JSON.stringify(vehicleData),
+                    redirect: "follow",
+                  };
+        
+                  // Gửi dữ liệu lên server thông qua fetch API
+                  fetch("http://25.20.166.7:8080/lv1/newvehicle", newrequestOptions)
+                  .then(response => response.json())
+                  .then((result) => {
+                    if (result.message == "Create vehicle success") {
+                      var feeData = {
+                        fee_type: "PPT",
+                        fee_desc: "Phí phương tiện",
+                        fee_month: "01-2024",
+                        roomID: rid,
+                        fee_date: "31-01-2024",
+                        fee_status: "unpaid",
+                      }
+                      console.log(feeData.roomID)
+                      var newfeeOptions = {
+                        method: "POST",
+                        headers: {
+                          Authorization: "Bearer " + token,
+                          "Content-Type": "text/plain",
+                        },
+                        body: JSON.stringify(feeData),
+                        redirect: "follow",
+                      };
+                      fetch("http://25.20.166.7:8080/lv1/updatevehiclefee", newfeeOptions)
+                      .then(response => response.json())
+                      .then((result) => {
+                        if (result.message == "Update fee success") {
+                          console.log("done")
+                        } else if (result.message == "citizen existed") {
+                          alert("Đã tồn tại người dùng này!");
+                        } else if (result.message == "Invalid form") {
+                          alert("Thông tin điền chưa hợp lệ!");
+                        } else {
+                          return;
+                        }
+                      })
+                      .catch((error) => {
+                        console.log("Không kết nối được tới máy chủ", error);
+                        alert("Không kết nối được tới máy chủ");
+                      });
+    
+                      var popupMenu = document.getElementById("popup-menu-newvehicle");
+                      popupMenu.style.display = "none";
+                      var overlay = document.getElementsByClassName("overlay");
+                      overlay.display= "none";
+                      
+                    } else if (result.message == "citizen existed") {
+                      alert("Đã tồn tại người dùng này!");
+                    } else if (result.message == "Invalid form") {
+                      alert("Thông tin điền chưa hợp lệ!");
+                    } else {
+                      return;
+                    }
+                  })
+                  .catch((error) => {
+                    console.log("Không kết nối được tới máy chủ", error);
+                    alert("Không kết nối được tới máy chủ");
+                  });
+
+                  
+                
+                 
+                })
+              
+            });
 
           } else if (result.message == "citizen existed") {
             alert("Đã tồn tại người dùng này!");
