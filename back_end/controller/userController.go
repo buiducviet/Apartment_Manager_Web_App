@@ -209,3 +209,18 @@ func (u UserController) UpdateUserInfor(c *gin.Context) {
 		"update_user": updateUser,
 	})
 }
+func (u UserController) GetAllUserRole1(c *gin.Context) {
+	listU, err := userModel.GetAllUserRole1()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get list admins",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":    "Get list admin OK",
+		"list_admin": listU,
+	})
+}

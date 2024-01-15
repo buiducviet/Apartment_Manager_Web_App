@@ -10,7 +10,11 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
   integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-
+  <link rel="stylesheet" href="/front/assets/css/style.css">
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
 
   <link rel="stylesheet" href="/front/assets/css/style.css">
  
@@ -83,6 +87,10 @@
                       <a href="/front/pages/quan-ly-dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
                         <span>Quản lý đóng góp</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-phuong-tien.html" class="nav-link"><i class="fas fa-car"></i>
+                        <span>Quản lý phương tiện</span></a>
+                    </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown active">
                       <a href="/front/pages/Profile.html" class="nav-link"><i class="fas fa-user"></i>
@@ -101,7 +109,9 @@
                 <div class="section">
                     <div class="section-header"><h1>Chi tiết tài khoản</h1></div>
                 </div>
-                <div class="section-body" style="width: 50%;">
+                <div class="section-body" >
+                  <div class="row">
+                    <div class="col-lg-5 col-md-12 col-sm-12">
                           <div class="card">
                             <div class="card-body" style="align-items: center;">
                               <div class="author-box-details">
@@ -116,6 +126,27 @@
                               <button type="button" class="button-change-profile" id="button-change-profile">Đổi mật khẩu</button>
                             </div>
                           </div> 
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-7">
+                      
+                        
+                          <div class="card" style="padding-bottom: 30px;">
+                            <div class="card-header">
+                              <h4>Danh sách tài khoản admin </h4>
+                              
+                            </div>
+                            <div class="card-body">
+                              <div class="row"style="margin: 20px;">
+                                <div id="admin-account-table"></div>
+                              </div>
+                            </div>
+                            <div class="card-footer" >
+                              <button style="float: right;" type="button" class="button-change-profile" id="addadminacount">Thêm tài khoản</button>
+                            </div>
+                      </div>
+                     
+                  </div>
+                </div>
               </div>
         </div>
 

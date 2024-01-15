@@ -88,6 +88,10 @@
                       <a href="/front/pages/quan-ly-dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
                         <span>Quản lý đóng góp</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-phuong-tien.html" class="nav-link"><i class="fas fa-car"></i>
+                        <span>Quản lý phương tiện</span></a>
+                    </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown ">
                       <a href="/front/pages/Profile.html" class="nav-link"><i class="fas fa-user"></i>
@@ -142,7 +146,29 @@
                       
                     </div>
                     <div class="col-12 col-md-12 col-lg-9">
-                      
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Tra cứu thông tin</h4>
+                        </div>
+                        <div class="card-body" style="padding: 30px 20px;">
+                            <div class="row">
+                                <div class="col-8">
+                                  <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                  <select id="filter-field">
+                                    <option></option>
+                                    <option value="roomID">Số nhà</option>
+                                    <option value="fee_status">Trạng thái</option>  
+                                  </select>
+          
+                                  <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
+                                </div>
+                                <div class="col-4">
+                                  <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Xuất excel</a>
+                                </div>
+          
+                              </div>
+                        </div>
+                      </div>
                         
                             <div class="card" style="padding-bottom: 30px;">
                               <div class="card-header">
@@ -172,36 +198,7 @@
                       
                     </div>
                 </div>
-                    <!--<div class="row">
-                        <div class="col-lg-4 col-md-12 col-sm-12">-->
-                          
-                          <!--<div class="card">
-                            <div class="card-header">
-                              <h5>Danh sách các khoản phí</h5>
-                            </div>
-                            <div class="card-body" style="align-items: center;">
-                                <div class="row">
-                                    <div class="col-4">
-                                      <span><h5>Lựa chọn loại phí</h5></span>
-                                      <select id="filter-field" style="width: 60%;">
-                                        <option></option>
-                                        <option value="vehicle-fee">Phí phương tiện</option>
-                                        <option value="house-fee">Phí nhà</option>
-                                        <option value="fee">Phí ....</option>                               
-                                      </select>      
-                                    </div>
-                                    <div class="col-4" style="align-items: center;">
-                                        <Span>
-                                            <h3 style="text-align: center;  margin: 0;">Tháng 11</h3>
-                                        </Span>
-                                    </div>
-                                    <div class="col-4">
-                                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Tìm kiếm</a>
-                                    </div>
-              
-                                  </div>
-                            </div>
-                          </div>-->
+                   
                           
                         <!--</div>
                         <div class="col-12 col-md-12 col-lg-4">-->

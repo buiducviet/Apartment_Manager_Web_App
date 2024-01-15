@@ -1,11 +1,11 @@
 package model
 
 import (
-	"ApartmentApp/forms"
 	"testing"
 
 	"ApartmentApp/config"
 	"ApartmentApp/db"
+	"ApartmentApp/forms"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -29,9 +29,9 @@ func TestRegister1(t *testing.T) {
 
 	newUser := &User{
 		Username: "Bùi Đức Việt",
-		UserID:   "030203009774",
-		Password: "vietthptqt10a",
-		Role:     1,
+		UserID:   "030203009779",
+		Password: "vietthptqt10a123",
+		Role:     0,
 	}
 	newUser.Register(forms.RegisterForm{
 		Username: newUser.Username,

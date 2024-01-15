@@ -78,3 +78,38 @@ func (vCtrl VehicleController) GetAllVehicleByRoomID(c *gin.Context) {
 		"list_vehicle": returnVhList,
 	})
 }
+func (vCtrl VehicleController) GetAllVehicle(c *gin.Context) {
+	listV, err := vehicleMod.GetAllVehicle()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get list vehicles",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":      "Get list vehicle OK",
+		"list_vehicle": listV,
+	})
+}
+
+func (vCtrl VehicleController) DeleteVehicle(c *gin.Context) {
+	ctzID := c.Query("id")
+	returnVehicle, err := vehicleMod.DeleteVehicle(ctzID)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not find vehicle",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":         "Delete Success",
+		"vehicle_deleted": returnVehicle,
+	})
+
+}

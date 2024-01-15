@@ -25,6 +25,25 @@ func (v Vehicle) GetVehicleInfo(VehicleID string) (*Vehicle, error) {
 	}
 	return vhc, nil
 }
+func (v Vehicle) GetAllVehicle() ([]Vehicle, error) {
+	var listV []Vehicle
+	rows, err := db.GetDB().Table("vehicle").Rows()
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		var ctz Vehicle
+
+		db.GetDB().ScanRows(rows, &ctz)
+		if ctz.DeletedAt == nil {
+			listV = append(listV, ctz)
+		}
+
+	}
+
+	return listV, nil
+}
 func (v Vehicle) CreateNewVehicle(vform forms.VehicleForm) (*Vehicle, error) {
 	var err error
 	db := db.GetDB()
@@ -67,7 +86,7 @@ func (v Vehicle) UpdateVehicle(vform forms.VehicleForm) (*Vehicle, error) {
 	db := db.GetDB()
 	var testVhc Vehicle
 
-	err = db.Table("vehicle").Where("vehicle_id = ?", vform.VehicleID).Find(&testVhc).Error
+	err = db.Table("vehicle").Where("vehicle_id = ? ", vform.VehicleID).Find(&testVhc).Error
 	if err != nil {
 		return nil, err
 	}
@@ -106,7 +125,8 @@ func (v Vehicle) UpdateVehicle(vform forms.VehicleForm) (*Vehicle, error) {
 }
 func (v Vehicle) GetVehicleInfoByRoomID(RoomID int) ([]Vehicle, error) {
 	var listVhc []Vehicle
-	rows, err := db.GetDB().Table("vehicle").Where("room_id = ?", RoomID).Rows()
+
+	rows, err := db.GetDB().Table("vehicle").Where("room_id = ? and deleted_at IS NULL", RoomID).Rows()
 	/*defer rows.Close()*/
 	if err != nil {
 		return nil, err
@@ -119,4 +139,21 @@ func (v Vehicle) GetVehicleInfoByRoomID(RoomID int) ([]Vehicle, error) {
 	}
 
 	return listVhc, err
+}
+func (v Vehicle) DeleteVehicle(vehicleid string) (*Vehicle, error) {
+	db := db.GetDB()
+
+	// Tìm công dân dựa trên CitizenID
+	var veh Vehicle
+	if err := db.Where("vehicle_id = ?", vehicleid).Find(&veh).Error; err != nil {
+		return nil, errors.New("vehicle not exist")
+	}
+
+	// Xóa công dân từ cơ sở dữ liệu
+	if err := db.Delete(&veh).Error; err != nil {
+		return nil, err // Trả về lỗi nếu có vấn đề khi xóa
+	}
+
+	return &veh, nil
+
 }

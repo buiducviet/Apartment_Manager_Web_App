@@ -86,6 +86,10 @@ func NewRouter() *gin.Engine {
 		level1.GET("/listdonation", donationCtrl.GetAllDonation)
 		level1.POST("/newvehicle", vehicleCtrl.CreateNewVehicle)
 		level1.POST("/updatevehicle", vehicleCtrl.UpdateVehicle)
+
+		level1.GET("/adminlist", userCtrl.GetAllUserRole1)
+		level1.GET("/listvehicle", vehicleCtrl.GetAllVehicle)
+		level1.POST("/deletevehicle", vehicleCtrl.DeleteVehicle)
 		/*level1.POST("/newfee", feeCtrl.c)*/
 	}
 	//citizen

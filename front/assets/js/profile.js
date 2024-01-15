@@ -12,7 +12,55 @@ var requestOptions = {
   redirect: "follow",
 };
 var userid
+fetch("http://25.20.166.7:8080/lv1/adminlist", requestOptions)
+.then((response) => response.json())
+  .then((result) => {
+    if (result.message == "Get list admin OK"){
+      var listadmin = result.list_admin
+      for (var i = 0; i < Object.keys(listadmin).length; i++) {
+        listadmin[i].stt = i + 1;
+      }
+      handleRoomTablePaid(listadmin)
+    }
+  })
+  function handleRoomTablePaid(adminlist) {
+    var roomsTablee = new Tabulator("#admin-account-table", {
+        height: 400, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+        data: adminlist, //assign data to table
+        virtualDom: true,
+        layout: "fitColumns", //fit columns to width of table (optional)
+        columns: [
+          //Define Table Columns
+          {
+            title: "STT",
+            field: "stt",
+            width: 80,
+            hozAlign: "center",
+            sorter: "number",
+          },
+          {
+            title: "ID",
+            field: "userID",
+            hozAlign: "center",
+            width: 150,
+            sorter: "number",
+            hozAlign: "center",
+    
+          },
 
+          {
+            title: "Tên đăng nhập",
+            field: "username",
+            hozAlign: "center",
+            width: 300,
+            sorter: "number",
+            hozAlign: "center",
+    
+          },
+
+        ],
+      })
+  }
 fetch("http://25.20.166.7:8080/lv1/usrinfo", requestOptions)
   .then((response) => response.json())
   .then((result) => {

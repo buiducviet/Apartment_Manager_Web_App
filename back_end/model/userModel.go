@@ -24,6 +24,27 @@ type User struct {
 	Password string `gorm:"type:text;not null" json:"password"`
 }
 
+func (u User) GetAllUserRole1() ([]User, error) {
+	var listU []User
+
+	rows, err := db.GetDB().Table("user").Where("role=?", 1).Rows()
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		var ctz User
+
+		db.GetDB().ScanRows(rows, &ctz)
+		if ctz.DeletedAt == nil {
+			listU = append(listU, ctz)
+		}
+
+	}
+
+	return listU, nil
+
+}
 func (u User) GetUserByID(id string) (*User, error) {
 	ctz := new(User)
 	err := db.GetDB().Where("user_id = ?", id).Find(&ctz).Error
@@ -90,11 +111,6 @@ func (u *User) Register(form forms.RegisterForm) (*User, error) {
 		UserID:   form.UserID,
 		Role:     form.Role,
 	}
-
-	/*newCitizen := &Citizen{
-		Name:      form.Username,
-		CitizenID: form.UserID,
-	}*/
 
 	if db.Table("user").Or("user_id = ?", form.UserID).RecordNotFound() {
 		return nil, errors.New("User existed")

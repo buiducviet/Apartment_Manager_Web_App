@@ -105,7 +105,7 @@ func (f RoomFee) UpdateFee(feeform forms.RoomFeeForm) (*RoomFee, error) {
 		db.GetDB().Table("vehicle").
 			Select("SUM(vehicle_fee)").
 			Group("room_id").
-			Where("room_id = ?", feeform.RoomID).
+			Where("room_id = ? and deleted_at IS NULL", feeform.RoomID).
 			Row().
 			Scan(&vehicle_fee)
 	}

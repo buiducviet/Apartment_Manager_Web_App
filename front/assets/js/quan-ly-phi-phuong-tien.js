@@ -327,14 +327,14 @@ function handleRoomTableUnPaid(roomFeeList_unpaid) {
                         headerSort: false 
                       },
                       { 
-                        title: "Mã CCCD chủ sở hữu",
+                        title: "Chủ sở hữu",
                         field: "owner_name",
                         width: 200,
                         hozAlign: "center",
                         headerSort: false 
                       },
                       { 
-                        title: "Chủ sở hữu",
+                        title: "Mã CCCD chủ sở hữu",
                         field: "owner_id",
                         width: 200,
                         hozAlign: "center",
