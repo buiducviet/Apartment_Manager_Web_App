@@ -2,7 +2,9 @@ package model
 
 import (
 	"ApartmentApp/db"
+	"ApartmentApp/forms"
 	"ApartmentApp/tlog"
+	"errors"
 )
 
 type Donation struct {
@@ -42,4 +44,28 @@ func (d Donation) GetAllDonation() ([]Donation, error) {
 	}
 
 	return returnListDonation, nil
+}
+func (d Donation) GetDonationInforByType(DonationType string, CustomerID string) (*Donation, error) {
+	donation := new(Donation)
+	err := db.GetDB().Where("donation_type = ? AND customer_id = ?", DonationType, CustomerID).Find(&donation).Error
+	if err != nil {
+		return nil, errors.New("Can not find citizen with given type")
+	}
+	return donation, nil
+}
+func (d Donation) UpdateDonationamount(form forms.DonationForm) (*Donation, error) {
+	var err error
+	var testDonation Donation
+
+	err = db.GetDB().Table("donation").Where("donation_id = ?", form.DonationID).Find(&testDonation).Error
+	if err != nil {
+		return nil, err
+	}
+	testDonation.DonationCost = form.Cost
+	err = db.GetDB().Save(&testDonation).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &testDonation, err
 }

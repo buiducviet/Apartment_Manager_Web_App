@@ -5,6 +5,7 @@ import (
 
 	"ApartmentApp/forms"
 	"ApartmentApp/model"
+	"ApartmentApp/tlog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -41,6 +42,38 @@ func (u UserController) GetUserByUsername(c *gin.Context) {
 
 	c.JSON(http.StatusBadRequest, gin.H{
 		"message": "bad request",
+	})
+}
+func (u UserController) GetUserByUserID(c *gin.Context) {
+	accessDes, err := authModel.ExtractTokenMetadata(c.Request)
+
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"message": "Canot extract metadata from Token",
+			"error":   err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get userinfo",
+		})
+		c.Abort()
+		return
+	}
+	user, err := userModel.GetUserByID(accessDes.UserID)
+	if err != nil {
+		tlog.Info(tlog.Itf{
+			"message": "Can not get room id from citizen id",
+			"error":   err,
+		})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Can not get room info",
+		})
+		c.Abort()
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "get user infor ok",
+		"user":    user,
 	})
 }
 
@@ -152,5 +185,27 @@ func (u UserController) CheckPaymentPassword(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Payment password is correct",
+	})
+}
+func (u UserController) UpdateUserInfor(c *gin.Context) {
+
+	var userform forms.RegisterForm
+	if err := c.ShouldBindJSON(&userform); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.Abort()
+		return
+	}
+
+	updateUser, err := userModel.UpdateUserInfor(userform)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update User"})
+		c.Abort()
+		return
+	}
+
+	// Trả về thông tin của User đã tạo
+	c.JSON(http.StatusOK, gin.H{
+		"message":     "Update success",
+		"update_user": updateUser,
 	})
 }

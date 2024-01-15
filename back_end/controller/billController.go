@@ -171,3 +171,21 @@ func (billCtrl BillController) GetAllBillElectric(c *gin.Context) {
 		"list_bill_paid":   listBillPaid,
 	})
 }
+func (bCtrl BillController) UpdatePaidBill(c *gin.Context) {
+
+	billid := c.Query("id")
+
+	updatevehiclebill, err := billMod.UpdateBillPaid(billid)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update bill"})
+		c.Abort()
+		return
+	}
+
+	// Trả về thông tin của Citizen đã tạo
+	c.JSON(http.StatusOK, gin.H{
+		"message":          "Update bill paid success",
+		"update_paid_bill": updatevehiclebill,
+	})
+
+}

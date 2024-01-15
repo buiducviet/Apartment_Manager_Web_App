@@ -39,7 +39,7 @@ fetch("http://25.20.166.7:8080/lv0/usrinfo", requestOptions)
       update_date_split[0];
 
 
-      $("#student-name").text(citizen_name)
+    $("#student-name").text(citizen_name)
     $("#citizen-name").text(citizen_name);
     $("#citizen-id").text(result.citizen_info.citizenID);
     $("#citizen-birth").text(result.citizen_info.dob);

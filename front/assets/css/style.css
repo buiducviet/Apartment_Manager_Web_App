@@ -549,3 +549,13 @@ body.sidebar-gone .main-sidebar {
     font-size: 20px;
     cursor: pointer;
 }
+.profile p {
+    font-size: 1rem;
+}
+.button-change-profile {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #81d694;
+    font-size: 1rem;
+}

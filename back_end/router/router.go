@@ -55,9 +55,13 @@ func NewRouter() *gin.Engine {
 		level1.Use(authMid.TokenAuth())
 		level1.Use(authMid.CheckRoleLevelMid(1))
 
+		level1.GET("/usrinfo", userCtrl.GetUserByUserID)
 		level1.GET("/check/:usr", userCtrl.GetUserByUsername)
 		level1.GET("/citizeninfo", ctzCtrl.GetCitizenInfo)
 		level1.GET("/allcitizen", ctzCtrl.GetAllCitizen)
+		level1.POST("/updateuser", userCtrl.UpdateUserInfor)
+
+		level1.GET("/checkpasspayment", userCtrl.CheckPaymentPassword)
 
 		level1.GET("/listFamily", roomCtrl.GetAllRoom)
 		level1.GET("/citizensbyfamily", ctzCtrl.GetAllCitizenByFamilyIDRoom)
@@ -103,6 +107,12 @@ func NewRouter() *gin.Engine {
 		level0.GET("/dichvufee", feeCtrl.GetRoomFeeDV)
 		level0.POST("/updatefeepaid", feeCtrl.UpdatePaidFee)
 		level0.GET("/checkpasspayment", userCtrl.CheckPaymentPassword)
+		level0.POST("/updatebill", billCtrl.UpdatePaidBill)
+
+		level0.GET("/quyvnn", donationCtrl.GetqvnnInfo)
+		level0.GET("/quykh", donationCtrl.GetqkhInfo)
+		level0.GET("/quytdp", donationCtrl.GetqtdpInfo)
+		level0.POST("/updatedonation", donationCtrl.UpdateDonation)
 	}
 	router.NoRoute()
 	return router

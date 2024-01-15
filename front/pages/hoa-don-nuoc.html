@@ -75,6 +75,10 @@
                       <a href="/front/pages/hoa-don-dien.html" class="nav-link"><i class="fas fa-file-invoice"></i>
                         <span>Theo dõi hóa đơn</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Đóng góp</span></a>
+                    </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
@@ -91,7 +95,7 @@
 
                <div class="main-content">
                 <div class="section">
-                    <div class="section-header"><h1>Quản lý thu phí</h1></div>
+                    <div class="section-header"><h1>Theo dõi hóa đơn</h1></div>
                 </div>
                 <div class="section-body">
                     <div class="row">
@@ -145,16 +149,18 @@
                                       <p>Đơn vị thu: Tổng công ty nước sạch Hà Nội</p>
                                       <p>Mã số khách hàng: <span id="customerID"></span> </p>
                                       <p>Chi tiết: Thu tiền nước tháng <span id="month"></span></p>
+                                      <p>Số nước: <span id="amount"></span> m khối</p>
                                       <p>Thời hạn thu: <span id="duration"></span></p>
+                                      <p>Trạng thái: <span id="feestatus"></span></p>
 
                                       
                                   </div>
                                   <div class="card-pay">
                                       <p>Số tiền thanh toán: <span id="sum-cost"></span></p>
-                                      <a href="" class="confirm-button">
-                                          <i class="fas fa-lock"></i>
-                                          <span>Xác nhận</span>
-                                      </a>
+                                      <button type="button" id="confirm-button" class="btn confirm-button">
+                                        <i class="fas fa-lock"></i>
+                                        <span>Xác nhận</span>
+                                    </button>
                                   </div>
                                   
   
@@ -163,13 +169,16 @@
                           </div>
                           
                         </div>
-                    </div>
-
-                    
-                        
+                        <div id="passwordModal" class="modal-fee" >
+                          <div class="modal-content-fee" >
+                              <span class="close" style="font-size: 1.5rem;" onclick="closeModal()">&times;</span>
+                              <p for="password" style="font-size: 1rem; color: #333;">Nhập mật khẩu</p>
+                              <input type="password" class="form-control" tabindex="2" id="password"  >
+                              <button style="margin: 10px;" class="btn confirm-button" id="confirmpass">Xác Nhận</button>
                               
-                              
-                      
+                          </div>
+                      </div>
+                    </div>    
                 </div>
               </div>
         </div>
@@ -188,6 +197,7 @@
   <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
 
     <script src="/front/assets/js/scripts.js"></script>
-    <script src="/front/assets/js/hoa-don.js"></script>
+    <script src="/front/assets/js/hoa-don-nuoc.js"></script>
+    <script src="/front/assets/js/custom.js"></script>
 </body>
 </html>

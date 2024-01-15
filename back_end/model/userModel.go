@@ -18,7 +18,7 @@ var (
 // User user type
 type User struct {
 	DefaultModel
-	UserID   string `gorm:"not null;unique" json:"userID"`
+	UserID   string `gorm:"not null;primary_key" json:"userID"`
 	Role     int    `gorm:"not null; type:int;" json:"role"`
 	Username string `gorm:"not null" json:"username"`
 	Password string `gorm:"type:text;not null" json:"password"`
@@ -167,4 +167,29 @@ func (u *User) GetByUsr(userid string) error {
 	}
 
 	return err
+}
+func (u *User) UpdateUserInfor(uform forms.RegisterForm) (*User, error) {
+
+	var err error
+	var user User
+	db := db.GetDB()
+
+	err = db.Table("user").Where("user_id = ?", uform.UserID).Find(&user).Error
+	if err != nil {
+		return nil, err
+	}
+	user.UserID = uform.UserID
+	user.Username = uform.Username
+	user.Role = uform.Role
+	user.Password, err = hashPassword(uform.Password)
+	if err != nil {
+		return nil, err
+	}
+
+	err = db.Save(&user).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, err
 }

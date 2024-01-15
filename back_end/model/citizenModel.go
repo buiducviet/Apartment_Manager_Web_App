@@ -141,97 +141,6 @@ func (c Citizen) DeleteCitizen(CitizenID string) (*Citizen, error) {
 
 }
 
-/*func (mMng MoneyManage) CalculateNewMonth() ([]MoneyManage, error) {
-	var listMonMng []MoneyManage
-	//get all student available
-	var listStd []Student
-	rows, err := db.GetDB().Table("student").Not("room_id = ?", 0).Rows()
-	defer rows.Close()
-	if err != nil {
-		return nil, err
-	}
-	for rows.Next() {
-		var std Student
-		db.GetDB().ScanRows(rows, &std)
-		listStd = append(listStd, std)
-	}
-
-	//Check month
-	month := int(time.Now().Month())
-	year := int(time.Now().Year())
-
-	var checkMonth []int
-	err = db.GetDB().Table("money_manage").Select("MAX(month) as max_month").Where("year = ?", year).Pluck("max_month", &checkMonth).Error
-	if err != nil {
-		return nil, err
-	}
-	if len(checkMonth) != 0 {
-		if checkMonth[0] >= month {
-			return nil, errors.New("This month has been calculated")
-		}
-	}
-
-	//Calculated money
-	for _, std := range listStd {
-		var money []int
-		err = db.GetDB().Table("room").Select("price").Where("room_id = ?", std.RoomID).Pluck("price", &money).Error
-		if err != nil {
-			return listMonMng, err
-		}
-
-		newMonMng := &MoneyManage{
-			StudentID: std.StudentID,
-			Month:     month,
-			Year:      year,
-			Money:     money[0],
-			Status:    "Unpaid",
-		}
-		err = db.GetDB().Create(newMonMng).Error
-		if err != nil {
-			return listMonMng, err
-		}
-
-		listMonMng = append(listMonMng, *newMonMng)
-	}
-
-	return listMonMng, nil
-}
-
-func (mMng MoneyManage) GetAllMoneyManage() ([]MoneyManage, error) {
-	var listMonMng []MoneyManage
-	rows, err := db.GetDB().Table("money_manage").Rows()
-	if err != nil {
-		return nil, err
-	}
-
-	for rows.Next() {
-		var newMMng MoneyManage
-		db.GetDB().ScanRows(rows, &newMMng)
-		listMonMng = append(listMonMng, newMMng)
-	}
-
-	return listMonMng, nil
-}
-
-func (mMng MoneyManage) UpdatePaymentStatus(monMngID int, status string) (*MoneyManage, error) {
-	var monMng MoneyManage
-	err := db.GetDB().Table("money_manage").Where("id = ?", monMngID).Find(&monMng).Error
-	if err != nil {
-		return nil, err
-	}
-
-	bkStatus := monMng.Status
-	monMng.Status = status
-
-	err = db.GetDB().Table("money_manage").Save(&monMng).Error
-	if err != nil {
-		monMng.Status = bkStatus
-		return nil, err
-	}
-
-	return &monMng, nil
-}*/
-
 func (c Citizen) GetAllCitizen() ([]Citizen, error) {
 	var listCtz []Citizen
 
@@ -244,25 +153,11 @@ func (c Citizen) GetAllCitizen() ([]Citizen, error) {
 		var ctz Citizen
 
 		db.GetDB().ScanRows(rows, &ctz)
-		listCtz = append(listCtz, ctz)
+		if ctz.DeletedAt == nil {
+			listCtz = append(listCtz, ctz)
+		}
+
 	}
 
 	return listCtz, nil
 }
-
-/*func (mMng MoneyManage) GetReportStudentPayment() (paid int, unpaid int, err error) {
-	var paidTemp = make([]int, 1)
-	var unpaidTemp = make([]int, 1)
-
-	err = db.GetDB().Table("money_manage").Select("COUNT(DISTINCT(`student_id`)) as sum_paid").Where("status LIKE \"Paid\"").Pluck("sum_paid", &paidTemp).Error
-	if err != nil {
-		return -1, -1, err
-	}
-
-	err = db.GetDB().Table("money_manage").Select("COUNT(DISTINCT(`student_id`)) as sum_unpaid").Where("status LIKE \"Unpaid\"").Pluck("sum_unpaid", &unpaidTemp).Error
-	if err != nil {
-		return -1, -1, err
-	}
-
-	return paidTemp[0], unpaidTemp[0], nil
-}*/

@@ -61,7 +61,7 @@ func (b Bill) GetAllBillByType(FeeType string) ([]Bill, []Bill, error) {
 		return nil, nil, err
 	}
 
-	for rows.Next() {
+	for rowss.Next() {
 		var bill Bill
 		db.GetDB().ScanRows(rowss, &bill)
 		returnListBillPaid = append(returnListBillPaid, bill)
@@ -74,4 +74,21 @@ func (b Bill) GetAllBillByType(FeeType string) ([]Bill, []Bill, error) {
 	}
 
 	return returnListBillUnPaid, returnListBillPaid, nil
+}
+
+func (b Bill) UpdateBillPaid(billid string) (*Bill, error) {
+	var err error
+	var testBill Bill
+
+	err = db.GetDB().Table("bill").Where("bill_id = ?", billid).Find(&testBill).Error
+	if err != nil {
+		return nil, err
+	}
+	testBill.Status = "paid"
+	err = db.GetDB().Save(&testBill).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &testBill, err
 }

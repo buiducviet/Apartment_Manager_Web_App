@@ -22,13 +22,22 @@ func TestGetDonationInfo(t *testing.T) {
 		db.GetDB().ScanRows(rows, &room)
 		if room.OwnerID != "" {
 			testDonation := &Donation{
-				DonationType:  "Quỹ tổ dân phố",
+				DonationType:  "Quỹ khuyến học",
 				RoomID:        room.RoomID,
 				DonorName:     room.OwnerName,
 				DonationMonth: "01-2024",
 				DonationCost:  0,
 			}
-			testDonation.DonationID = testDonation.DonationType + "-P" + fmt.Sprintf("%d", room.RoomID) + "-" + testDonation.DonationMonth
+			var head string
+			if testDonation.DonationType == "Quỹ tổ dân phố" {
+				head = "qtdp"
+
+			} else if testDonation.DonationType == "Quỹ vì người nghèo" {
+				head = "qvnn"
+			} else if testDonation.DonationType == "Quỹ khuyến học" {
+				head = "qkh"
+			}
+			testDonation.DonationID = head + "-P" + fmt.Sprintf("%d", room.RoomID) + "-" + testDonation.DonationMonth
 			if err := db.GetDB().Table("donation").Select("donation_id").Where("donation_id = ?", testDonation.DonationID).Error; err == nil {
 				if err := db.GetDB().Create(testDonation).Error; err != nil {
 					t.Errorf("Can not create user %+v", err)
