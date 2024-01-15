@@ -103,7 +103,7 @@ body.sidebar-show.main-sidebar {
     position: relative;
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 50px;
     padding: 0 20px;
     width: 100%;
     letter-spacing: .3px;
@@ -558,4 +558,27 @@ body.sidebar-gone .main-sidebar {
     border-radius: 5px;
     background-color: #81d694;
     font-size: 1rem;
+}
+.popup-menu-edit {
+    border-radius: 10px;
+}
+ .popup-menu-editt {
+    display: none;
+    position: fixed;
+    overflow-y: auto;
+    top: 50%;
+    left: 50%;
+    min-width: 500px;
+    max-height: 80%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.popup-menu-editt p {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-right: 100px;
 }

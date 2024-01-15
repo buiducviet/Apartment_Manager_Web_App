@@ -195,6 +195,48 @@ function handleRoomTablePaid(roomFeeList_paid) {
         $("#room-table-modal").modal("show");
       }
     })
+    var fieldEl = document.getElementById("filter-field");
+    var valueEl = document.getElementById("filter-value");
+    function updateFilter() {
+      var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+      var filter = filterVal == "function" ? customFilter : filterVal;
+    
+      if (filterVal == "function") {
+        typeEl.disabled = true;
+        valueEl.disabled = true;
+      } else {
+        typeEl.disabled = false;
+        valueEl.disabled = false;
+      }
+    
+      if (filterVal) {
+        roomsTable.setFilter(filter, typeVal, valueEl.value);
+      }
+    }
+    
+    //Update filters on value change
+    document.getElementById("filter-field").addEventListener("change", function() {
+      applyFilter();
+    });
+    
+    document.getElementById("filter-value").addEventListener("input", function() {
+      applyFilter();
+    });
+    
+    // Function to apply filter
+    function applyFilter() {
+      var field = document.getElementById("filter-field").value;
+      var value = document.getElementById("filter-value").value.toLowerCase();
+      
+      roomsTablee.setFilter(field, "like", value);
+    }
+    document
+      .getElementById("download-xlsx")
+      .addEventListener("click", function () {
+        roomsTablee.download("xlsx", "danhsachhokhau.xlsx", {
+          sheetName: "Danh sách",
+        });
+      });
 }
 
 function handleRoomTableUnPaid(roomFeeList_unpaid) {
@@ -597,5 +639,46 @@ function handleRoomTableUnPaid(roomFeeList_unpaid) {
         $("#room-table-modal").modal("show");
       }
     })
+    var fieldEl = document.getElementById("filter-field");
+    var valueEl = document.getElementById("filter-value");
+    function updateFilter() {
+      var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+      var filter = filterVal == "function" ? customFilter : filterVal;
     
+      if (filterVal == "function") {
+        typeEl.disabled = true;
+        valueEl.disabled = true;
+      } else {
+        typeEl.disabled = false;
+        valueEl.disabled = false;
+      }
+    
+      if (filterVal) {
+        roomsTable.setFilter(filter, typeVal, valueEl.value);
+      }
+    }
+    
+    //Update filters on value change
+    document.getElementById("filter-field").addEventListener("change", function() {
+      applyFilter();
+    });
+    
+    document.getElementById("filter-value").addEventListener("input", function() {
+      applyFilter();
+    });
+    
+    // Function to apply filter
+    function applyFilter() {
+      var field = document.getElementById("filter-field").value;
+      var value = document.getElementById("filter-value").value.toLowerCase();
+      
+      roomsTable.setFilter(field, "like", value);
+    }
+    document
+      .getElementById("download-xlsx")
+      .addEventListener("click", function () {
+        roomsTable.download("xlsx", "danhsachhokhau.xlsx", {
+          sheetName: "Danh sách",
+        });
+      });
 }

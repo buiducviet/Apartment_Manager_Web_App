@@ -11,7 +11,7 @@ func InitMigration() {
 	// 	db.DropTable(&User{})
 	// }
 	db.SingularTable(true)
-	db.AutoMigrate(&Room{}, &User{}, &Citizen{}, &Vehicle{}, &Bill{}, &RoomFee{}, &Notification{}, &Request{}, &Donation{})
+	db.AutoMigrate(&Room{}, &User{}, &Citizen{}, &Vehicle{}, &Bill{}, &RoomFee{}, &Notification{}, &Request{}, &Donation{}, &Don{})
 	db.Model(&Citizen{}).AddForeignKey("room_id", "room(room_id)", "RESTRICT", "RESTRICT")
 	db.Model(&Vehicle{}).AddForeignKey("owner_id", "citizen(citizen_id)", "RESTRICT", "RESTRICT")
 	db.Model(&Vehicle{}).AddForeignKey("room_id", "room(room_id)", "RESTRICT", "RESTRICT")

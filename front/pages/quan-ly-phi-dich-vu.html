@@ -97,7 +97,7 @@
                     </li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/thong-bao-quan-li.html" class="nav-link"><i class="far fa-file-alt"></i>
-                        <span>Thông báo</span></a>
+                        <span>Quản lý tạm trú, vắng</span></a>
                     </li>
                 </aside>
               </div>
@@ -144,7 +144,29 @@
                       
                     </div>
                     <div class="col-12 col-md-12 col-lg-9">
-                      
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Tra cứu thông tin</h4>
+                        </div>
+                        <div class="card-body" style="padding: 30px 20px;">
+                            <div class="row">
+                                <div class="col-8">
+                                  <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                  <select id="filter-field">
+                                    <option></option>
+                                    <option value="roomID">Số nhà</option>
+                                    <option value="fee_status">Trạng thái</option>  
+                                  </select>
+          
+                                  <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
+                                </div>
+                                <div class="col-4">
+                                  <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Xuất excel</a>
+                                </div>
+          
+                              </div>
+                        </div>
+                      </div>
                         
                       <div class="card" style="padding-bottom: 30px;">
                         <div class="card-header">

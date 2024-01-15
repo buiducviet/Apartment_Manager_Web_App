@@ -48,6 +48,7 @@ func NewRouter() *gin.Engine {
 	feeCtrl := new(controller.FeeController)
 	donationCtrl := new(controller.DonationController)
 	vehicleCtrl := new(controller.VehicleController)
+	donCtrl := new(controller.DonController)
 
 	//admin
 	level1 := router.Group("/lv1")
@@ -90,6 +91,9 @@ func NewRouter() *gin.Engine {
 		level1.GET("/adminlist", userCtrl.GetAllUserRole1)
 		level1.GET("/listvehicle", vehicleCtrl.GetAllVehicle)
 		level1.POST("/deletevehicle", vehicleCtrl.DeleteVehicle)
+		level1.GET("/alldoninaroom", donCtrl.GetAllDonByRoomID)
+		level1.GET("/alldon", donCtrl.GetAllDon)
+		level1.POST("/updatedon", donCtrl.UpdateDon)
 		/*level1.POST("/newfee", feeCtrl.c)*/
 	}
 	//citizen
@@ -117,6 +121,9 @@ func NewRouter() *gin.Engine {
 		level0.GET("/quykh", donationCtrl.GetqkhInfo)
 		level0.GET("/quytdp", donationCtrl.GetqtdpInfo)
 		level0.POST("/updatedonation", donationCtrl.UpdateDonation)
+
+		level0.POST("/newdon", donCtrl.CreateNewDon)
+		level0.GET("/alldon", donCtrl.GetAllDonByRoomID)
 	}
 	router.NoRoute()
 	return router

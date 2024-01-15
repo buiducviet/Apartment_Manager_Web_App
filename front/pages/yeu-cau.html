@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
+
+  <link rel="stylesheet" href="/front/assets/css/style.css">
+  <link rel="stylesheet" href="/front/assets/css/custom.css">
+  <link rel="stylesheet" href="/front/assets/css/card-body.css">
+
+</head>
+<body class="sidebar-show">
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                  <ul class="navbar-nav mr-3">
+                    <li>
+                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                    </li>
+                  </ul>
+                  <div class="search-element"></div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+                      <div class="d-sm-none d-lg-inline-block">
+                        Chào, <span id="student-name"></span>
+                      </div>
+                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                        <a href="#" id="profile" class="dropdown-item has-icon">
+                          <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </a>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+            </nav>
+
+
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                  <div class="sidebar-brand">
+                    <a href="Home.html">Chung cư</a>
+                  </div>
+                 
+                  <ul class="sidebar-menu">
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i>
+                        <span>Thông tin cá nhân</span></a>
+                    </li>
+                    <li class="menu-header">Quản lý</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Theo dõi hộ khẩu</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/nop-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> 
+                        <span>Theo dõi phí chung cư</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-hoa-don.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Theo dõi hóa đơn</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Đóng góp</span></a>
+                    </li>
+                    <li class="menu-header">Hỗ trợ</li>
+                    <li class="nav-item dropdown  active">
+                      <a href="/front/pages/yeu-cau.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                        <span>Gửi yêu cầu</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
+                        <span>Thông báo</span></a>
+                    </li>
+                </aside>
+              </div>
+
+
+              <!-- Content -->
+
+              <div class="main-content">
+                <div class="section">
+                    <div class="section-header"><h1>BlueMoon</h1></div>
+                </div>
+                <section class="section">
+                  <div class="section-header">
+                    <h1>Đăng ký tạm trú, vắng</h1>
+                  </div>
+                  <div class="section-body">
+                    <div class="row">
+                      <div class="col-12 col-md-12 col-lg-7">
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>Thông tin đơn đăng ký</h3>
+                            <div class="card-header-action">
+                          </div>
+                          </div>
+                        <div class="card-body">
+                          <div class="card author-box card-primary">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div id="don-table"></div>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-5">
+                        <div class="card">
+                          <div class="card-header" >
+                            <h4>Đăng ký tạm trú, tạm vắng</h4>
+                          </div>
+                          <div class="card-body">
+                            <Button type="button" class="btn btn-lg btn-success" id="makedon">Đăng kí tạm trú, tạm vắng</Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                        
+                    </div>
+                  </div>
+                </section>
+              </div>
+              
+        </div>
+    </div>
+    <div class="popup-menu-edit" id="popup-menu">
+        <div class="members-input">
+       
+            <div class="member">
+              <div class="add-citizenID member-item">
+                <p>Mã CCCD </p>
+                <input id="add-citizenID-input" type="text" placeholder="--So CCCD --">
+              </div>
+              <div class="add-status member-item">
+                <p>Loại</p>
+                <form >
+                  <input  name="type" type="radio" value="Tạm trú" />Tạm trú
+                  <input style="margin-left: 20px;" name="type" type="radio" value="Tạm vắng" />Tạm vắng
+                </form> 
+              </div>
+              <div class="add-relation member-item">
+                <p>Từ</p>
+                <input id="add-fromtime-input"  type="date" >                 
+              </div>
+              <div class="add-relation member-item">
+                <p>Đến</p>
+                <input id="add-endtime-input"  type="date" >                 
+              </div>
+              <div class="add-relation member-item">
+                <p>Lí do</p>
+                <input id="add-content-input"  type="text" >                 
+              </div>
+            </div>
+            <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn">Lưu</button>
+        </div>
+      </div>
+   
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+    <script src="/front/assets/js/scripts.js"></script>
+    <script src="/front/assets/js/custom.js"></script>
+    <script src="/front/assets/js/yeu-cau.js"></script>
+</body>
+</html>

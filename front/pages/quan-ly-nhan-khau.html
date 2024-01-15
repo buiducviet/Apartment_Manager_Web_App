@@ -104,7 +104,7 @@
                     </li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/thong-bao-quan-li.html" class="nav-link"><i class="far fa-file-alt"></i>
-                        <span>Thông báo</span></a>
+                        <span>Quản lý tạm trú, vắng</span></a>
                     </li>
                 </aside>
               </div>
@@ -175,6 +175,44 @@
         
               </div>
         </div>
+    </div>
+    <div class="popup-menu-edit" id="popup-menu-update">
+      <div class="members-input">
+     
+          <div class="member">
+           
+            <div class="add-name member-item">
+              <p>Họ và tên </p>
+              <input id="add-name-input-update" type="text" placeholder="--dien ho va ten --">
+            </div>
+            <div class="add-citizenID member-item">
+              <p>Mã CCCD </p>
+              <input id="add-citizenID-input-update" type="text" placeholder="--So CCCD --">
+            </div>
+            <div class="add-birthday member-item">
+              <p>Ngày sinh </p>
+              <input id="add-birthday-input-update" type="date" max="2023-01-01" >
+            </div>
+
+            <div class="add-gender member-item">
+              <p>Giới tính</p>
+              <form >
+                <input  name="genderr" type="radio" value="Nam" />Nam
+                <input style="margin-left: 20px;" name="genderr" type="radio" value="Nữ" />Nữ
+              </form>                 
+            </div>
+            <div class="add-contact member-item">
+              <p>Số điện thoại</p>
+              <input id="add-contact-input-update" type="text" placeholder="--So CCCD --">
+            </div> 
+            <div class="add-relation member-item">
+              <p>Quan hệ</p>
+              <input id="add-relation-input-update" type="text" placeholder="--quan he (chong/vo, con,..) --">                 
+            </div>
+          </div>
+          <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-update">Lưu</button>
+          <button class="save-delete btn btn-primary btn-lg btn-icon icon-right" id="delete-btn-update">Xóa</button>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
