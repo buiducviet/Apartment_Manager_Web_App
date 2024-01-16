@@ -14,7 +14,7 @@
 - Javascript.
 
 
-### 1. [Xác định yêu cầu phần mềm](https://github.com/ThanhPP/HUST_20192_QuanLyKyTucXa/tree/master/TaiLieu/XacDinhYeuCauPhanMem)
+### 1. [Xác định yêu cầu phần mềm](https://github.com/buiducviet/CNPM/tree/login/X%C3%A1c%20%C4%91%E1%BB%8Bnh%20y%C3%AAu%20c%E1%BA%A7u%20ph%E1%BA%A7n%20m%E1%BB%81m)
 
 ## [Chương trình](https://github.com/buiducviet/CNPM/tree/login)
 
@@ -51,12 +51,12 @@
   - Tải và cài đặt phần mềm VSCode: https://code.visualstudio.com/
   - Tìm và cài đặt extension Live Server: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
   - Sau khi cài đặt extension, mở file HTML bạn muốn rồi ấn vào nút Go Live ở góc trái dưới màn hình
-  
+
 ### 3. Server:
-## Cài đặt Hamachi
-- Đăng ký tài khoản tại: https://www.vpn.net/
-- Tải và cài đặt Hamachi trên máy tính tại : https://www.vpn.net/
-- Đăng nhập tài khoản Hamachi.
-- Tạo 1 mạng riêng ảo(dạng: Mesh) - Gói free cho 5 máy tính 1 mạng.
-- Kết nối tới mạng đó và lấy Virtual IP của máy.
-- Chạy chương trình backend trên Virtual IP và cổng tự lựa chọn.
+- Cài đặt Hamachi
+    - Đăng ký tài khoản tại: https://www.vpn.net/
+    - Tải và cài đặt Hamachi trên máy tính tại : https://www.vpn.net/
+    - Đăng nhập tài khoản Hamachi.
+    - Tạo 1 mạng riêng ảo(dạng: Mesh) - Gói free cho 5 máy tính 1 mạng.
+    - Kết nối tới mạng đó và lấy Virtual IP của máy.
+    - Chạy chương trình backend trên Virtual IP và cổng tự lựa chọn.
