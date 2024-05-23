@@ -1,13 +1,5 @@
-# CNPM
-**Học phần** : Nhập môn Công nghệ phần mềm - IT3180.
 
 **Tên đề tài** : Phần mềm quản lý thu phí chung cư.
-
-**Thành viên** : 
-- Bùi Đức Việt - 20215513
-- Đinh Ngọc Toàn - 20215486
-- Nguyễn Mạnh Hiếu
-- Nguyễn Minh Nhật
 
 **Ngôn ngữ sử dụng** :
 - [Golang](https://golang.org/)
