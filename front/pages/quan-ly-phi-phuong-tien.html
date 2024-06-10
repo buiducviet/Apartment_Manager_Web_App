@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+  <link href="/front/assets/js/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+  <link href="/front/assets/js/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.min.css"
+    rel="stylesheet">
+  <script type="text/javascript" src="/front/assets/js/tabulator-master/dist/js/tabulator.min.js"></script>
+  <link rel="stylesheet" href="/front/assets/css/style.css">
+  <link rel="stylesheet" href="/front/assets/css/card-body.css">
+
+</head>
+<body class="sidebar-show">
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                  <ul class="navbar-nav mr-3">
+                    <li>
+                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                    </li>
+                  </ul>
+                  <div class="search-element"></div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+                      <div class="d-sm-none d-lg-inline-block" >
+                        Chào, <span id="student-name">Admin</span>
+                      </div>
+                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                        <a href="#" id="profile" class="dropdown-item has-icon">
+                          <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </a>
+                      </div>
+                  </li>
+                </ul>
+            </nav>
+
+
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                  <div class="sidebar-brand">
+                    <a href="Home.html">Chung cư</a>
+                  </div>
+                 
+                  <ul class="sidebar-menu">
+                    <li class="nav-item dropdown ">
+                      <a href="/front/pages/index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                    </li>
+                    <li class="menu-header">Quản lý</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý nhân khẩu</span></a>
+                  </li>
+                    <li class="nav-item dropdown ">
+                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý hộ khẩu</span></a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> 
+                        <span>Quản lý thu phí</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-hoa-don.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Quản lý hóa đơn</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Quản lý đóng góp</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-phuong-tien.html" class="nav-link"><i class="fas fa-car"></i>
+                        <span>Quản lý phương tiện</span></a>
+                    </li>
+                    <li class="menu-header">Hỗ trợ</li>
+                    <li class="nav-item dropdown ">
+                      <a href="/front/pages/Profile.html" class="nav-link"><i class="fas fa-user"></i>
+                        <span>Profile</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/thong-bao-quan-li.html" class="nav-link"><i class="far fa-file-alt"></i>
+                        <span>Quản lý tạm trú, vắng</span></a>
+                    </li>
+                </aside>
+              </div>
+
+               <!-- Content -->
+
+               <div class="main-content">
+                <div class="section">
+                    <div class="section-header"><h1>Quản lý thu phí</h1></div>
+                </div>
+                <div class="section-body">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                      
+                      <div class="card">
+                        <div class="card-header">
+                          <h5>Danh mục phí</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="sidebar-card-body">
+
+                                <li class="nav-item dropdown">
+                                    <a href="/front/pages/quan-ly-thu-phi.html" >
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí chung cư</span>
+                                   </a>
+                                </li>
+                                <li class="nav-item dropdown  active">
+                                    <a href="#"  >
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí phương tiện</span>
+                                   </a>
+                                </li>
+                                <li class="nav-item dropdown ">
+                                    <a href="/front/pages/quan-ly-phi-dich-vu.html" >
+                                        <i class="far fa-file-alt"></i>
+                                        <span>Phí Dịch vụ</span>
+                                   </a>
+                                </li>
+                            </ul>
+                              
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-9">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Tra cứu thông tin</h4>
+                        </div>
+                        <div class="card-body" style="padding: 30px 20px;">
+                            <div class="row">
+                                <div class="col-8">
+                                  <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                  <select id="filter-field">
+                                    <option></option>
+                                    <option value="roomID">Số nhà</option>
+                                    <option value="fee_status">Trạng thái</option>  
+                                  </select>
+          
+                                  <input id="filter-value" type="text" placeholder="--điền dữ liệu--">
+                                </div>
+                                <div class="col-4">
+                                  <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Xuất excel</a>
+                                </div>
+          
+                              </div>
+                        </div>
+                      </div>
+                        
+                      <div class="card" style="padding-bottom: 30px;">
+                        <div class="card-header">
+                          <h4>Danh sách các hộ đã đóng phí</h4>
+                          
+                        </div>
+                        <div class="card-body">
+                          <div class="row"style="margin: 20px;">
+                            <div id="housefee-table-paid"></div>
+                          </div>
+                        </div>
+                  </div>
+                  
+                  <div class="card" style="padding-bottom: 30px;">
+                          <div class="card-header">
+                            <h4>Danh sách các hộ chưa đóng phí</h4>
+                          </div>
+                          <div class="card-body">
+                            <div class="row" style="margin: 20px;">
+                              <div id="housefee-table-unpaid"></div>
+                            </div>
+                          </div>        
+                  </div>
+                
+                </div>
+              </div>
+                </div>
+                    <!--<div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">-->
+                          
+                          <!--<div class="card">
+                            <div class="card-header">
+                              <h5>Danh sách các khoản phí</h5>
+                            </div>
+                            <div class="card-body" style="align-items: center;">
+                                <div class="row">
+                                    <div class="col-4">
+                                      <span><h5>Lựa chọn loại phí</h5></span>
+                                      <select id="filter-field" style="width: 60%;">
+                                        <option></option>
+                                        <option value="vehicle-fee">Phí phương tiện</option>
+                                        <option value="house-fee">Phí nhà</option>
+                                        <option value="fee">Phí ....</option>                               
+                                      </select>      
+                                    </div>
+                                    <div class="col-4" style="align-items: center;">
+                                        <Span>
+                                            <h3 style="text-align: center;  margin: 0;">Tháng 11</h3>
+                                        </Span>
+                                    </div>
+                                    <div class="col-4">
+                                      <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Tìm kiếm</a>
+                                    </div>
+              
+                                  </div>
+                            </div>
+                          </div>-->
+                          
+                        <!--</div>
+                        <div class="col-12 col-md-12 col-lg-4">-->
+                          
+                    <!--</div>-->
+
+                    
+              </div>
+        </div>
+    </div>
+    <div class="modal fade" id="room-table-modal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
+      <div class="modal-dialog  modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="studentModal">Thông tin chi tiết</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card card-primary">
+                <div class="card-body">
+                  <div class="author-box-details">
+                    <div class="author-box-name">
+                      <form action="">
+                        <div class="form-group">
+                          <p><strong>Số nhà: </strong><span id="roomID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Chủ hộ: </strong><span id="owner-name"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Mã hộ: </strong><span id="familyID"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Tổng phí: </strong>
+                          <span id="vehicle-fee"></span> đồng</p>
+                        </div>
+                        <div class="form-group">
+                          <p><strong>Danh sách phương tiện: </strong></p>
+                          <div id="vehicle-in-roomm"></div>
+                        </div>  
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="add-member-btn-edit" id="add-vehicle-btn-edit">Thêm phương tiện</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-newvehicle">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD chủ sở hữu</p>
+                    <input id="add-ownerID-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số nhà: <span id="roomID-vehicle"></span></p>
+                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Biển số xe</p>
+                    <input id="add-vehicleID-input" type="text" placeholder="--So CCCD --">
+                  </div>
+                 
+                  <div class="add-gender member-item">
+                    <p>Loại xe</p>
+                    <form >
+                      <input  name="vehicle-type" type="radio" value="Xe gắn máy" />Xe gắn máy
+                      <input style="margin-left: 20px;" name="vehicle-type" type="radio" value="Xe ô tô" />Xe ô tô
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Tên xe</p>
+                    <input id="add-vehiclename-input" type="text" placeholder="--Ten xe--">
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-new-vehicle">Lưu</button>
+            </div>
+          </div>
+          <div class="popup-menu-edit" id="popup-menu-edit-vehicle">
+            <div class="members-input">
+           
+                <div class="member">
+                 
+                  <div class="add-citizenID member-item">
+                    <p>Mã CCCD chủ sở hữu</p>
+                    <input id="add-ownerID-edit" type="text" placeholder="--So CCCD --">
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Số nhà: <span id="roomID-vehicle-edit"></span></p>
+                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Biển số xe</p>
+                    <input id="add-vehicleID-edit" type="text" placeholder="--So CCCD --">
+                  </div>
+                 
+                  <div class="add-gender member-item">
+                    <p>Loại xe</p>
+                    <form >
+                      <input  name="vehicle-type-edit" type="radio" value="Xe gắn máy" />Xe gắn máy
+                      <input style="margin-left: 20px;" name="vehicle-type-edit" type="radio" value="Xe ô tô" />Xe ô tô
+                    </form>                 
+                  </div>
+                  <div class="add-contact member-item">
+                    <p>Tên xe</p>
+                    <input id="add-vehiclename-input-edit" type="text" placeholder="--Ten xe--">
+                  </div>
+                </div>
+                <button class="save-edit btn btn-primary btn-lg btn-icon icon-right" id="save-btn-edit-vehicle">Lưu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/front/assets/js/scripts.js"></script>
+    <script src="/front/assets/js/quan-ly-phi-phuong-tien.js"></script>
+    <script src="/front/assets/js/custom.js"></script>
+</body>
+</html>

@@ -3,9 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phần mềm quản lý chung cư</title>
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+
+  <link rel="stylesheet" href="/front/assets/css/style.css">
+
 </head>
-<body>
-    
+<body class="sidebar-show">
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                  <ul class="navbar-nav mr-3">
+                    <li>
+                      <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                      <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                    </li>
+                  </ul>
+                  <div class="search-element"></div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
+                      <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
+                      <div class="d-sm-none d-lg-inline-block">
+                        Chào, <span id="student-name">Admin</span>
+                      </div>
+                      <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                        <a href="#" id="profile" class="dropdown-item has-icon">
+                          <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </a>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+            </nav>
+
+
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                  <div class="sidebar-brand">
+                    <a href="Home.html">Chung cư</a>
+                  </div>
+                 
+                  <ul class="sidebar-menu">
+                    <li class="nav-item dropdown active">
+                      <a href="/front/pages/index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                    </li>
+                    <li class="menu-header">Quản lý</li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-nhan-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý nhân khẩu</span></a>
+                  </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Quản lý hộ khẩu</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-hoa-don.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Quản lý hóa đơn</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Quản lý đóng góp</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/quan-ly-phuong-tien.html" class="nav-link"><i class="fas fa-car"></i>
+                        <span>Quản lý phương tiện</span></a>
+                    </li>
+                    <li class="menu-header">Hỗ trợ</li>
+                    <li class="nav-item dropdown ">
+                      <a href="/front/pages/Profile.html" class="nav-link"><i class="fas fa-user"></i>
+                        <span>Profile</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/thong-bao-quan-li.html" class="nav-link"><i class="far fa-file-alt"></i>
+                        <span>Quản lý tạm trú, vắng</span></a>
+                    </li>
+                </aside>
+              </div>
+
+
+              <!-- Content -->
+
+              <div class="main-content">
+                <div class="section">
+                    <div class="section-header"><h1>BlueMoon</h1></div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <script src="/front/assets/js/scripts.js"></script>
+    <script src="/front/assets/js/custom.js"></script>
 </body>
 </html>

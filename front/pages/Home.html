@@ -13,6 +13,8 @@
 
 
   <link rel="stylesheet" href="/front/assets/css/style.css">
+  <link rel="stylesheet" href="/front/assets/css/custom.css">
+  <link rel="stylesheet" href="/front/assets/css/card-body.css">
 
 </head>
 <body class="sidebar-show">
@@ -36,7 +38,7 @@
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" id="img">
                       <img alt="image" src="/front/assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle mr-1" />
                       <div class="d-sm-none d-lg-inline-block">
-                        Chào, <span id="student-name">Admin</span>
+                        Chào, <span id="student-name"></span>
                       </div>
                       <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                         <a href="#" id="profile" class="dropdown-item has-icon">
@@ -60,24 +62,30 @@
                  
                   <ul class="sidebar-menu">
                     <li class="nav-item dropdown active">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-home"></i>
+                        <span>Thông tin cá nhân</span></a>
                     </li>
                     <li class="menu-header">Quản lý</li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/quan-ly-ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
-                        <span>Quản lý hộ khẩu</span></a>
+                      <a href="/front/pages/ho-khau.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                        <span>Theo dõi hộ khẩu</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/quan-ly-thu-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> <span>Quản lý thu phí</span></a>
+                      <a href="/front/pages/nop-phi.html" class="nav-link"><i class="fas fa-money-bill"></i> 
+                        <span>Theo dõi phí chung cư</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-file-invoice"></i>
-                        <span>Quản lý hóa đơn</span></a>
+                      <a href="/front/pages/quan-ly-hoa-don.html" class="nav-link"><i class="fas fa-file-invoice"></i>
+                        <span>Theo dõi hóa đơn</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="/front/pages/dong-gop.html" class="nav-link"><i class="fas fa-donate"></i>
+                        <span>Đóng góp</span></a>
                     </li>
                     <li class="menu-header">Hỗ trợ</li>
                     <li class="nav-item dropdown">
-                      <a href="/front/pages/Home.html" class="nav-link"><i class="fas fa-paper-plane"></i>
-                        <span>Xử lý các yêu cầu</span></a>
+                      <a href="/front/pages/yeu-cau.html" class="nav-link"><i class="fas fa-paper-plane"></i>
+                        <span>Gửi yêu cầu</span></a>
                     </li>
                     <li class="nav-item dropdown">
                       <a href="/front/pages/Home.html" class="nav-link"><i class="far fa-file-alt"></i>
@@ -91,11 +99,106 @@
 
               <div class="main-content">
                 <div class="section">
-                    <div class="section-header"><h1>Vinhome Smart City</h1></div>
+                    <div class="section-header"><h1>BlueMoon</h1></div>
                 </div>
+                <section class="section">
+                  <div class="section-header">
+                    <h1>Thông tin</h1>
+                  </div>
+                  <div class="section-body">
+                    <div class="row">
+                      <div class="col-12 col-md-12 col-lg-7">
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>Thông tin chủ hộ</h3>
+                            <div class="card-header-action">
+                          </div>
+                          </div>
+                        <div class="card-body">
+                          <div class="card author-box card-primary">
+                            <div class="card-body">
+                              <div class="author-box-left">
+                                <img alt="image" src="../assets/images/Anh-Avatar-doi-82.jpg" class="rounded-circle author-box-picture" >
+                                <div class="clearfix"></div>
+                              </div>
+                              <div class="author-box-details">
+                                <div class="">
+                                  <p>Họ và tên: <span class="citizen-name" id="citizen-name"> </span></p>
+                                  <p>Mã cccd:   <span id="citizen-id"></span></p>
+                                  <p>Ngày sinh:   <span id="citizen-birth"></span></p>
+                                  <p>Giới tính:   <span id="citizen-gender"></span></p>
+                                  <p>Thông tin liên lạc:    <span id="citizen-contact"></span></p>
+                                  <p>Ngày đăng ký:    <span id="citizen-register-date"></span></p>
+                                  <p>Ngày cập nhật:   <span id="citizen-update-date"></span></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>Căn hộ</h3>
+                            <div class="card-header-action">
+                              <a href="/front/pages/ho-khau.html" class="btn btn-primary btn-round">Chi tiết...</a>
+                          </div>
+                          </div>
+                        <div class="card-body">
+                          <div class="card author-box">
+                            <div class="card-body">
+                              <div class="" id="info-description">
+                                <div class="">
+                                  <p>Số nhà: <span id="room-id"></span></p>
+                                  <p>Diện tích: <span id="room-area"></span> m2</p>
+                                  <p>Thời điểm sở hữu: <span id="own-time"></span></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-5">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4>Lịch</h4>
+                          </div>
+                          <div class="card-body">
+                            <div class="fc-overflow">
+                              <div id="calendar" class="fc-overflow"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                        
+                    </div>
+                  </div>
+                </section>
               </div>
+              
         </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
     <script src="/front/assets/js/scripts.js"></script>
+    <script src="/front/assets/js/Home.js"></script>
+    <script src="/front/assets/js/custom.js"></script>
 </body>
 </html>
